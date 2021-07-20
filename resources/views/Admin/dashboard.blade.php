@@ -26,7 +26,11 @@
             </div>
             {{-- <img src="{{ asset('storage/'.Auth::user()->url_cv) }}" alt=""> --}}
 
-            
+            <form action="{{route('user.destroy',Auth::user()->id)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger">DELETE</button>
+            </form>
             
 
 
