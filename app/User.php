@@ -38,6 +38,10 @@ class User extends Authenticatable
     ];
 
     public function specializations(){
-        return $this->belongsToMany('App\Specialization');
+        return [
+            $this->belongsToMany('App\Specialization'),
+            $this->belongsToMany('App\Message'),
+            $this->belongsToMany('App\Review'),
+    ];
     }
 }
