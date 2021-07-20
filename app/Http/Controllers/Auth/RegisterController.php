@@ -55,7 +55,7 @@ class RegisterController extends Controller
     {
 
         $message = [
-            'name.required'=>'Questo campo è obbligatorio',
+            'name.required'=>'Questo campo è obbligatorio test',
             'email.required'=>'Questo campo è obbligatorio',
             'password.required'=>'Questo campo è obbligatorio',
             'surname.required'=>'Questo campo è obbligatorio',
@@ -72,14 +72,14 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'surname' =>['required', 'string', 'min:1', 'max:255'],
+            /* 'surname' =>['required', 'string', 'min:1', 'max:255'],
             'city' => ['required', 'string', 'min:1', 'max:255'],
             'address' =>['required', 'string', 'min:1', 'max:255'],
-            'date_of_birth' =>['required', 'date'],
-            'cf'=>['required', 'string', /* 'min:16',  */'max:16'],
+            'date_of_birth' =>['required', 'date_format:dd-mm-YYYY'],
+            'cf'=>['required', 'string', 'min:16',  'max:16'],
             'phone_number'=>['required', 'string', 'min:1', 'max:17'],
             'url_cv'=>['required'],
-            'url_img'=>['required'],
+            'url_img'=>['required'], */
         ], $message);
     }
 
@@ -92,6 +92,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        
         $url_img = Storage::put('uploads', $data['url_img']);
         $url_cv = Storage::put('uploads', $data['url_cv']);
 

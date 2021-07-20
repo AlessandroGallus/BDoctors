@@ -65,7 +65,7 @@
                             <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('surname') }}</label>
 
                             <div class="col-md-6">
-                                <input id="surname" type="text" class="form-control" name="surname">
+                                <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname">
                                 @error('surname')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -79,7 +79,7 @@
                             <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('city') }}</label>
 
                             <div class="col-md-6">
-                                <input id="city" type="text" class="form-control" name="city">
+                                <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city">
                             </div>
                         </div>
 
@@ -87,7 +87,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control" name="address">
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address">
                             </div>
                         </div>
 
@@ -95,7 +95,7 @@
                             <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">{{ __('date_of_birth') }}</label>
 
                             <div class="col-md-6">
-                                <input id="date_of_birth" type="date" class="form-control" name="date_of_birth">
+                                <input id="date_of_birth" type="date" class="form-control @error('date_of_birth') is-invalid @enderror" name="date_of_birth">
                             </div>
                         </div>
 
@@ -103,7 +103,7 @@
                             <label for="CF" class="col-md-4 col-form-label text-md-right">{{ __('CF') }}</label>
 
                             <div class="col-md-6">
-                                <input id="CF" type="text" class="form-control" name="CF">
+                                <input id="CF" type="text" class="form-control @error('') is-invalid @enderror" name="CF">
                             </div>
                         </div>
 
@@ -111,7 +111,7 @@
                             <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('phone_number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone_number" type="text" class="form-control" name="phone_number">
+                                <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number">
                             </div>
                         </div>
 
@@ -119,7 +119,7 @@
                             <label for="url_cv" class="col-md-4 col-form-label text-md-right">{{ __('url_cv') }}</label>
 
                             <div class="col-md-6">
-                                <input id="url_cv" type="file" class="form-control" name="url_cv">
+                                <input id="url_cv" type="file" class="form-control @error('url_cv') is-invalid @enderror" name="url_cv">
                             </div>
                         </div>
 
@@ -127,7 +127,7 @@
                             <label for="url_img" class="col-md-4 col-form-label text-md-right">{{ __('url_img') }}</label>
 
                             <div class="col-md-6">
-                                <input id="url_img" type="file" class="form-control" name="url_img" accept="application/pdf,application/vnd.ms-excel">
+                                <input id="url_img" type="file" class="form-control @error('url_img') is-invalid @enderror" name="url_img" accept="application/pdf,application/vnd.ms-excel">
                             </div>
                         </div>
 
