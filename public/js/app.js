@@ -1974,9 +1974,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Card',
-  props: ['name', 'url_img']
+  props: ['name', 'url_img', 'username']
 });
 
 /***/ }),
@@ -2525,6 +2526,8 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("h3", [_vm._v(_vm._s(_vm.name))]),
+    _vm._v(" "),
+    _c("h5", [_vm._v(_vm._s(_vm.username))]),
     _vm._v(" "),
     _c("img", { attrs: { src: _vm.url_img, alt: "" } })
   ])

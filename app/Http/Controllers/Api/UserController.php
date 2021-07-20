@@ -29,7 +29,7 @@ class UserController extends Controller
             )
     } */
     $doctors = User::join('specialization_user','users.id','=','specialization_user.user_id')
-        /* ->select('users.name') */
+        /* ->select('users.name AS username') */
         /* ->where('users.city','=','Milano') */
         ->join('specializations','specialization_user.specialization_id','=','specializations.id')
         ->orderBy('users.id','desc')

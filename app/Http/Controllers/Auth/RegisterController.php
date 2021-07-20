@@ -54,15 +54,36 @@ class RegisterController extends Controller
 
     {
 
+        $message = [
+            'name.required'=>'Questo campo è obbligatorio',
+            'email.required'=>'Questo campo è obbligatorio',
+            'password.required'=>'Questo campo è obbligatorio',
+            'surname.required'=>'Questo campo è obbligatorio',
+            'city.required'=>'Questo campo è obbligatorio',
+            'address.required'=>'Questo campo è obbligatorio',
+            'date_of_birth.required'=>'Questo campo è obbligatorio',
+            'cf.required'=>'Questo campo è obbligatorio',
+            'phone_number.required'=>'Questo campo è obbligatorio',
+            'url_cv.required'=>'Questo campo è obbligatorio',
+            'url_img.required'=>'Questo campo è obbligatorio',
+        ];
 
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+            'surname' =>['required', 'string', 'min:1', 'max:255'],
+            'city' => ['required', 'string', 'min:1', 'max:255'],
+            'address' =>['required', 'string', 'min:1', 'max:255'],
+            'date_of_birth' =>['required', 'date'],
+            'cf'=>['required', 'string', /* 'min:16',  */'max:16'],
+            'phone_number'=>['required', 'string', 'min:1', 'max:17'],
+            'url_cv'=>['required'],
+            'url_img'=>['required'],
+        ], $message);
     }
 
-
+    
     /**
      * Create a new user instance after a valid registration.
      *
