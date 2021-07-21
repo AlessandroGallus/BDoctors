@@ -1925,6 +1925,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -1975,9 +1977,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Card',
-  props: ['name', 'url_img', 'username']
+  props: ['spec_name', 'url_img', 'username', 'sponsor_name', 'spec_name']
 });
 
 /***/ }),
@@ -2489,13 +2492,18 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm._v("\n  APP VUE - AJAY EDIT PULL\n  "),
+      _vm._v("\n  APP VUE - AJAY EDIT PULL - new branch\n  "),
       _c("Header"),
       _vm._v(" "),
       _vm._l(_vm.doctors, function(doctor, key) {
         return _c("Doctor", {
           key: key,
-          attrs: { name: doctor.name, url_img: doctor.url_img }
+          attrs: {
+            username: doctor.username,
+            spec_name: doctor.spec_name,
+            url_img: doctor.url_img,
+            sponsor_name: doctor.sponsor_name
+          }
         })
       })
     ],
@@ -2525,9 +2533,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h3", [_vm._v(_vm._s(_vm.name))]),
+    _c("h3", [_vm._v("Nome: " + _vm._s(_vm.username))]),
     _vm._v(" "),
-    _c("h5", [_vm._v(_vm._s(_vm.username))]),
+    _c("h5", [_vm._v("Spec: " + _vm._s(_vm.spec_name))]),
+    _vm._v(" "),
+    _c("h5", [_vm._v("Sponsor: " + _vm._s(_vm.sponsor_name))]),
     _vm._v(" "),
     _c("img", { attrs: { src: _vm.url_img, alt: "" } })
   ])

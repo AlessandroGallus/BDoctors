@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::namespace('Api')
     ->group(function(){
         Route::get('doctors','UserController@index')->name('api.doctors');
+        Route::get('doctors/{spec}/{city}','UserController@getDocWithSpec')->name('api.doctorsWithSpec');
     });
