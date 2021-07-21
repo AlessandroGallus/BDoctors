@@ -16,5 +16,7 @@ class DatabaseSeeder extends Seeder
          $this->call(Specialization_userTableSeeder::class);
          $this->call(MessagesTableSeeder::class);
          $this->call(ReviewsTableSeeder::class);
+         $this->call(SponsorsTableSeeder::class);
+         $this->call(User_SponsorTableSeeder::class);
     }
 }

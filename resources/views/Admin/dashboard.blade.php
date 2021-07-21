@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<header></header>
 <div class="container">
     <div class="row justify-content-center">
         <h1>DASHBOARD: <span>{{Auth::user()->name}} {{Auth::user()->surname}}</span></h1>
@@ -14,9 +15,13 @@
                 <h3>Data di Nascita: {{ Auth::user()->date_of_birth }}</h3>
                 <h3>Numero Telefono: {{ Auth::user()->phone_number }}</h3>
                 <div>
-                    <h3>Specializzazioni:</h4>
+                    <h3>Specializzazioni:</h3>
                     @foreach (Auth::user()->specializations as $spec)
                         <span>{{$spec->name}}, </span>
+                    @endforeach
+                    <h3>Livello:</h3>
+                    @foreach (Auth::user()->sponsors as $spons)
+                        <span>{{$spons->name}}, </span>
                     @endforeach
                 </div>
             </div>

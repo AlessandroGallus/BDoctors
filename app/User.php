@@ -38,10 +38,18 @@ class User extends Authenticatable
     ];
 
     public function specializations(){
-        return [
-            $this->belongsToMany('App\Specialization'),
-            $this->belongsToMany('App\Message'),
-            $this->belongsToMany('App\Review'),
-    ];
+        return $this->belongsToMany('App\Specialization');
+    }
+    
+    public function sponsors(){
+        return $this->belongsToMany('App\Sponsor');
+    }
+
+    public function messages(){
+        return $this->belongsToMany('App\Message');
+    }
+
+    public function reviews(){
+        return $this->belongsToMany('App\Review');
     }
 }
