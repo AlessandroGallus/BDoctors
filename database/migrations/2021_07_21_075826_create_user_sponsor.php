@@ -26,7 +26,7 @@ class CreateUserSponsor extends Migration
                   ->on('sponsors')
                   ->onDelete('cascade');
             
-            $table->date('expiring_date');
+            $table->date('expiring_date')->nullable();
 
         });
     }

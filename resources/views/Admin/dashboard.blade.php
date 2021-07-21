@@ -20,9 +20,8 @@
                         <span>{{$spec->name}}, </span>
                     @endforeach
                     <h3>Livello:</h3>
-                    @foreach (Auth::user()->sponsors as $spons)
-                        <span>{{$spons->name}}, </span>
-                    @endforeach
+                    {{Auth::user()->sponsors[0]->name}}
+                    
                 </div>
             </div>
             
@@ -36,6 +35,7 @@
                 @method('DELETE')
                 <button class="btn btn-danger">DELETE</button>
             </form>
+            <a href="#">See Messages</a>
             
 
 

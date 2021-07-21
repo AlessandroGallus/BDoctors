@@ -5,8 +5,10 @@
     <Doctor
     v-for="(doctor,key) in doctors"
     :key="key"
-    :name='doctor.name'
+    :username='doctor.username'
+    :spec_name='doctor.spec_name'
     :url_img="doctor.url_img"
+    :sponsor_name='doctor.sponsor_name'
     />
   </div>
 </template>
