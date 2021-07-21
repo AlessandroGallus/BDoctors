@@ -2489,7 +2489,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm._v("\n  APP VUE\n  "),
+      _vm._v("\n  APP VUE - AJAY EDIT PULL\n  "),
       _c("Header"),
       _vm._v(" "),
       _vm._l(_vm.doctors, function(doctor, key) {
@@ -2554,9 +2554,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n  HEADER\n")])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("nav", [_c("a", { attrs: { href: "" } })])])
+  }
+]
 render._withStripped = true
 
 
@@ -14988,8 +14995,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\aleeg\Desktop\Boolean\Laravel\prova-master\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\aleeg\Desktop\Boolean\Laravel\prova-master\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\ASN\BOOLEAN\project\prova-master\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\ASN\BOOLEAN\project\prova-master\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
