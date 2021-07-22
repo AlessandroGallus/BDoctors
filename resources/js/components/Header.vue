@@ -20,10 +20,15 @@ export default {
 
 <style lang='scss' scoped>
   header{
+    color: white;
     height: 80px;
-    background-color: red;
+    background-color: #386db3;
     nav{
       height: inherit;
+      a{
+          color: white;
+          text-decoration: none;
+      }
     }
   }
 </style>

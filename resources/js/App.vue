@@ -1,7 +1,9 @@
 <template>
   <div>
     <Header/>
-    <router-view></router-view>
+    <div class="container">
+        <router-view></router-view>
+    </div>
     <!-- <Doctor
     v-for="(doctor,key) in doctors"
     :key="key"
@@ -39,7 +41,7 @@ export default {
         console.log(this.doctors)
       })
       .catch(err => {
-        console.error(err); 
+        console.error(err);
       })
     }
   }
