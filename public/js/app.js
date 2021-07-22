@@ -1926,6 +1926,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -3221,29 +3222,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-<<<<<<< HEAD
-  return _c(
-    "div",
-    [
-      _c("Header"),
-      _vm._v(" "),
-      _vm._l(_vm.doctors, function(doctor, key) {
-        return _c("Doctor", {
-          key: key,
-          attrs: {
-            username: doctor.username,
-            spec_name: doctor.spec_name,
-            url_img: doctor.url_img,
-            sponsor_name: doctor.sponsor_name
-          }
-        })
-      })
-    ],
-    2
-  )
-=======
   return _c("div", [_c("Header"), _vm._v(" "), _c("router-view")], 1)
->>>>>>> a1e450bf3fdb55b6e0e04504cdc888346fcab29a
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -19200,8 +19179,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\aleeg\Desktop\Boolean\Laravel\prova-master\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\aleeg\Desktop\Boolean\Laravel\prova-master\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/resme/Desktop/Progetto Boolean/progetto/prova-master/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/resme/Desktop/Progetto Boolean/progetto/prova-master/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
