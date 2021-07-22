@@ -2010,6 +2010,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Header'
 });
@@ -3317,7 +3318,9 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _vm._m(0)
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1)
           ])
         ])
       ]
@@ -3331,6 +3334,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "d-inline" }, [
       _c("a", { attrs: { href: "/register" } }, [_vm._v("Register")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "d-inline" }, [
+      _c("a", { attrs: { href: "/register" } }, [_vm._v("test")])
     ])
   }
 ]
