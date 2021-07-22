@@ -30,6 +30,7 @@ class UserController extends Controller
     } */
     $doctors = User::join('specialization_user','users.id','=','specialization_user.user_id')
         ->select('users.name AS username',
+                'users.id',
                 'sponsors.name AS sponsor_name',
                 'specializations.name AS spec_name',
                 'url_img'             

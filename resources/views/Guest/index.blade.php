@@ -10,7 +10,7 @@
 </head>
 <body>
   
-  <h1>HOME PUBBLICA</h1>
+  {{-- <h1>HOME PUBBLICA</h1> --}}
   <div id="app"></div>
   
 </body>
