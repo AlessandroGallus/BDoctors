@@ -82,7 +82,7 @@ class RegisterController extends Controller
             'url_img'=>['required'], */
         ], $message);
     }
-
+/* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */
     
     /**
      * Create a new user instance after a valid registration.
