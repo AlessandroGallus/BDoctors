@@ -1926,7 +1926,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -2492,7 +2491,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm._v("\n  APP VUE - AJAY EDIT PULL - new branch\n  "),
       _c("Header"),
       _vm._v(" "),
       _vm._l(_vm.doctors, function(doctor, key) {
@@ -15005,8 +15003,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\ASN\BOOLEAN\project\prova-master\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\ASN\BOOLEAN\project\prova-master\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\aleeg\Desktop\Boolean\Laravel\prova-master\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\aleeg\Desktop\Boolean\Laravel\prova-master\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

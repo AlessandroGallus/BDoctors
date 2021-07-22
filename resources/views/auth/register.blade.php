@@ -152,7 +152,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <select class="form-control @error('category_id') is-invalid @enderror"
-                                    name="specializations[]" id="soecializations">
+                                    name="specializations[]" id="specializations">
                                         <option value=""> - selezionare una categoria - </option>
                                         @foreach($specializations as $spec)
                                             <option

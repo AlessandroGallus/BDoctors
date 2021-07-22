@@ -15,7 +15,7 @@ class Specialization_userTableSeeder extends Seeder
     public function run(){
     
         $users = User::all();
-        $specializations = Specialization::all();
+        
         foreach ($users as $user) {
             DB::table('specialization_user')->insert([
                 'user_id'=>$user['id'],
