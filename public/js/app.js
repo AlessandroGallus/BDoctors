@@ -2008,6 +2008,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Header'
 });
@@ -3307,7 +3308,9 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _vm._m(0)
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1)
           ])
         ])
       ]
@@ -3321,6 +3324,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "d-inline" }, [
       _c("a", { attrs: { href: "/register" } }, [_vm._v("Register")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "d-inline" }, [
+      _c("a", { attrs: { href: "/register" } }, [_vm._v("test")])
     ])
   }
 ]
@@ -19179,8 +19190,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\aleeg\Desktop\Boolean\Laravel\prova-master\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\aleeg\Desktop\Boolean\Laravel\prova-master\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/resme/Desktop/Progetto Boolean/progetto/prova-master/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/resme/Desktop/Progetto Boolean/progetto/prova-master/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
