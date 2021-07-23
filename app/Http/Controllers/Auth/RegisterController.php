@@ -56,14 +56,16 @@ class RegisterController extends Controller
 
         $message = [
             'name.required'=>'Questo campo è obbligatorio test',
+            'name.max'=>'Ciò che hai inserito è troppo lungo',
             'email.required'=>'Questo campo è obbligatorio',
+            'email.max'=>'Ciò che hai inserito è troppo lungo',
             'password.required'=>'Questo campo è obbligatorio',
             'surname.required'=>'Questo campo è obbligatorio',
             'city.required'=>'Questo campo è obbligatorio',
             'address.required'=>'Questo campo è obbligatorio',
             'date_of_birth.required'=>'Questo campo è obbligatorio',
-            'date_of_birth.date_format'=>'FORMAT SBAGLIATO',
             'cf.required'=>'Questo campo è obbligatorio',
+            'cf.min'=>'Questo campo è troppo corto',
             'phone_number.required'=>'Questo campo è obbligatorio',
             'url_cv.required'=>'Questo campo è obbligatorio',
             'url_img.required'=>'Questo campo è obbligatorio',
@@ -78,7 +80,7 @@ class RegisterController extends Controller
             'city' => ['required', 'string', 'min:1', 'max:255'],
             'address' =>['required', 'string', 'min:1', 'max:255'],
             'date_of_birth' =>['required'],
-            'CF'=>['required', 'string', 'min:1',  'max:16'],
+            'CF'=>['required', 'string', 'min:10',  'max:16'],
             'phone_number'=>['required', 'string', 'min:1', 'max:17'],
             'url_cv'=>['required'],
             /* 'url_img'=>['required'], */
