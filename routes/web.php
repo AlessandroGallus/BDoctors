@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
@@ -30,8 +31,13 @@ Route::namespace('Admin')
     });
 Route::get('{any?}', 'PageController@index')->where('any','.*');
 =======
+=======
+>>>>>>> 7a2e4f814360b2a3a142bc7d72ff329f1a14d676
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::delete('/dashboard/{user}','Admin\UserController@destroy')->middleware('auth')->name('user.destroy');
 Route::get('{any?}', 'PageController@index')->where('any','.*');
+<<<<<<< HEAD
+>>>>>>> 7a2e4f814360b2a3a142bc7d72ff329f1a14d676
+=======
 >>>>>>> 7a2e4f814360b2a3a142bc7d72ff329f1a14d676
