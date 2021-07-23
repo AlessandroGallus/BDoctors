@@ -37401,7 +37401,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\ASN\BOOLEAN\project\prova-master\resources\js\admin.js */"./resources/js/admin.js");
+<<<<<<< HEAD
+module.exports = __webpack_require__(/*! C:\Users\Roberto\Desktop\Boolean Careers\LARAVEL\prova-master\resources\js\admin.js */"./resources/js/admin.js");
+=======
+module.exports = __webpack_require__(/*! /Users/resme/Desktop/Progetto Boolean/progetto/prova-master/resources/js/admin.js */"./resources/js/admin.js");
+>>>>>>> 17b6575d6e024a9921b747423b64065e4220380c
 
 
 /***/ })

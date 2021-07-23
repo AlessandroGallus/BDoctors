@@ -8,7 +8,10 @@ use App\Specialization;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Storage;
+=======
+>>>>>>> 7a2e4f814360b2a3a142bc7d72ff329f1a14d676
 
 class UserController extends Controller
 {

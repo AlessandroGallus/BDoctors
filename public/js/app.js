@@ -1927,6 +1927,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -1994,6 +1996,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -2106,7 +2109,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "header[data-v-1f42fb90] {\n  height: 80px;\n  background-color: red;\n}\nheader nav[data-v-1f42fb90] {\n  height: inherit;\n}", ""]);
+exports.push([module.i, "header[data-v-1f42fb90] {\n  color: white;\n  height: 80px;\n  background-color: #386db3;\n}\nheader nav[data-v-1f42fb90] {\n  height: inherit;\n}\nheader nav a[data-v-1f42fb90] {\n  color: white;\n  text-decoration: none;\n}", ""]);
 
 // exports
 
@@ -3222,7 +3225,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("Header"), _vm._v(" "), _c("router-view")], 1)
+  return _c(
+    "div",
+    [
+      _c("Header"),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [_c("router-view")], 1)
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -3307,7 +3318,9 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _vm._m(0)
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1)
           ])
         ])
       ]
@@ -3321,6 +3334,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "d-inline" }, [
       _c("a", { attrs: { href: "/register" } }, [_vm._v("Register")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "d-inline" }, [
+      _c("a", { attrs: { href: "/register" } }, [_vm._v("test")])
     ])
   }
 ]
@@ -19179,8 +19200,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\ASN\BOOLEAN\project\prova-master\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\ASN\BOOLEAN\project\prova-master\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Roberto\Desktop\Boolean Careers\LARAVEL\prova-master\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Roberto\Desktop\Boolean Careers\LARAVEL\prova-master\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

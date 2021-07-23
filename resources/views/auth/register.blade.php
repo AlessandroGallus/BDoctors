@@ -141,7 +141,11 @@
                                 </div>
                                 <div class="col-md-6">
                                     <select class="form-control @error('category_id') is-invalid @enderror"
+<<<<<<< HEAD
                                     name="specializations" id="specializations">
+=======
+                                    name="specializations[]" id="specializations">
+>>>>>>> 7a2e4f814360b2a3a142bc7d72ff329f1a14d676
                                         <option value=""> - selezionare una categoria - </option>
                                         @foreach($specializations as $spec)
                                             <option @if (old('specializations')== $spec->id)

@@ -6,6 +6,7 @@
         <ul class="list-style-none">
           <li class="d-inline"><router-link :to="{name:'doctorlist'}">Dottori</router-link></li>
           <li class="d-inline"><a href="/register">Register</a></li>
+          <li class="d-inline"><a href="/register">test</a></li>
         </ul>
       </div>
     </nav>
@@ -20,10 +21,15 @@ export default {
 
 <style lang='scss' scoped>
   header{
+    color: white;
     height: 80px;
-    background-color: red;
+    background-color: #386db3;
     nav{
       height: inherit;
+      a{
+          color: white;
+          text-decoration: none;
+      }
     }
   }
 </style>
