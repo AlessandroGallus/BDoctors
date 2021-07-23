@@ -2009,6 +2009,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Header'
 });
@@ -2107,7 +2109,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "header[data-v-1f42fb90] {\n  height: 80px;\n  background-color: red;\n}\nheader nav[data-v-1f42fb90] {\n  height: inherit;\n}", ""]);
+exports.push([module.i, "header[data-v-1f42fb90] {\n  height: 80px;\n  background-color: red;\n}\nheader nav[data-v-1f42fb90] {\n  height: inherit;\n}\nheader nav img[data-v-1f42fb90] {\n  width: 70px;\n  border-radius: 50%;\n}", ""]);
 
 // exports
 
@@ -3288,9 +3290,13 @@ var render = function() {
           "div",
           { staticClass: "left" },
           [
-            _c("router-link", { attrs: { to: { name: "home" } } }, [
-              _vm._v("HOME")
-            ])
+            _c("img", { attrs: { src: "img/logo.png", alt: "" } }),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { staticClass: "mr-2  ", attrs: { to: { name: "home" } } },
+              [_vm._v("HOME")]
+            )
           ],
           1
         ),
@@ -3308,9 +3314,7 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1)
+            _vm._m(0)
           ])
         ])
       ]
@@ -3324,14 +3328,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "d-inline" }, [
       _c("a", { attrs: { href: "/register" } }, [_vm._v("Register")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "d-inline" }, [
-      _c("a", { attrs: { href: "/register" } }, [_vm._v("test")])
     ])
   }
 ]

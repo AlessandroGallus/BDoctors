@@ -28,6 +28,7 @@ class UsersTableSeeder extends Seeder
             $new_user->save();
         }
         $new_user = new User();
+      
         $new_user['name']=$this->get('name');
         $new_user['email']='testmail@gmail.com';
         $new_user['password']='password';
@@ -39,6 +40,7 @@ class UsersTableSeeder extends Seeder
         $new_user['phone_number']=$this->get('number');
         $new_user['url_img']=$this->get('img');
         $new_user['url_cv']='https://drive.google.com/file/d/1A2JYavC8iGDy9tEHLs4-JN16GwGGjTVD/view?usp=sharing';
+    
         $new_user->save();
     }
     public function get($type){

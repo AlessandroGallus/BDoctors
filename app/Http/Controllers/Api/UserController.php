@@ -41,7 +41,8 @@ class UserController extends Controller
         ->join('sponsors','user_sponsor.sponsor_id','=','sponsors.id')
         ->orderBy('users.id','desc')
         /* ->groupBy('users.id') */
-        ->get();
+       
+         ->get();
     return response()->json($doctors);
 }
 public function getDocWithSpec($spec,$city){
@@ -59,6 +60,7 @@ public function getDocWithSpec($spec,$city){
         ->where('users.city','=',$city)
         ->orderBy('users.id','desc')
         /* ->groupBy('users.id') */
+      
         ->get();
     return response()->json($doctors);
 }
