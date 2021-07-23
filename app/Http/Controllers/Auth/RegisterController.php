@@ -83,7 +83,8 @@ class RegisterController extends Controller
             'CF'=>['required', 'string', 'min:10',  'max:16'],
             'phone_number'=>['required', 'string', 'min:1', 'max:17'],
             'url_cv'=>['required'],
-            /* 'url_img'=>['required'], */
+      // 'url_img'=>['required']
+          'url_img' => 'required|mimes:png,jpeg,gif',
         ], $message);
     }
 /* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */

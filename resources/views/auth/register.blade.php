@@ -174,6 +174,11 @@
                                 <div class="col-md-6">
                                     <select class="form-control @error('category_id') is-invalid @enderror"
                                     name="specializations" id="specializations">
+                                     @error('specializations')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                   @enderror
 
                                         <option value=""> - selezionare una categoria - </option>
                                         @foreach($specializations as $spec)
