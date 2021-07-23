@@ -59,6 +59,7 @@
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" {{-- required --}} autocomplete="new-password">
                             </div>
+
                         </div>
 
                         <div class="form-group row">
@@ -80,7 +81,13 @@
 
                             <div class="col-md-6">
                                 <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}">
+                                  @error('city')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
+
                         </div>
 
                         <div class="form-group row">
@@ -88,6 +95,11 @@
 
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}">
+                                  @error('address')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -108,7 +120,12 @@
                             <label for="CF" class="col-md-4 col-form-label text-md-right">{{ __('CF') }}</label>
 
                             <div class="col-md-6">
-                                <input id="CF" type="text" class="form-control @error('') is-invalid @enderror" name="CF" value="{{ old('CF') }}">
+                                <input id="CF" type="text" class="form-control @error('CF') is-invalid @enderror" name="CF" value="{{ old('CF') }}">
+                                  @error('CF')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -117,6 +134,11 @@
 
                             <div class="col-md-6">
                                 <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}">
+                                  @error('phone_number')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -125,6 +147,11 @@
 
                             <div class="col-md-6">
                                 <input id="url_cv" type="text" class="form-control @error('url_cv') is-invalid @enderror" name="url_cv" value="{{ old('url_cv') }}">
+                                  @error('url_cv')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -133,6 +160,11 @@
 
                             <div class="col-md-6">
                                 <input id="url_img" type="file" class="form-control @error('url_img') is-invalid @enderror" name="url_img">
+                                  @error('url_img')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                             <div class="form-group row">
