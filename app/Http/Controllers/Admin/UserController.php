@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EditRequest;
+use App\Specialization;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -58,7 +62,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $to_edit = User::find($id);
+        $userspec = $to_edit->specializations;
+        $specializations = Specialization::all();
+        return view('Admin.edit',compact('to_edit','specializations','userspec')); 
     }
 
     /**
@@ -68,9 +75,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditRequest $request, $id)
     {
-        //
+        $to_update = User::find($id);
+        $data= $request->all();
+        $url_img = Storage::put('uploads', $data['url_img']);
+        $data['url_img']=$url_img;
+        /* dd($data); */
+        $to_update->update($data);
+        $to_update->specializations()->sync($data['specializations']);
+        return redirect()->route('home');
     }
 
     /**
@@ -82,8 +96,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+        Auth::logout();
         $user->delete();
-        return view('auth.login');
+        return redirect()->route('login');
 
     }
 }

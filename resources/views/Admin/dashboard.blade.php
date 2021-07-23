@@ -36,6 +36,7 @@
                 <button class="btn btn-danger">DELETE</button>
             </form>
             <a href="#">See Messages</a>
+            <a href="{{route('user.edit',Auth::user()->id)}}">EDIT</a>
             
 
 

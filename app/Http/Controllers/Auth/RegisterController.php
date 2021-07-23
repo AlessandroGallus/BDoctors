@@ -62,24 +62,26 @@ class RegisterController extends Controller
             'city.required'=>'Questo campo è obbligatorio',
             'address.required'=>'Questo campo è obbligatorio',
             'date_of_birth.required'=>'Questo campo è obbligatorio',
+            'date_of_birth.date_format'=>'FORMAT SBAGLIATO',
             'cf.required'=>'Questo campo è obbligatorio',
             'phone_number.required'=>'Questo campo è obbligatorio',
             'url_cv.required'=>'Questo campo è obbligatorio',
             'url_img.required'=>'Questo campo è obbligatorio',
+
         ];
 
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            /* 'surname' =>['required', 'string', 'min:1', 'max:255'],
+            'surname' =>['required', 'string', 'min:1', 'max:255'],
             'city' => ['required', 'string', 'min:1', 'max:255'],
             'address' =>['required', 'string', 'min:1', 'max:255'],
-            'date_of_birth' =>['required', 'date_format:dd-mm-YYYY'],
-            'cf'=>['required', 'string', 'min:16',  'max:16'],
+            'date_of_birth' =>['required'],
+            'CF'=>['required', 'string', 'min:1',  'max:16'],
             'phone_number'=>['required', 'string', 'min:1', 'max:17'],
             'url_cv'=>['required'],
-            'url_img'=>['required'], */
+            /* 'url_img'=>['required'], */
         ], $message);
     }
 
@@ -92,9 +94,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
+        /* dd($data); */
         $url_img = Storage::put('uploads', $data['url_img']);
-        $url_cv = Storage::put('uploads', $data['url_cv']);
+        /* $url_cv = Storage::put('uploads', $data['url_cv']); */
 
      /*    return  */ $new_user = User::create([
             'name' => $data['name'],
@@ -107,7 +109,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'url_img' => $url_img,
-            'url_cv' => $url_cv,
+            'url_cv' => $data['url_cv'],
         ]);
 
         $new_user->specializations()->attach($data['specializations']);

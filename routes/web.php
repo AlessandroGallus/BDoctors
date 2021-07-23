@@ -18,7 +18,13 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::get('{any?}', 'PageController@index')->where('any','.*');
+
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
-Route::delete('/dashboard/{user}','Admin\UserController@destroy')->middleware('auth')->name('user.destroy');
+/* Route::delete('/dashboard/{user}','Admin\UserController@destroy')->middleware('auth')->name('user.destroy'); */
+Route::namespace('Admin')
+    ->middleware('auth')
+    ->group(function(){
+        Route::resource('/user','UserController');
+    });
+Route::get('{any?}', 'PageController@index')->where('any','.*');
