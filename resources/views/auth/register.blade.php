@@ -172,13 +172,9 @@
                                     <label class="label-control " for="specializations">Specializzazione</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <select class="form-control @error('category_id') is-invalid @enderror"
+                                    <select class="form-control @error('specializations') is-invalid @enderror"
                                     name="specializations" id="specializations">
-                                     @error('specializations')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                   @enderror
+                                     
 
                                         <option value=""> - selezionare una categoria - </option>
                                         @foreach($specializations as $spec)
@@ -187,7 +183,13 @@
                                             @endif
                                             value="{{ $spec->id }}">{{ $spec->name }}</option>
                                         @endforeach
+                                 
                                     </select>
+                                           @error('specializations')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                   @enderror
                                 </div>
                             </div>
 

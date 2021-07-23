@@ -69,6 +69,7 @@ class RegisterController extends Controller
             'phone_number.required'=>'Questo campo è obbligatorio',
             'url_cv.required'=>'Questo campo è obbligatorio',
             'url_img.required'=>'Questo campo è obbligatorio',
+             'specializations.required'=>'scegliere specializzazione',
 
         ];
 
@@ -85,6 +86,7 @@ class RegisterController extends Controller
             'url_cv'=>['required'],
       // 'url_img'=>['required']
           'url_img' => 'required|mimes:png,jpeg,gif',
+      'specializations' => ['required'],
         ], $message);
     }
 /* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */
@@ -113,6 +115,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'url_img' => $url_img,
             'url_cv' => $data['url_cv'],
+      // 'specializations' => $data['specializations'],
         ]);
 
         $new_user->specializations()->attach($data['specializations']);
