@@ -8,13 +8,8 @@ use App\Specialization;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 use Illuminate\Support\Facades\Storage;
-=======
->>>>>>> 7a2e4f814360b2a3a142bc7d72ff329f1a14d676
-=======
->>>>>>> 7a2e4f814360b2a3a142bc7d72ff329f1a14d676
 
 class UserController extends Controller
 {
@@ -71,7 +66,7 @@ class UserController extends Controller
         $to_edit = User::find($id);
         $userspec = $to_edit->specializations;
         $specializations = Specialization::all();
-        return view('Admin.edit',compact('to_edit','specializations','userspec')); 
+        return view('Admin.edit',compact('to_edit','specializations','userspec'));
     }
 
     /**

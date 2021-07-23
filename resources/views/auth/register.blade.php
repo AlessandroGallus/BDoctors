@@ -72,7 +72,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            
+
                         </div>
 
                         <div class="form-group row">
@@ -141,15 +141,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <select class="form-control @error('category_id') is-invalid @enderror"
-<<<<<<< HEAD
-<<<<<<< HEAD
                                     name="specializations" id="specializations">
-=======
-                                    name="specializations[]" id="specializations">
->>>>>>> 7a2e4f814360b2a3a142bc7d72ff329f1a14d676
-=======
-                                    name="specializations[]" id="specializations">
->>>>>>> 7a2e4f814360b2a3a142bc7d72ff329f1a14d676
+
                                         <option value=""> - selezionare una categoria - </option>
                                         @foreach($specializations as $spec)
                                             <option @if (old('specializations')== $spec->id)
@@ -160,7 +153,7 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
