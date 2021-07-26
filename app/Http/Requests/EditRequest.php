@@ -23,6 +23,10 @@ class EditRequest extends FormRequest
      */
     public function rules()
     {
+    
+
+  
+
         return [
             'name' => ['required', 'string', 'max:255'],
             'surname' =>['required', 'string', 'min:1', 'max:255'],
@@ -32,20 +36,27 @@ class EditRequest extends FormRequest
             'CF'=>['required', 'string', 'min:1',  'max:16'],
             'phone_number'=>['required', 'string', 'min:1', 'max:17'],
             'url_cv'=>['required'],
+             'url_img' => 'required|mimes:png,jpeg,gif',
+           'specializations' => ['required'],
+      
         ];
     }
     public function messages(){
         return[
             'name.required'=>'Questo campo è obbligatorio test',
             'surname.required'=>'Questo campo è obbligatorio',
-            'city.required'=>'Questo campo è obbligatorio',
+            'city.required'=>'la città è obbligsatoria',
             'address.required'=>'Questo campo è obbligatorio',
             'date_of_birth.required'=>'Questo campo è obbligatorio',
             'date_of_birth.date_format'=>'FORMAT SBAGLIATO',
-            'cf.required'=>'Questo campo è obbligatorio',
+            'CF.required'=>'Questo campo è obbligatorio',
             'phone_number.required'=>'Questo campo è obbligatorio',
             'url_cv.required'=>'Questo campo è obbligatorio',
-            'url_img.required'=>'Questo campo è obbligatorio',
-        ];
+      // 'url_img.required'=>'Questo campo è obbligatorio',
+             
+      'url_img.required' => 'Questo campo è obbligatorio',
+      'specializations.required' => 'scegliere specializzazione',
+    ];
+           
     }
 }

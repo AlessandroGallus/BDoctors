@@ -83,13 +83,15 @@
                             <label for="CF" class="col-md-4 col-form-label text-md-right">{{ __('CF') }}</label>
 
                             <div class="col-md-6">
-                                <input id="CF" value='{{old('CF',$to_edit['CF'])}}' type="text" class="form-control @error('') is-invalid @enderror" name="CF">
+                                <input id="CF" value='{{old('CF',$to_edit['CF'])}}' type="text" class="form-control @error('CF') is-invalid @enderror" name="CF">
                                 @error('CF')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
+
+
                         </div>
 
                         <div class="form-group row">
@@ -136,16 +138,19 @@
                                     <label class="label-control " for="specializations">Specializzazione</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <select class="form-control @error('category_id') is-invalid @enderror"
-                                    name="specializations[]" id="specializations">
+                                    <select class="form-control @error('specializations') is-invalid @enderror"
+                                    name="specializations" id="specializations">
                                         <option value=""> - selezionare una categoria - </option>
                                         @foreach($specializations as $spec)
-                                            <option @if (old('specializations',$userspec[0]->id)== $spec->id)
-                                                selected
-                                            @endif
+                                            <option 
                                             value="{{ $spec->id }}">{{ $spec->name }}</option>
                                         @endforeach
                                     </select>
+                                   @error('specializations')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                   @enderror
                                 </div>
                             </div>
 

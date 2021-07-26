@@ -7,7 +7,7 @@
           <li class="d-inline"><router-link :to="{name:'doctorlist'}">Dottori</router-link></li>
           <li class="d-inline"><router-link :to="{name:'advancedSearch'}">RICERCA</router-link></li>
           <li class="d-inline"><a href="/register">Register</a></li>
-          <li class="d-inline"><a href="/register">test</a></li>
+         
         </ul>
       </div>
     </nav>
