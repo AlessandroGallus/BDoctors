@@ -6,6 +6,8 @@ Vue.use(VueRouter);
 
 import Home from './pages/Home.vue'
 import DoctorList from './pages/DoctorList.vue'
+import DoctorPage from './pages/DoctorPage.vue'
+import AdvancedSearch from './pages/AdvancedSearch.vue'
 
 const router = new VueRouter({
   mode:'history',
@@ -19,6 +21,17 @@ const router = new VueRouter({
       path:'/doctors-list',
       name:'doctorlist',
       component:DoctorList
+    },
+    {
+      path:'/advanced-seach',
+      name:'advancedSearch',
+      component:AdvancedSearch
+    },
+    {
+      path:'/doctor/:fullname',
+      name:'doctorPage',
+      component:DoctorPage,
+      
     }
   ]
 });

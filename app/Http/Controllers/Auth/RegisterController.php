@@ -115,7 +115,7 @@ class RegisterController extends Controller
         ]);
 
         $new_user->specializations()->attach($data['specializations']);
-        $new_user->sponsors()->attach([1=>['expiring_date'=>null]]);
+        $new_user->sponsors()->attach([1=>['expiring_date'=>date('Y-m-d H:i:s')]]);
 
         return $new_user;
     }

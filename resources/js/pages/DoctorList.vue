@@ -5,10 +5,13 @@
       <Doctor
     v-for="(doctor,key) in doctors"
     :key="key"
-    :username='doctor.username'
-    :spec_name='doctor.spec_name'
+    :username='doctor.name'
+    :spec_name='doctor.specializations[0].name'
     :url_img="doctor.url_img"
-    :sponsor_name='doctor.sponsor_name'
+    :sponsor_name='doctor.sponsors[0].name'
+    :exp_date='doctor.sponsors[0].pivot.expiring_date'
+    :city='doctor.city'
+    :id='doctor.id'
     />
     </div>
   </div>
