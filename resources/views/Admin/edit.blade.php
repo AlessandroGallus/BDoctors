@@ -6,14 +6,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Modifica Profilo') }}</div>
 
                 <div class="card-body">
                     <form enctype="multipart/form-data" action="{{ route('user.update',Auth::user()->id)}}" method="POST" >
                         @csrf
                         @method('PATCH')
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" value='{{old('name',$to_edit['name'])}}' name="name"  {{-- required --}}  autocomplete="name" autofocus>
@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('surname') }}</label>
+                            <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Cognome') }}</label>
 
                             <div class="col-md-6">
                                 <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" value='{{old('surname',$to_edit['surname'])}}' name="surname">
@@ -37,11 +37,11 @@
                                     </span>
                                 @enderror
                             </div>
-                            
+
                         </div>
 
                         <div class="form-group row">
-                            <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('city') }}</label>
+                            <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('Città') }}</label>
 
                             <div class="col-md-6">
                                 <input id="city" value='{{old('city',$to_edit['city'])}}' type="text" class="form-control @error('city') is-invalid @enderror" name="city">
@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('address') }}</label>
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo') }}</label>
 
                             <div class="col-md-6">
                                 <input id="address" value='{{old('address',$to_edit['address'])}}' type="text" class="form-control @error('address') is-invalid @enderror" name="address">
@@ -67,7 +67,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">{{ __('date_of_birth') }}</label>
+                            <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">{{ __('Data di nascita') }}</label>
 
                             <div class="col-md-6">
                                 <input id="date_of_birth" value='{{old('date_of_birth',$to_edit['date_of_birth'])}}' type="date" class="form-control @error('date_of_birth') is-invalid @enderror" name="date_of_birth">
@@ -93,7 +93,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="phone_number"  class="col-md-4 col-form-label text-md-right">{{ __('phone_number') }}</label>
+                            <label for="phone_number"  class="col-md-4 col-form-label text-md-right">{{ __('Cellulare') }}</label>
 
                             <div class="col-md-6">
                                 <input id="phone_number" value='{{old('phone_number',$to_edit['phone_number'])}}' type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number">
@@ -106,7 +106,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="url_cv" class="col-md-4 col-form-label text-md-right">{{ __('url_cv') }}</label>
+                            <label for="url_cv" class="col-md-4 col-form-label text-md-right">{{ __('Link cv') }}</label>
 
                             <div class="col-md-6">
                                 <input id="url_cv" type="text" class="form-control @error('url_cv') is-invalid @enderror" name="url_cv" value='{{old('url_cv',$to_edit['url_cv'])}}'>
@@ -119,7 +119,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="url_img" class="col-md-4 col-form-label text-md-right">{{ __('url_img') }}</label>
+                            <label for="url_img" class="col-md-4 col-form-label text-md-right">{{ __('Immagine Profilo') }}</label>
 
                             <div class="col-md-6">
                                 <input id="url_img" type="file" class="form-control @error('url_img') is-invalid @enderror" name="url_img" >
@@ -148,11 +148,11 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Confirm') }}
+                                    {{ __('Conferma Modifiche') }}
                                 </button>
                             </div>
                         </div>

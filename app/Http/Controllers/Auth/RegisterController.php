@@ -69,7 +69,7 @@ class RegisterController extends Controller
             'phone_number.required'=>'Questo campo è obbligatorio',
             'url_cv.required'=>'Questo campo è obbligatorio',
             'url_img.required'=>'Questo campo è obbligatorio',
-             'specializations.required'=>'scegliere specializzazione',
+            'specializations.required'=>'scegliere specializzazione',
 
         ];
 
@@ -86,11 +86,11 @@ class RegisterController extends Controller
             'url_cv'=>['required'],
       // 'url_img'=>['required']
           'url_img' => 'required|mimes:png,jpeg,gif',
-      'specializations' => ['required'],
+          'specializations' => ['required'],
         ], $message);
     }
 /* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */
-    
+
     /**
      * Create a new user instance after a valid registration.
      *
