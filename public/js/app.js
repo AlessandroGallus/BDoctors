@@ -2099,6 +2099,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Header'
 });
@@ -2393,14 +2397,79 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_Doctor_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Doctor.vue */ "./resources/js/components/Doctor.vue");
 //
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Home'
+  name: 'DoctorList',
+  components: {
+    Doctor: _components_Doctor_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  mounted: function mounted() {
+    this.getDoctors();
+  },
+  data: function data() {
+    return {
+      filterdoctor: [],
+      ricerca: '',
+      doctors: []
+    };
+  },
+  methods: {
+    searchdoctor: function searchdoctor() {
+      var _this = this;
+
+      this.filterdoctor = [];
+      this.filterdoctor = this.doctors.filter(function (doctor) {
+        if (doctor.specializations[0].name.startsWith(_this.ricerca)) {
+          console.log('trovato');
+          return true;
+        } else {
+          console.log('non trovato');
+        }
+      });
+    },
+    getDoctors: function getDoctors() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/doctors').then(function (res) {
+        _this2.doctors = res.data;
+        console.log(_this2.doctors);
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -3800,52 +3869,54 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("header", [
-    _c(
-      "nav",
-      { staticClass: "d-flex justify-content-between align-items-center" },
-      [
-        _c(
-          "div",
-          { staticClass: "left" },
-          [
-            _c("router-link", { attrs: { to: { name: "home" } } }, [
-              _vm._v("HOME")
+    _c("div", { staticClass: "container " }, [
+      _c(
+        "nav",
+        { staticClass: "d-flex justify-content-between align-items-center" },
+        [
+          _c(
+            "div",
+            { staticClass: "left" },
+            [
+              _c("router-link", { attrs: { to: { name: "home" } } }, [
+                _vm._v("HOME")
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "right" }, [
+            _c("ul", { staticClass: "list-style-none mt-4" }, [
+              _c(
+                "li",
+                { staticClass: "d-inline" },
+                [
+                  _c("router-link", { attrs: { to: { name: "doctorlist" } } }, [
+                    _vm._v("Dottori")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "d-inline" },
+                [
+                  _c(
+                    "router-link",
+                    { attrs: { to: { name: "advancedSearch" } } },
+                    [_vm._v("RICERCA AVANNZATA")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(0)
             ])
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "right" }, [
-          _c("ul", { staticClass: "list-style-none" }, [
-            _c(
-              "li",
-              { staticClass: "d-inline" },
-              [
-                _c("router-link", { attrs: { to: { name: "doctorlist" } } }, [
-                  _vm._v("Dottori")
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "d-inline" },
-              [
-                _c(
-                  "router-link",
-                  { attrs: { to: { name: "advancedSearch" } } },
-                  [_vm._v("RICERCA")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _vm._m(0)
           ])
-        ])
-      ]
-    )
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -4144,16 +4215,72 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "mt-3" }, [
+    _c(
+      "button",
+      {
+        attrs: { type: "button" },
+        on: {
+          click: function($event) {
+            return _vm.searchdoctor()
+          }
+        }
+      },
+      [_vm._v("ricerca")]
+    ),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.ricerca,
+          expression: "ricerca"
+        }
+      ],
+      attrs: { type: "text" },
+      domProps: { value: _vm.ricerca },
+      on: {
+        keyup: function($event) {
+          if (
+            !$event.type.indexOf("key") &&
+            _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+          ) {
+            return null
+          }
+          return _vm.searchdoctor()
+        },
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.ricerca = $event.target.value
+        }
+      }
+    }),
+    _vm._v("\n  LISTA DOTTORI:\n  "),
+    _c(
+      "div",
+      { staticClass: "container" },
+      _vm._l(_vm.filterdoctor, function(doctor, key) {
+        return _c("Doctor", {
+          key: key,
+          attrs: {
+            username: doctor.name,
+            spec_name: doctor.specializations[0].name,
+            url_img: doctor.url_img,
+            sponsor_name: doctor.sponsors[0].name,
+            exp_date: doctor.sponsors[0].pivot.expiring_date,
+            city: doctor.city,
+            id: doctor.id
+          }
+        })
+      }),
+      1
+    )
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("HOME")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

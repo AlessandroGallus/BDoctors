@@ -1,16 +1,20 @@
 <template>
   <header>
-    <nav class="d-flex justify-content-between align-items-center">
+    <div class="container ">
+
+        <nav class="d-flex justify-content-between align-items-center">
       <div class="left"><router-link :to="{name:'home'}">HOME</router-link></div>
       <div class='right'>
-        <ul class="list-style-none">
+        <ul class="list-style-none mt-4">
           <li class="d-inline"><router-link :to="{name:'doctorlist'}">Dottori</router-link></li>
-          <li class="d-inline"><router-link :to="{name:'advancedSearch'}">RICERCA</router-link></li>
+          <li class="d-inline"><router-link :to="{name:'advancedSearch'}">RICERCA AVANNZATA</router-link></li>
           <li class="d-inline"><a href="/register">Register</a></li>
          
         </ul>
       </div>
     </nav>
+    </div>
+  
   </header>
 </template>
 
