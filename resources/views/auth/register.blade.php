@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -125,6 +126,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
+
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" {{-- required --}} autocomplete="new-password">
 
                                 @error('password')
@@ -132,6 +134,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
                             </div>
                         </div>
 
@@ -175,10 +178,11 @@
                                 <div class="col-md-4 text-md-right">
                                     <label class="label-control " for="specializations">Specializzazione</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <select class="form-control @error('specializations') is-invalid @enderror"
-                                    name="specializations" id="specializations">
-                                     
+
+                                <div id="selects" class="col-md-6">
+                                    <select class="form-control @error('category_id') is-invalid @enderror"
+                                    name="specializations[]" id="specializations">
+
 
                                         <option value=""> - selezionare una categoria - </option>
                                         @foreach($specializations as $spec)
@@ -204,6 +208,7 @@
                                 </button>
                             </div>
                         </div>
+                        <button id="click" type="button">TEST</button>
                     </form>
                 </div>
             </div>
@@ -211,8 +216,21 @@
     </div>
 </div>
 <script>
-    $('#ciao').click(function(){
-        console.log('test');
-    })
+   $(document).ready(function(){
+        let index =1;
+       $('#click').click(function(){
+           $('#selects').append(`<select class="form-control @error('category_id') is-invalid @enderror"
+                                    name="specializations[]" id="specializations">
+
+                                        <option value=""> - selezionare una categoria - </option>
+                                        @foreach($specializations as $spec)
+                                            <option @if (old('specializations')== $spec->id)
+                                                selected
+                                            @endif
+                                            value="{{ $spec->id }}">{{ $spec->name }}</option>
+                                        @endforeach
+                                    </select>`)
+       })
+   })
 </script>
 @endsection

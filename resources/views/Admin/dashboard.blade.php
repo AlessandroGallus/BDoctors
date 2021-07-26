@@ -3,7 +3,7 @@
 @section('content')
 <header></header>
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row ">
         <h1>DASHBOARD: <span>{{Auth::user()->name}} {{Auth::user()->surname}}</span></h1>
         <div class="col-md-8 d-flex justify-content-between">
             
@@ -35,7 +35,7 @@
                 @method('DELETE')
                 <button class="btn btn-danger">DELETE</button>
             </form>
-            <a href="#">See Messages</a>
+            
             <a href="{{route('user.edit',Auth::user()->id)}}">EDIT</a>
             
 
@@ -45,6 +45,14 @@
             </span>
             {{-- {{ dd(Auth::user()->specializations()) }}) --}}
         </div>
+        
     </div>
+    <a href="#">See Messages</a>
+            <h2>MESSAGGI:</h2>
+            <ul>
+                @foreach (Auth::user()->messages as $message )
+                    <li>{{$message['message_text']}}</li>
+                @endforeach
+            </ul>
 </div>
 @endsection

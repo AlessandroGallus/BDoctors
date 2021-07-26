@@ -81,7 +81,7 @@ class RegisterController extends Controller
             'city' => ['required', 'string', 'min:1', 'max:255'],
             'address' =>['required', 'string', 'min:1', 'max:255'],
             'date_of_birth' =>['required'],
-            'CF'=>['required', 'string', 'min:10',  'max:16'],
+            'CF'=>['required', 'string', 'min:1',  'max:16'],
             'phone_number'=>['required', 'string', 'min:1', 'max:17'],
             'url_cv'=>['required'],
       // 'url_img'=>['required']
@@ -119,7 +119,7 @@ class RegisterController extends Controller
         ]);
 
         $new_user->specializations()->attach($data['specializations']);
-        $new_user->sponsors()->attach([1=>['expiring_date'=>null]]);
+        $new_user->sponsors()->attach([1=>['expiring_date'=>date('Y-m-d H:i:s')]]);
 
         return $new_user;
     }

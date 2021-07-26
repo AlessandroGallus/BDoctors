@@ -42,11 +42,11 @@ class User extends Authenticatable
     }
     
     public function sponsors(){
-        return $this->belongsToMany('App\Sponsor','user_sponsor');
+        return $this->belongsToMany('App\Sponsor','user_sponsor')->withPivot('expiring_date');
     }
 
     public function messages(){
-        return $this->belongsToMany('App\Message');
+        return $this->hasMany('App\Message');
     }
 
     public function reviews(){
