@@ -180,8 +180,8 @@
                                 </div>
 
                                 <div id="selects" class="col-md-6">
-                                    <select class="form-control @error('category_id') is-invalid @enderror"
-                                    name="specializations[]" id="specializations">
+                                    <select class="form-control @error('specializations') is-invalid @enderror"
+                                    name="specializations" id="specializations">
 
 
                                         <option value=""> - selezionare una categoria - </option>
@@ -191,7 +191,7 @@
                                             @endif
                                             value="{{ $spec->id }}">{{ $spec->name }}</option>
                                         @endforeach
-                                 
+
                                     </select>
                                            @error('specializations')
                                         <span class="invalid-feedback" role="alert">
