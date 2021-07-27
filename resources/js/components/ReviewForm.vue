@@ -1,6 +1,5 @@
 <template>
-  <form action="../api/message" method="POST" @submit="sendMessage()">
-
+  <form action="../api/review" method="POST" @submit="sendReview()">
     <input type="hidden" name="user_id" id="user_id" :value="doctorId" >
         <!-- <div class="form-group">
             <label for="name">Namee</label>
@@ -9,33 +8,39 @@
 
         <div class="form-group">
             <label for="mail">E-mail</label>
-            <input type="text" class="form-control" v-model="email" name="mail" id="mail"/>
+            <input type="text" class="form-control" v-model="mail" name="mail" id="mail"/>
         </div>
 
         <div class="form-group">
-            <label for="message_text">Message</label>
-            <textarea class="form-control" name="message_text" id="message_text" v-model="message" rows="5"></textarea>
+            <label for="description">Message</label>
+            <textarea class="form-control" name="description" id="description" v-model="description" rows="5"></textarea>
         </div>
         <div class="form-group">
-            <label for="phone_number">Phone</label>
-            <input type="text" class="form-control" v-model="phone_number" name="phone_number" id="phone_number"/>
+            <label for="vote">Voto</label>
+            <select name="vote" id="vote">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
         </div>
         <!-- <div class="alert alert-success">
             {{session('message')}}
         </div> -->
-        <button type="submit" class="btn btn-primary" >Send message</button>
+        <button type="submit" class="btn btn-primary">Send message</button>
     </form>
 </template>
 
 <script>
 import axios from 'axios'
 export default {
-  name:'ContactForm',
+  name:'ReviewForm',
   data(){
       return{
-          phone_number:'',
-          email:'',
-          message:'',
+          vote:'',
+          mail:'',
+          description:'',
           id:'',
       }
   },
@@ -45,21 +50,20 @@ export default {
   mounted(){
       this.id=this.doctorId;
       console.log(this.id);
+      
   },
   methods:{
       sendMessage(){
           console.log(this.doctorId);
           console.log('send message');
-          axios.post('../api/message')
+          axios.post('../api/review',)
           .then(res => {
               console.log(res)
+              console.log('mandato');
           })
           .catch(err => {
-              console.log(err.response.data); 
-              'non mandato'
+              console.error(err); 
           })
-          console.log('messagio inviato');
-          /* this.$emit('confermaInviato',false); */
       }
   }
 }

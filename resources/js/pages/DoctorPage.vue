@@ -19,10 +19,21 @@
      :src="doctor.url_img" alt="">
       </div>
     </div>
+    <div class="msgNot" v-if="msgNot">
+      <h3>MESSAGGIO INVIATO CORRETTAMENTE</h3>
+    </div>
   <button type="button" v-on:click="isHidden = false">MANDA MESSAGGIO</button>
     <!-- MESSAGE FORM -->
+    
     <div class="form" v-if="!isHidden">
       <ContactForm 
+      @confermaInviato='confirmSent()'
+      :doctorId="doctor.id"
+      />
+    </div>
+    <button type="button" v-on:click="isHiddenReview = false">MANDA REVIEW</button>
+    <div class="form" v-if="!isHiddenReview">
+      <ReviewForm 
       :doctorId="doctor.id"
       />
     </div>
@@ -32,22 +43,31 @@
 <script>
 import axios from 'axios'
 import ContactForm from '../components/ContactForm.vue'
+import ReviewForm from '../components/ReviewForm.vue'
 export default {
   name:'DoctorPage',
   components:{
-    ContactForm
+    ContactForm,
+    ReviewForm
   },
   data(){
     return{
       doctor:{},
-      isHidden:true
+      isHidden:true,
+      isHiddenReview:true,
+      msgNot:false,
     }
   },
   mounted(){
-    console.log(this.$route.params.id);
+    console.log('id',this.$route.params.id);
     this.getDoctorById();
+    
   },
   methods:{
+    confirmSent(){
+      this.isHidden=true;
+      this.msgNot=true;
+    },
     getDoctorById(){
       axios.get('http://127.0.0.1:8000/api/doctors/'+this.$route.params.id)
       .then(res => {

@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Message;
-use App\User;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -16,7 +15,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        return 'ciao';
+        return view('Admin.messages');
     }
 
     /**
@@ -37,12 +36,7 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        $new_message = new Message();
-        $data = $request->all();
-        $new_message->fill($data);
-        $new_message['user_id']=$data['user_id'];
-        $new_message->save();
-        return redirect('/confirmation');
+        //
     }
 
     /**
@@ -53,7 +47,8 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        
+        $message = Message::find($id);
+        return view('Admin.singleMessage',compact('message'));
     }
 
     /**
@@ -89,6 +84,6 @@ class MessageController extends Controller
     {
         $message = Message::find($id);
         $message->delete();
-        return redirect('/dashboard');
+        return redirect()->route('messages.index');
     }
 }

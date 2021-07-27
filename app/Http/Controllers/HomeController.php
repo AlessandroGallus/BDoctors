@@ -25,4 +25,11 @@ class HomeController extends Controller
     {
         return view('admin.dashboard');
     }
+
+    public function messages(){
+        return view('admin.messages');
+    }
+    public function reviews(){
+        return view('Admin.reviews');
+    }
 }

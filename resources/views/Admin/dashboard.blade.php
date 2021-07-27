@@ -47,12 +47,8 @@
         </div>
         
     </div>
-    <a href="#">See Messages</a>
-            <h2>MESSAGGI:</h2>
-            <ul>
-                @foreach (Auth::user()->messages as $message )
-                    <li>{{$message['message_text']}}</li>
-                @endforeach
-            </ul>
+    <hr>
+    <a href="/dashboard/messages">See Messages</a><br>
+    <a href="/dashboard/reviews">See Reviews</a>      
 </div>
 @endsection

@@ -7,6 +7,7 @@ Vue.use(VueRouter);
 import Home from './pages/Home.vue'
 import DoctorList from './pages/DoctorList.vue'
 import DoctorPage from './pages/DoctorPage.vue'
+import Confirmation from './pages/Confirmation.vue'
 import AdvancedSearch from './pages/AdvancedSearch.vue'
 
 const router = new VueRouter({
@@ -28,10 +29,15 @@ const router = new VueRouter({
       component:AdvancedSearch
     },
     {
-      path:'/doctor/:fullname',
+      path:'/doctor/:id',
       name:'doctorPage',
       component:DoctorPage,
       
+    },
+    {
+      path:'/confirmation',
+      name:'confirmation',
+      component:Confirmation
     }
   ]
 });

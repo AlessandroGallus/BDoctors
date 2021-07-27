@@ -6,7 +6,7 @@
     <h5>Sponsor: {{sponsor_name}}</h5>
     <h5>City: {{city}}</h5>
     <h5>Exp: {{exp_date}}</h5>
-    <router-link id="id" :to="{name:'doctorPage',params:{'fullname':username,'id':id}}">Vedi Profilo</router-link>
+    <router-link id="id" :to="{name:'doctorPage',params:{'id':id}}">Vedi Profilo</router-link>
     </div>
     <div class="doc-img">
       <img
