@@ -36,6 +36,7 @@ export default {
   },
   mounted(){
     this.getDoctors();
+    this.premiumDoctor();
   },
   data(){
 
@@ -43,9 +44,30 @@ export default {
       filterdoctor:[],
       ricerca:'',
       doctors:[],
+      premium:[],
+      basic:[],
     }
   },
   methods:{
+
+    premiumDoctor(){
+      // this.filterdoctors=[]
+    this.doctors.forEach(doctor => {
+      // console.log(doctor.sponsors[0].sponsor_level);
+      if(doctor.sponsors[0].sponsor_level >1 ){
+        this.premium.push(doctor)
+
+      }else{
+        this.basic.push(doctor)
+      }
+     
+    })
+     console.log('premium', this.premium);
+      console.log('basic', this.basic);
+      
+    
+
+    },
     searchdoctor(){
       this.filterdoctor=[]
       this.filterdoctor = this.doctors.filter((doctor)=>{
@@ -62,6 +84,7 @@ export default {
       axios.get('http://127.0.0.1:8000/api/doctors-spec')
       .then(res => {
         this.doctors=res.data;
+        this.premiumDoctor();
         console.log(this.doctors)
       })
       .catch(err => {
