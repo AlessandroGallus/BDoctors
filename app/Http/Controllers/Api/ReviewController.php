@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Message;
-use App\User;
+use App\Review;
 use Illuminate\Http\Request;
 
-class MessageController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        return 'ciao';
+        //
     }
 
     /**
@@ -37,11 +36,11 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        $new_message = new Message();
-        $data = $request->all();
-        $new_message->fill($data);
-        $new_message['user_id']=$data['user_id'];
-        $new_message->save();
+        $data= $request->all();
+        $new_review = new Review();
+        $new_review->fill($data);
+        $new_review['user_id']=$data['user_id'];
+        $new_review->save();
         return redirect('/confirmation');
     }
 
@@ -53,7 +52,7 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -87,8 +86,6 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        $message = Message::find($id);
-        $message->delete();
-        return redirect('/dashboard');
+        //
     }
 }

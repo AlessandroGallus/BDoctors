@@ -26,9 +26,11 @@ Route::namespace('Admin')
     ->middleware('auth')
     ->group(function(){
         Route::resource('/user','UserController');
+        Route::resource('/dashboard/messages','MessageController');
     });
-Route::get('{any?}', 'PageController@index')->where('any','.*');
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
+Route::get('/dashboard/messages', 'HomeController@messages')->name('messages');
+Route::get('/dashboard/reviews', 'HomeController@reviews')->name('messages');
 Route::delete('/dashboard/{user}','Admin\UserController@destroy')->middleware('auth')->name('user.destroy');
 Route::get('{any?}', 'PageController@index')->where('any','.*');
