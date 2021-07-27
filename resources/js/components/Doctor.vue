@@ -9,10 +9,10 @@
     <router-link id="id" :to="{name:'doctorPage',params:{'id':id}}">Vedi Profilo</router-link>
     </div>
     <div class="doc-img">
-      <img
+      <img 
       v-if="!url_img.startsWith('uploads')"
      :src="url_img" alt="">
-     <img v-else :src="'storage/'+url_img" alt="">
+     <img class="storage" v-else :src="'storage/'+url_img" alt="">
     </div>
     
   </div>
@@ -32,5 +32,8 @@ export default {
     margin-bottom:10px;
     justify-content:space-between;
     padding:10px 20px;
+  }
+  .storage{
+     width: 145px;
   }
 </style>
