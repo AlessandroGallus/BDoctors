@@ -22,7 +22,6 @@ class UserController extends Controller
 
      $doctors = User::with('specializations','sponsors')
         ->orderBy('users.id','desc')
-
         ->get();
 
       return response()->json($doctors);

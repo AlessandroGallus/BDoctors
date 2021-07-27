@@ -53,7 +53,6 @@ export default {
           console.log('trovato');
           return true
         }else{
-
         console.log('non trovato');
         }
       })

@@ -26,4 +26,5 @@ Route::namespace('Api')
         Route::get('doctors/{id}','UserController@getDoctorById')->name('api.docId');
         Route::resource('message','MessageController');
         Route::resource('review','ReviewController');
+        Route::get('/doctors-spec','UserController@home');
     });

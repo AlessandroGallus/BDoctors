@@ -68,7 +68,7 @@ export default {
                   padding: 25px;
                   &:hover{
                     background-color: #043d6b;
-                    transition: 2s;
+                    transition: 1s;
                   }
                }
           }
