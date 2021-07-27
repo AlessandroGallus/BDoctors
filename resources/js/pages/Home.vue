@@ -3,7 +3,7 @@
   <div class="mt-3" >
     <button
     v-on:click=' searchdoctor()'
-   
+
      type="button">ricerca</button>
     <input
     @keyup.enter="searchdoctor()"
@@ -53,20 +53,20 @@ export default {
           console.log('trovato');
           return true
         }else{
-       
+
         console.log('non trovato');
         }
-      }) 
+      })
     },
 
     getDoctors(){
-      axios.get('http://127.0.0.1:8000/api/doctors')
+      axios.get('http://127.0.0.1:8000/api/doctors-spec')
       .then(res => {
         this.doctors=res.data;
         console.log(this.doctors)
       })
       .catch(err => {
-        console.error(err); 
+        console.error(err);
       })
     }
   }
