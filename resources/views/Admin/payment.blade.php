@@ -18,7 +18,7 @@
   </div>
 @endif
 <form method="post" id="payment-form" action="{{url('/checkout')}}">
-  @csrf 
+  @csrf
   <section>
       <label for="amount">
           <span class="input-label">Amount</span>
