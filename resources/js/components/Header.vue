@@ -4,8 +4,8 @@
 
         <nav class="d-flex justify-content-between align-items-center">
       <div class="left home">
-         <router-link :to="{name:'home'}"><img src="../../../public/img/logo.ong.png" alt="Logo"></router-link>
-          <router-link :to="{name:'home'}">HOME</router-link>
+         <router-link :to="{name:'home'}"><img src="../../../public/img/logo1.png" alt="Logo"></router-link>
+         
      </div>
       <div class='right'>
         <ul class="list-style-none list">
