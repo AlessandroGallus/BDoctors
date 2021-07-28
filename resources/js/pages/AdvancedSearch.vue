@@ -120,11 +120,6 @@ export default {
             console.log("test");
             console.log(this.mcity);
             console.log(this.mspecs);
-            /* this.filteredArray = this.doctors.filter((doctor)=>{
-        if(doctor.city==this.city && doctor.specializations[0].name==this.mspecs){
-          return doctor;
-        }
-      }); */
             for (let i = 0; i < this.doctors.length; i++) {
                 // RICERCA CASO MULTIPLE SPECIALIZZAZIONI
                 for (
@@ -144,6 +139,10 @@ export default {
                     }
                 }
             }
+            this.filteredArray.sort(function(a, b) {
+                    return b.media - a.media;
+                });
+
         },
         getSpecs() {
             axios

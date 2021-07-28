@@ -5,14 +5,14 @@
       <input list="specializations" class="input-form form-control d-inline"
     @keyup.enter="searchdoctor()"
     v-model="ricerca"
-     type="text" placeholder="Specilizzazione">
+     type="text" placeholder="Specializzazione">
      <datalist v-bind:id="datalistID" >
        <option v-for="(spec,index) in specs" :key="index" :value="spec"></option>
      </datalist>
      <button
     v-on:click=' searchdoctor()'
 
-     type="button" class="btn btn-primary">ricerca</button>
+     type="button" class="btn btn-primary">Ricerca</button>
     </div>
     
      
@@ -133,5 +133,8 @@ export default {
   .input-form{
     width: 50%;
     margin-right: 20px;
+  }
+  ::placeholder{
+    font-style: italic;
   }
 </style>

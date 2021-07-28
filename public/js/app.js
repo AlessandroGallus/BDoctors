@@ -2341,11 +2341,6 @@ __webpack_require__.r(__webpack_exports__);
       console.log("test");
       console.log(this.mcity);
       console.log(this.mspecs);
-      /* this.filteredArray = this.doctors.filter((doctor)=>{
-      if(doctor.city==this.city && doctor.specializations[0].name==this.mspecs){
-      return doctor;
-      }
-      }); */
 
       for (var i = 0; i < this.doctors.length; i++) {
         // RICERCA CASO MULTIPLE SPECIALIZZAZIONI
@@ -2361,6 +2356,10 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       }
+
+      this.filteredArray.sort(function (a, b) {
+        return b.media - a.media;
+      });
     },
     getSpecs: function getSpecs() {
       var _this = this;
@@ -2472,6 +2471,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2491,11 +2491,41 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    calcoloMedia: function calcoloMedia() {
+      this.doctors.forEach(function (doctor) {
+        var media = 0;
+
+        for (var i = 0; i < doctor.reviews.length; i++) {
+          media = media + doctor.reviews[i].vote;
+        }
+
+        doctor["media"] = media / doctor.reviews.length;
+        if (isNaN(doctor.media)) doctor.media = 0;
+        console.log("media", doctor["media"]);
+      });
+    },
+    nextpage: function nextpage(page) {
+      console.log('pagina corrente:', page);
+
+      if (page <= this.total_pages) {
+        this.current_page++;
+        this.getDoctors(this.current_page);
+      }
+    },
+    prevpage: function prevpage(page) {
+      console.log('pagina corrente:', page);
+
+      if (page >= 0) {
+        this.current_page--;
+        this.getDoctors(this.current_page);
+      }
+    },
     getDoctors: function getDoctors(page) {
       var _this = this;
 
+      this.current_page = page;
       console.log(this.current_page);
-      if (this.current_page != 1 || this.current_page != this.total_pages) this.doctors = [];
+      if (this.c) if (this.current_page != 1 || this.current_page != this.total_pages) this.doctors = [];
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/doctors', {
         params: {
           page: page
@@ -2505,6 +2535,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.current_page = res.data.current_page;
         _this.total_pages = res.data.last_page;
         console.log(_this.doctors);
+
+        _this.calcoloMedia();
       })["catch"](function (err) {
         console.error(err);
       });
@@ -2864,7 +2896,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".input-form[data-v-b3c5cf30] {\n  width: 50%;\n  margin-right: 20px;\n}", ""]);
+exports.push([module.i, ".input-form[data-v-b3c5cf30] {\n  width: 50%;\n  margin-right: 20px;\n}\n[data-v-b3c5cf30]::-moz-placeholder {\n  font-style: italic;\n}\n[data-v-b3c5cf30]:-ms-input-placeholder {\n  font-style: italic;\n}\n[data-v-b3c5cf30]::placeholder {\n  font-style: italic;\n}", ""]);
 
 // exports
 
@@ -4788,7 +4820,8 @@ var render = function() {
             sponsor_name: doctor.sponsors[0].name,
             exp_date: doctor.sponsors[0].pivot.expiring_date,
             city: doctor.city,
-            id: doctor.id
+            id: doctor.id,
+            media: doctor.media
           }
         })
       }),
@@ -4807,7 +4840,7 @@ var render = function() {
               class: _vm.current_page == 1 ? "disabled" : null,
               on: {
                 click: function($event) {
-                  return _vm.getDoctors(_vm.current_page - 1)
+                  return _vm.prevpage(_vm.current_page - 1)
                 }
               }
             },
@@ -4841,7 +4874,7 @@ var render = function() {
               class: _vm.current_page == _vm.total_pages ? "disabled" : null,
               on: {
                 click: function($event) {
-                  return _vm.getDoctors(_vm.current_page + 1)
+                  return _vm.nextpage(_vm.current_page + 1)
                 }
               }
             },
@@ -5042,7 +5075,7 @@ var render = function() {
         attrs: {
           list: "specializations",
           type: "text",
-          placeholder: "Specilizzazione"
+          placeholder: "Specializzazione"
         },
         domProps: { value: _vm.ricerca },
         on: {
@@ -5084,7 +5117,7 @@ var render = function() {
             }
           }
         },
-        [_vm._v("ricerca")]
+        [_vm._v("Ricerca")]
       )
     ]),
     _vm._v(" "),
