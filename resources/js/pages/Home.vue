@@ -1,15 +1,22 @@
 <template>
 
   <div class="mt-3" >
-    <button
-    v-on:click=' searchdoctor()'
-
-     type="button">ricerca</button>
-    <input
+    <div class="inputs-ricerca d-flex">
+      <input list="specializations" class="input-form form-control d-inline"
     @keyup.enter="searchdoctor()"
     v-model="ricerca"
-     type="text">
-    LISTA DOTTORI:
+     type="text" placeholder="Specializzazione">
+     <datalist v-bind:id="datalistID" >
+       <option v-for="(spec,index) in specs" :key="index" :value="spec"></option>
+     </datalist>
+     <button
+    v-on:click=' searchdoctor()'
+
+     type="button" class="btn btn-primary">Ricerca</button>
+    </div>
+    
+     
+    <h3 class="mt-3">Lista dottori:</h3>
     <div class="container">
       <Doctor
     v-for="(doctor,key) in filterdoctor"
@@ -21,6 +28,7 @@
     :exp_date='doctor.sponsors[0].pivot.expiring_date'
     :city='doctor.city'
     :id='doctor.id'
+    :media='doctor.media'
     />
     </div>
   </div>
@@ -36,7 +44,7 @@ export default {
   },
   mounted(){
     this.getDoctors();
-    this.premiumDoctor();
+    this.getSpecs();
   },
   data(){
 
@@ -46,9 +54,41 @@ export default {
       doctors:[],
       premium:[],
       basic:[],
+      specs:[],
+      datalistID:'ciao'
+    }
+  },
+  watch:{
+    ricerca:function(){
+  if (this.ricerca.length > 2) {
+      this.datalistID='specializations'
+    }else{
+      this.datalistID='inactive'
+    }
     }
   },
   methods:{
+    getSpecs(){
+      axios.get('http://127.0.0.1:8000/api/doctors/specs')
+      .then(res => {
+        this.specs=res.data;
+        /* console.log(this.specs) */
+      })
+      .catch(err => {
+        console.error(err); 
+      })
+    },
+    calcoloMedia(){
+      this.doctors.forEach(doctor=>{
+        let media=0;
+        for(let i=0;i<doctor.reviews.length;i++){
+          media = media+doctor.reviews[i].vote;
+        }
+        doctor['media']= media/(doctor.reviews.length);
+        console.log('media',doctor['media']);
+      })
+    },
+
 
     premiumDoctor(){
       // this.filterdoctors=[]
@@ -62,20 +102,12 @@ export default {
       }
      
     })
-     console.log('premium', this.premium);
-      console.log('basic', this.basic);
-      
-    
-
     },
     searchdoctor(){
       this.filterdoctor=[]
       this.filterdoctor = this.doctors.filter((doctor)=>{
         if(doctor.specializations[0].name.startsWith(this.ricerca)){
-          console.log('trovato');
           return true
-        }else{
-        console.log('non trovato');
         }
       })
     },
@@ -85,6 +117,7 @@ export default {
       .then(res => {
         this.doctors=res.data;
         this.premiumDoctor();
+        this.calcoloMedia();
         console.log(this.doctors)
       })
       .catch(err => {
@@ -93,8 +126,15 @@ export default {
     }
   }
 }
+
 </script>
 
-<style>
-
+<style lang='scss' scoped>
+  .input-form{
+    width: 50%;
+    margin-right: 20px;
+  }
+  ::placeholder{
+    font-style: italic;
+  }
 </style>

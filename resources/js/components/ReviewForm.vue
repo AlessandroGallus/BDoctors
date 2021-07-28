@@ -15,9 +15,9 @@
             <label for="description">Message</label>
             <textarea class="form-control" name="description" id="description" v-model="description" rows="5"></textarea>
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label for="vote">Voto</label>
-            <select name="vote" id="vote">
+            <select name="vote" id="vote" class="form-control-sm">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -28,7 +28,7 @@
         <!-- <div class="alert alert-success">
             {{session('message')}}
         </div> -->
-        <button type="submit" class="btn btn-primary">Send message</button>
+        <button type="submit" class="btn btn-primary mt-3">Send message</button>
     </form>
 </template>
 

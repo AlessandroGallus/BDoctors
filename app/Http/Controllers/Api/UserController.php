@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function index(){
 
-    $doctors = User::with('specializations','sponsors')
+    $doctors = User::with('specializations','sponsors','reviews')
         ->orderBy('users.id','desc')
         ->paginate(5);
 
@@ -20,11 +20,37 @@ class UserController extends Controller
 
     public function home(){
 
-     $doctors = User::with('specializations','sponsors')
+     $doctors = User::with('specializations','sponsors','reviews')
         ->orderBy('users.id','desc')
         ->get();
+        
+    /* dd($doctors[22]->sponsors); */
+        foreach ($doctors as $doctor) {
+            /* dd($doctor->sponsors); */
+            $today= date("Y-m-d");
+            $d1today= date_create($today);
+            $d2exp= date_create($doctor['sponsors'][0]->getOriginal()['pivot_expiring_date']);
+            $interval = date_diff($d1today,$d2exp);
+            $diff = $interval->format('%R%a');
+            if($diff<0){
+                $doctor->sponsors()->attach([1=>['expiring_date'=>date('Y-m-d H:i:s',1753682930)]]);
+            }
+        }
+    $updatedDoctors = User::with('specializations','sponsors','reviews')
+    ->orderBy('users.id','desc')
+    ->get();    
 
-      return response()->json($doctors);
+
+
+    /* $today= date("Y-m-d");
+    $d1today= date_create($today);
+   /*  dd($d1today); */
+    /* $d2exp= date_create($doctors[0]['sponsors'][0]->getOriginal()['pivot_expiring_date']); */
+    /* dd($d2exp); */
+   /*  $interval = date_diff($d1today,$d2exp);
+    $diff = $interval->format('%R%a');  */
+    
+      return response()->json($updatedDoctors);
     }
 
 
@@ -52,7 +78,7 @@ public function getCities(){
     return response()->json($cities);
 }
 public function getDoctorById($id){
-    $doctor = User::with('specializations')->where('users.id','=',$id)->first();
+    $doctor = User::with('specializations','reviews')->where('users.id','=',$id)->first();
     return response()->json($doctor);
 }
 }

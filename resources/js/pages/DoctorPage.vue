@@ -13,6 +13,18 @@
           :key="index"
           >{{spec.name}}</li>
         </ul>
+        <h3>Reviews:</h3>
+        <ul>
+          <li v-for="(review,index) in doctor.reviews" :key='index'>
+            <p>{{review.description}} <span class="star d-inline"
+    v-for="index in 5"
+    :key="index"
+    >
+    <i v-if="index<=Math.round(review.vote)" class="fas fa-star"></i>
+          <i class="far fa-star" v-else ></i>
+    </span></p>
+          </li>
+        </ul>
       </div>
       <div class="img">
         <img
@@ -22,7 +34,11 @@
     <div class="msgNot" v-if="msgNot">
       <h3>MESSAGGIO INVIATO CORRETTAMENTE</h3>
     </div>
-  <button type="button" v-on:click="isHidden = false">MANDA MESSAGGIO</button>
+    <div class="buttons">
+      <button class="btn btn-primary" type="button" v-on:click="()=>{isHidden=!isHidden; isHiddenReview=true}">MANDA MESSAGGIO</button>
+      <button class="btn btn-primary" type="button" v-on:click="()=>{isHiddenReview=!isHiddenReview; isHidden=true}">MANDA REVIEW</button>
+    </div>
+  
     <!-- MESSAGE FORM -->
     
     <div class="form" v-if="!isHidden">
@@ -31,7 +47,7 @@
       :doctorId="doctor.id"
       />
     </div>
-    <button type="button" v-on:click="isHiddenReview = false">MANDA REVIEW</button>
+    
     <div class="form" v-if="!isHiddenReview">
       <ReviewForm 
       :doctorId="doctor.id"
