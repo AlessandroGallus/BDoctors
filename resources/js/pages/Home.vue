@@ -31,6 +31,7 @@
     :media='doctor.media'
     />
     </div>
+    
   </div>
 </template>
 

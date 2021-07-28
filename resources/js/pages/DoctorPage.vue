@@ -38,6 +38,7 @@
       <button class="btn btn-primary" type="button" v-on:click="()=>{isHidden=!isHidden; isHiddenReview=true}">MANDA MESSAGGIO</button>
       <button class="btn btn-primary" type="button" v-on:click="()=>{isHiddenReview=!isHiddenReview; isHidden=true}">MANDA REVIEW</button>
     </div>
+   
   
     <!-- MESSAGE FORM -->
     
@@ -54,6 +55,7 @@
       />
     </div>
   </div>
+  
 </template>
 
 <script>
