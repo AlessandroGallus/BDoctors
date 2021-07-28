@@ -2065,6 +2065,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Card',
   props: ['spec_name', 'url_img', 'username', 'sponsor_name', 'spec_name', 'exp_date', 'city', 'id']
@@ -2588,21 +2590,39 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getDoctors();
+    this.premiumDoctor();
   },
   data: function data() {
     return {
       filterdoctor: [],
       ricerca: '',
-      doctors: []
+      doctors: [],
+      premium: [],
+      basic: []
     };
   },
   methods: {
-    searchdoctor: function searchdoctor() {
+    premiumDoctor: function premiumDoctor() {
       var _this = this;
+
+      // this.filterdoctors=[]
+      this.doctors.forEach(function (doctor) {
+        // console.log(doctor.sponsors[0].sponsor_level);
+        if (doctor.sponsors[0].sponsor_level > 1) {
+          _this.premium.push(doctor);
+        } else {
+          _this.basic.push(doctor);
+        }
+      });
+      console.log('premium', this.premium);
+      console.log('basic', this.basic);
+    },
+    searchdoctor: function searchdoctor() {
+      var _this2 = this;
 
       this.filterdoctor = [];
       this.filterdoctor = this.doctors.filter(function (doctor) {
-        if (doctor.specializations[0].name.startsWith(_this.ricerca)) {
+        if (doctor.specializations[0].name.startsWith(_this2.ricerca)) {
           console.log('trovato');
           return true;
         } else {
@@ -2611,11 +2631,14 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getDoctors: function getDoctors() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/doctors-spec').then(function (res) {
-        _this2.doctors = res.data;
-        console.log(_this2.doctors);
+        _this3.doctors = res.data;
+
+        _this3.premiumDoctor();
+
+        console.log(_this3.doctors);
       })["catch"](function (err) {
         console.error(err);
       });
@@ -2638,9 +2661,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-
-exports.push([module.i, ".doctor-container[data-v-191b97ca] {\n  display: flex;\n  background-color: red;\n  margin-bottom: 10px;\n  justify-content: space-between;\n  padding: 10px 20px;\n}\n.storage[data-v-191b97ca] {\n  width: 145px;\n}", ""]);
-
+exports.push([module.i, ".doctor-container[data-v-191b97ca] {\n  display: flex;\n  background-color: #add8e6;\n  margin-bottom: 10px;\n  justify-content: space-between;\n  padding: 10px 20px;\n  background-image: url(" + escape(__webpack_require__(/*! ../../../public/img/back2.jpg */ "./public/img/back2.jpg")) + ");\n  background-size: cover;\n  border-radius: 20px;\n}\n.doctor-container .doc-img[data-v-191b97ca] {\n  width: 400px;\n}\n.storage[data-v-191b97ca] {\n  width: 145px;\n}", ""]);
 
 // exports
 
@@ -2659,7 +2680,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "header[data-v-1f42fb90] {\n  display: flex;\n  align-items: center;\n  color: white;\n  height: 80px;\n  /* background-color: #386db3; */\n  background-image: linear-gradient(to right, #386db3, #56a7da);\n}\nheader nav[data-v-1f42fb90] {\n  height: inherit;\n}\nheader nav img[data-v-1f42fb90] {\n  width: 50px;\n}\nheader nav .home[data-v-1f42fb90] {\n  font-size: 2rem;\n}\nheader nav a[data-v-1f42fb90] {\n  color: #fff;\n  text-decoration: none;\n}\nheader nav .right[data-v-1f42fb90] {\n  display: flex;\n  align-items: center;\n}\nheader nav .right .list[data-v-1f42fb90] {\n  margin-bottom: 0;\n  font-size: 22px;\n}\nheader nav .right .list a[data-v-1f42fb90] {\n  color: #fff;\n}\nheader nav .right .list a[data-v-1f42fb90]:hover {\n  color: #ff6600;\n}\nheader nav .right .list li[data-v-1f42fb90] {\n  /*  margin: 0 10px; */\n  height: 100%;\n  padding: 25px;\n}\nheader nav .right .list li[data-v-1f42fb90]:hover {\n  background-color: #043d6b;\n  transition: 2s;\n}", ""]);
+exports.push([module.i, "header[data-v-1f42fb90] {\n  display: flex;\n  align-items: center;\n  color: white;\n  height: 80px;\n  /* background-color: #386db3; */\n  background-image: linear-gradient(to right, #386db3, #56a7da);\n}\nheader nav[data-v-1f42fb90] {\n  height: inherit;\n}\nheader nav img[data-v-1f42fb90] {\n  width: 50px;\n}\nheader nav .home[data-v-1f42fb90] {\n  font-size: 2rem;\n}\nheader nav a[data-v-1f42fb90] {\n  color: #fff;\n  text-decoration: none;\n}\nheader nav .right[data-v-1f42fb90] {\n  display: flex;\n  align-items: center;\n}\nheader nav .right .list[data-v-1f42fb90] {\n  margin-bottom: 0;\n  font-size: 22px;\n}\nheader nav .right .list a[data-v-1f42fb90] {\n  color: #fff;\n}\nheader nav .right .list a[data-v-1f42fb90]:hover {\n  color: #ff6600;\n}\nheader nav .right .list li[data-v-1f42fb90] {\n  /*  margin: 0 10px; */\n  height: 100%;\n  padding: 25px;\n}\nheader nav .right .list li[data-v-1f42fb90]:hover {\n  background-color: #043d6b;\n  transition: 1s;\n}", ""]);
 
 // exports
 
@@ -4120,11 +4141,9 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "doc-img" }, [
       !_vm.url_img.startsWith("uploads")
-
         ? _c("img", { attrs: { src: _vm.url_img, alt: "" } })
         : _c("img", {
             staticClass: "storage",
-
             attrs: { src: "storage/" + _vm.url_img, alt: "" }
           })
     ])
@@ -21045,10 +21064,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-
-__webpack_require__(/*! /Users/resme/Documents/progetto boolean/prova-master/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/resme/Documents/progetto boolean/prova-master/resources/sass/app.scss */"./resources/sass/app.scss");
-
+__webpack_require__(/*! C:\Users\aleeg\Desktop\Boolean\Laravel\prova-master\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\aleeg\Desktop\Boolean\Laravel\prova-master\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
