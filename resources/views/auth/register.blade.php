@@ -11,7 +11,8 @@
                 <div class="card-body">
                     <form method="POST" enctype="multipart/form-data" action="{{ route('register') }}">
                         @csrf
-
+                        <h3 class="text-center">Informazioni personali</h3>
+                        <hr>
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
 
@@ -107,7 +108,8 @@
                                 @enderror
                             </div>
                         </div>
-
+                        <h3 class="text-center">Informazioni Account</h3>
+                        <hr>
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
@@ -181,7 +183,7 @@
 
                                 <div id="selects" class="col-md-6">
                                     <select class="form-control @error('specializations') is-invalid @enderror"
-                                    name="specializations" id="specializations">
+                                    name="specializations[]" id="specializations">
 
 
                                         <option value=""> - selezionare una categoria - </option>

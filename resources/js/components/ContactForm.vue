@@ -23,7 +23,7 @@
         <!-- <div class="alert alert-success">
             {{session('message')}}
         </div> -->
-        <button type="submit" class="btn btn-primary" >Send message</button>
+        <button type="submit" class="btn btn-primary mt-3" >Send message</button>
     </form>
 </template>
 
