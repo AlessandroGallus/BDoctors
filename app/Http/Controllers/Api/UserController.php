@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function index(){
 
-    $doctors = User::with('specializations','sponsors')
+    $doctors = User::with('specializations','sponsors','reviews')
         ->orderBy('users.id','desc')
         ->paginate(5);
 

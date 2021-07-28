@@ -12,12 +12,13 @@
     :exp_date='doctor.sponsors[0].pivot.expiring_date'
     :city='doctor.city'
     :id='doctor.id'
+    :media='doctor.media'
     />
     </div>
      <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item"
-                v-on:click="getDoctors(current_page-1)"
+                v-on:click="prevpage(current_page-1)"
                 :class="(current_page == 1) ? 'disabled' : null ">
                 <button class="page-link">Prev</button></li>
             <li class="page-item"
@@ -28,7 +29,7 @@
             </li>
 
             <li class="page-item"
-                v-on:click="getDoctors(current_page+1)"
+                v-on:click="nextpage(current_page+1)"
                 :class="(current_page == total_pages) ? 'disabled' : null ">
                 <button class="page-link">Next</button></li>
         </ul>
@@ -56,8 +57,36 @@ export default {
     }
   },
   methods:{
+    calcoloMedia() {
+            this.doctors.forEach(doctor => {
+                let media = 0;
+                for (let i = 0; i < doctor.reviews.length; i++) {
+                    media = media + doctor.reviews[i].vote;
+                }
+                doctor["media"] = media / doctor.reviews.length;
+                if (isNaN(doctor.media)) doctor.media = 0;
+                console.log("media", doctor["media"]);
+            });
+        },
+    nextpage(page){
+      console.log('pagina corrente:',page);
+      if(page<=this.total_pages){
+        this.current_page++;
+        this.getDoctors(this.current_page);
+      }
+    },
+    prevpage(page){
+      console.log('pagina corrente:',page);
+      if(page>=0){
+        this.current_page--;
+        this.getDoctors(this.current_page);
+      }
+    },
+
     getDoctors(page){
+      this.current_page=page
         console.log(this.current_page);
+        if(this.c)
       if(this.current_page !=1 || this.current_page != this.total_pages) this.doctors = [];
       axios.get('http://127.0.0.1:8000/api/doctors', {
           params: {
@@ -69,6 +98,7 @@ export default {
         this.current_page = res.data.current_page;
         this.total_pages = res.data.last_page;
         console.log(this.doctors)
+        this.calcoloMedia();
       })
       .catch(err => {
         console.error(err);
