@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>PAGINA DI: {{doctor.name}} {{doctor.surname}} </h1>
+    <h2>Nome: {{doctor.name}}</h2>
+    <h2>Cognome: {{doctor.surname}} </h2>
     <div class="doc-details d-flex justify-content-between">
       <div class="infos">
         <h3>Indirizzo: {{doctor.address}}</h3>
@@ -8,7 +9,7 @@
         <h3>Telefono: {{doctor.phone_number}}</h3>
         <h3>Specializzazioni:</h3>
         <ul>
-          <li 
+          <li
           v-for="(spec,index) in doctor.specializations"
           :key="index"
           >{{spec.name}}</li>
@@ -38,18 +39,18 @@
       <button class="btn btn-primary" type="button" v-on:click="()=>{isHidden=!isHidden; isHiddenReview=true}">MANDA MESSAGGIO</button>
       <button class="btn btn-primary" type="button" v-on:click="()=>{isHiddenReview=!isHiddenReview; isHidden=true}">MANDA REVIEW</button>
     </div>
-  
+
     <!-- MESSAGE FORM -->
-    
+
     <div class="form" v-if="!isHidden">
-      <ContactForm 
+      <ContactForm
       @confermaInviato='confirmSent()'
       :doctorId="doctor.id"
       />
     </div>
-    
+
     <div class="form" v-if="!isHiddenReview">
-      <ReviewForm 
+      <ReviewForm
       :doctorId="doctor.id"
       />
     </div>
@@ -77,7 +78,7 @@ export default {
   mounted(){
     console.log('id',this.$route.params.id);
     this.getDoctorById();
-    
+
   },
   methods:{
     confirmSent(){
@@ -94,7 +95,7 @@ export default {
         }
       })
       .catch(err => {
-        console.error(err); 
+        console.error(err);
       })
     }
   }
