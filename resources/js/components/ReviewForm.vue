@@ -8,12 +8,12 @@
 
         <div class="form-group">
             <label for="mail">E-mail</label>
-            <input type="text" class="form-control" v-model="mail" name="mail" id="mail"/>
+            <input type="email" class="form-control" v-model="mail" placeholder="Inserisci qui la tua mail" name="mail" id="mail"/>
         </div>
 
         <div class="form-group">
             <label for="description">Message</label>
-            <textarea class="form-control" name="description" id="description" v-model="description" rows="5"></textarea>
+            <textarea class="form-control" placeholder="Inserisci qui il testo..." name="description" id="description" v-model="description" rows="5"></textarea>
         </div>
         <div class="form-group mt-2">
             <label for="vote">Voto</label>
@@ -28,7 +28,7 @@
         <!-- <div class="alert alert-success">
             {{session('message')}}
         </div> -->
-        <button type="submit" class="btn btn-primary mt-3">Send message</button>
+        <button type="submit" class="btn btn-primary mt-3" >Invia Recensione</button>
     </form>
 </template>
 
@@ -50,7 +50,7 @@ export default {
   mounted(){
       this.id=this.doctorId;
       console.log(this.id);
-      
+
   },
   methods:{
       sendMessage(){
@@ -62,13 +62,22 @@ export default {
               console.log('mandato');
           })
           .catch(err => {
-              console.error(err); 
+              console.error(err);
           })
       }
   }
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+      button{
+/*       background-color: #3f7bbd; */
+      background-image: linear-gradient( 135deg , #386db3 45%, #56a7da);
+         &:hover{
+           background: linear-gradient(135deg, #56a7da 45%, #386db3);
+            transition: 0.2s;
+            transform: scale(1 ,1.1);
+            box-shadow: 3px 7px 5px #888888;
+          }
+  }
 </style>
