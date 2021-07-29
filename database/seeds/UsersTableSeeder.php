@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
         for($i=0;$i<100;$i++){
             $new_user = new User();
             $new_user['name']=$this->get('name');
-            $new_user['email']='testmail'.$i++.'@gmail.com';
+            $new_user['email']='testmail'.($i+1).'@gmail.com';
             $new_user['password']='password';
             $new_user['surname']=$this->get('surname');
             $new_user['city']=$this->get('city');

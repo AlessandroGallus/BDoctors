@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,7 +69,18 @@ Route::post('/checkout', function (Request $request) {
     if ($result->success) {
         $transaction = $result->transaction;
         /* header("Location: " . $baseUrl . "transaction.php?id=" . $transaction->id); */
-
+        if($transaction->amount == '2.99'){
+            $user = User::find(Auth::user()->id);
+            $user->sponsors()->sync([2=>['expiring_date'=>date('Y-m-d', strtotime('tomorrow'))]]);
+        }
+        if($transaction->amount == '5.99'){
+            $user = User::find(Auth::user()->id);
+            $user->sponsors()->sync([3=>['expiring_date'=>date('Y-m-d', strtotime('+3 day'))]]);
+        }
+        if($transaction->amount == '9.99'){
+            $user = User::find(Auth::user()->id);
+            $user->sponsors()->sync([4=>['expiring_date'=>date('Y-m-d', strtotime('+6 day'))]]);
+        }
         return redirect()->back()->with('success_message','Transaction Successful. The Id is    ' .$transaction->id);
     } else {
         $errorString = "";
