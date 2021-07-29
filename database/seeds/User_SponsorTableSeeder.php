@@ -19,7 +19,7 @@ class User_SponsorTableSeeder extends Seeder
             DB::table('user_sponsor')->insert([
                 'user_id'=>$user['id'],
                 'sponsor_id'=>rand(1,4),
-                'expiring_date'=>date('Y-m-d H:i:s')
+                'expiring_date'=>date('Y-m-d H:i:s',1627382756)
             ]);
     }
 }

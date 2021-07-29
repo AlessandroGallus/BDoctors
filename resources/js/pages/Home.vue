@@ -9,17 +9,14 @@
      <datalist v-bind:id="datalistID" >
        <option v-for="(spec,index) in specs" :key="index" :value="spec"></option>
      </datalist>
-     <button
-    v-on:click=' searchdoctor()'
-
-     type="button" class="btn btn-primary">Ricerca</button>
+     <router-link :to="{name:'advancedSearch',params:{'spec':ricerca}}"><button>GO</button></router-link>
     </div>
     
      
-    <h3 class="mt-3">Lista dottori:</h3>
+    <h3 class="mt-3">Lista dottori PREMIUM:</h3>
     <div class="container">
       <Doctor
-    v-for="(doctor,key) in filterdoctor"
+    v-for="(doctor,key) in premium"
     :key="key"
     :username='doctor.name'
     :spec_name='doctor.specializations[0].name'
@@ -30,6 +27,7 @@
     :id='doctor.id'
     :media='doctor.media'
     :nReviews="doctor.reviews.length"
+    :urlCv="doctor.url_cv"
     />
     </div>
   </div>
@@ -44,17 +42,14 @@ export default {
     Doctor
   },
   mounted(){
-    this.getDoctors();
     this.getSpecs();
+    this.premiumDoctor();
   },
   data(){
 
     return{
-      filterdoctor:[],
       ricerca:'',
-      doctors:[],
       premium:[],
-      basic:[],
       specs:[],
       datalistID:'ciao'
     }
@@ -73,56 +68,32 @@ export default {
       axios.get('http://127.0.0.1:8000/api/doctors/specs')
       .then(res => {
         this.specs=res.data;
-        /* console.log(this.specs) */
       })
       .catch(err => {
         console.error(err); 
       })
     },
-    calcoloMedia(){
-      this.doctors.forEach(doctor=>{
-        let media=0;
-        for(let i=0;i<doctor.reviews.length;i++){
-          media = media+doctor.reviews[i].vote;
-        }
-        doctor['media']= media/(doctor.reviews.length);
-        console.log('media',doctor['media']);
-      })
-    },
+    calcoloMedia() {
+            this.premium.forEach(doctor => {
+                let media = 0;
+                for (let i = 0; i < doctor.reviews.length; i++) {
+                    media = media + doctor.reviews[i].vote;
+                }
+                doctor["media"] = media / doctor.reviews.length;
+                if (isNaN(doctor.media)) doctor.media = 0;
+            });
+        },
 
 
     premiumDoctor(){
-      // this.filterdoctors=[]
-    this.doctors.forEach(doctor => {
-      // console.log(doctor.sponsors[0].sponsor_level);
-      if(doctor.sponsors[0].sponsor_level >1 ){
-        this.premium.push(doctor)
-
-      }else{
-        this.basic.push(doctor)
-      }
-     
-    })
-    },
-    searchdoctor(){
-      this.filterdoctor=[]
-      this.filterdoctor = this.doctors.filter((doctor)=>{
-        if(doctor.specializations[0].name.startsWith(this.ricerca)){
-          return true
-        }
-      })
-    },
-
-    getDoctors(){
-      axios.get('http://127.0.0.1:8000/api/doctors-spec')
+      axios.get('http://127.0.0.1:8000/api/alldoctors?premium')
       .then(res => {
-        this.doctors=res.data;
-        this.premiumDoctor();
+        this.premium=res.data.data
         this.calcoloMedia();
-        console.log(this.doctors)
+        console.log('premium: ',this.premium)
       })
       .catch(err => {
-        console.error(err);
+        console.error(err); 
       })
     }
   }
