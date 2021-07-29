@@ -36,8 +36,8 @@
       <h3>MESSAGGIO INVIATO CORRETTAMENTE</h3>
     </div>
     <div class="buttons">
-      <button class="btn btn-primary" type="button" v-on:click="()=>{isHidden=!isHidden; isHiddenReview=true}">MANDA MESSAGGIO</button>
-      <button class="btn btn-primary" type="button" v-on:click="()=>{isHiddenReview=!isHiddenReview; isHidden=true}">MANDA REVIEW</button>
+      <button class="btn btn-primary" type="button" v-on:click="()=>{isHidden=!isHidden; isHiddenReview=true}">INVIA MESSAGGIO</button>
+      <button class="btn btn-primary" type="button" v-on:click="()=>{isHiddenReview=!isHiddenReview; isHidden=true}">INVIA REVIEW</button>
     </div>
 
     <!-- MESSAGE FORM -->
