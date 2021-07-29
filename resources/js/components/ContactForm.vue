@@ -9,21 +9,21 @@
 
         <div class="form-group">
             <label for="mail">E-mail</label>
-            <input type="text" class="form-control" v-model="email" name="mail" id="mail"/>
+            <input type="email" class="form-control" v-model="email" placeholder="Inserisci qui la tua mail" name="mail" id="mail"/>
         </div>
 
         <div class="form-group">
             <label for="message_text">Message</label>
-            <textarea class="form-control" name="message_text" id="message_text" v-model="message" rows="5"></textarea>
+            <textarea class="form-control" name="message_text" id="message_text" v-model="message" rows="5" placeholder="Inserisci qui il testo..."></textarea>
         </div>
         <div class="form-group">
             <label for="phone_number">Phone</label>
-            <input type="text" class="form-control" v-model="phone_number" name="phone_number" id="phone_number"/>
+            <input type="number" class="form-control" v-model="phone_number" name="phone_number" placeholder="Inserisci qui il tuo numero" id="phone_number"/>
         </div>
         <!-- <div class="alert alert-success">
             {{session('message')}}
         </div> -->
-        <button type="submit" class="btn btn-primary mt-3" >Send message</button>
+        <button type="submit" class="btn btn-primary mt-3" >Invia Messaggio</button>
     </form>
 </template>
 
@@ -55,7 +55,7 @@ export default {
               console.log(res)
           })
           .catch(err => {
-              console.log(err.response.data); 
+              console.log(err.response.data);
               'non mandato'
           })
           console.log('messagio inviato');
@@ -65,6 +65,15 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+      button{
+/*       background-color: #3f7bbd; */
+      background-image: linear-gradient( 135deg , #386db3 45%, #56a7da);
+         &:hover{
+           background: linear-gradient(135deg, #56a7da 45%, #386db3);
+            transition: 0.2s;
+            transform: scale(1 ,1.1);
+            box-shadow: 3px 7px 5px #888888;
+          }
+  }
 </style>
