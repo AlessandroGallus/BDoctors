@@ -2,17 +2,9 @@
     <div>
         <h2>RICERCA AVANZATA</h2>
         <div class="ricerca">
-            <!-- <input type="text" v-model="city" placeholder="Città"> -->
-            <!-- <select name="cities" id="cities" v-model="mcity">
-        <option value="">--Seleziona una città</option>
-          <option 
-      v-for="(city,key) in cities"
-      :key="key"
-      :value="city.city">{{city.city}}</option>
-      </select> -->
             <div class="inputs-ricerca d-flex justify-content-between mb-5">
                 <div class="d-flex">
-                    <select 
+                    <select
                         name="specs"
                         id="specs"
                         v-model="mspecs"
@@ -25,15 +17,18 @@
                             v-for="(spec, key) in specs"
                             :key="key"
                             :value="spec"
+                            selected="false"
                             >{{ spec }}</option
                         >
                     </select>
-                    <button class="btn btn-primary d-inline ml-3" v-on:click="search">
-                    Cerca
-                </button>
+                    <button
+                        class="btn btn-primary d-inline ml-3"
+                        v-on:click="inizioRicerca()"
+                    >
+                        Cerca
+                    </button>
                 </div>
 
-                
                 <div>
                     <label for="orderBy">Media voti:</label>
                     <select name="orderBy" id="orderBy" v-model="orderBy">
@@ -41,33 +36,69 @@
                         <option value="desc">Decrescente</option>
                     </select>
                 </div>
-                 <div>
+                <div>
                     <label for="orderByCount">Numero recensioni:</label>
-                    <select name="orderByCount" id="orderByCount" v-model="orderByCount">
+                    <select
+                        name="orderByCount"
+                        id="orderByCount"
+                        v-model="orderByCount"
+                    >
                         <option value="">--Seleziona--</option>
                         <option value="asc">Crescente</option>
                         <option value="desc">Decrescente</option>
                     </select>
                 </div>
-                
             </div>
             <div class="result"></div>
-                <div class="noResult" v-if="filteredArray.length==0 && initiated==true"><h3>Nessun risultato per i parametri scelti</h3></div>
-                <div class="container" v-else>
-                    <Doctor
-                        v-for="(doctor, key) in filteredArray"
-                        :key="key"
-                        :username="doctor.name"
-                        :spec_name="doctor.specializations[0].name"
-                        :url_img="doctor.url_img"
-                        :sponsor_name="doctor.sponsors[0].name"
-                        :exp_date="doctor.sponsors[0].pivot.expiring_date"
-                        :city="doctor.city"
-                        :id="doctor.id"
-                        :media="doctor.media"
-                        :nReviews='doctor.reviews.length'
-                    />
-                </div>
+            <div v-if="isLoading"><h1>LOADING...</h1></div>
+            <div
+                class="noResult"
+                v-if="filteredArray.length == 0 || initiated == true"
+            >
+                <h3>Nessun risultato per i parametri scelti</h3>
+            </div>
+            <div class="container" v-else>
+                <Doctor
+                    v-for="(doctor, key) in filteredArray"
+                    :key="key"
+                    :username="doctor.name"
+                    :spec_name="doctor.specializations[0].name"
+                    :url_img="doctor.url_img"
+                    :sponsor_name="doctor.sponsors[0].name"
+                    :exp_date="doctor.sponsors[0].pivot.expiring_date"
+                    :city="doctor.city"
+                    :id="doctor.id"
+                    :media="doctor.media"
+                    :nReviews="doctor.reviews.length"
+                />
+            </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li
+                        class="page-item"
+                        v-on:click="prevpage(currentPage - 1)"
+                        :class="currentPage == 1 ? 'disabled' : null"
+                    >
+                        <button class="page-link">Prev</button>
+                    </li>
+                    <li
+                        class="page-item"
+                        v-for="(indice, index) in this.totalPages"
+                        v-on:click="searchnew(indice)"
+                        :key="index"
+                    >
+                        <button class="page-link">{{ indice }}</button>
+                    </li>
+
+                    <li
+                        class="page-item"
+                        v-on:click="nextpage(currentPage + 1)"
+                        :class="currentPage == totalPages ? 'disabled' : null"
+                    >
+                        <button class="page-link">Next</button>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </template>
@@ -90,14 +121,22 @@ export default {
             cities: [],
             orderBy: "desc",
             orderByCount: "",
-            initiated:false
+            initiated: false,
+            isLoading: false,
+            currentPage: 1,
+            totalPages: null
         };
     },
 
     mounted() {
         this.getSpecs();
-        this.getDoctors();
-        this.getCities();
+        console.log("params", this.$route.params.spec);
+        console.log(this.$route.params.spec);
+        /* this.mspecs=this.$route.params.spec; */
+        if (this.$route.params.spec != undefined) {
+            this.mspecs = this.$route.params.spec;
+            this.searchnew(this.currentPage);
+        }
     },
     watch: {
         orderBy: function() {
@@ -111,41 +150,118 @@ export default {
                 });
             }
         },
-        
-        orderByCount:function(){
-            if(this.orderByCount=='asc'){
-                this.filteredArray.sort(function(a,b){
-                    return a.reviews.length-b.reviews.length;
-                })
-            }else if (this.orderBy == "desc") {
+
+        orderByCount: function() {
+            if (this.orderByCount == "asc") {
+                this.filteredArray.sort(function(a, b) {
+                    return a.reviews.length - b.reviews.length;
+                });
+            } else if (this.orderBy == "desc") {
                 this.filteredArray.sort(function(a, b) {
                     return b.reviews.length - a.reviews.length;
                 });
             }
         }
     },
-    
-    
+
     methods: {
+        
+        inizioRicerca() {
+            this.currentPage = 1;
+            this.searchnew(this.currentPage);
+        },
         calcoloMedia() {
-            this.doctors.forEach(doctor => {
+            this.filteredArray.forEach(doctor => {
                 let media = 0;
                 for (let i = 0; i < doctor.reviews.length; i++) {
                     media = media + doctor.reviews[i].vote;
                 }
                 doctor["media"] = media / doctor.reviews.length;
                 if (isNaN(doctor.media)) doctor.media = 0;
-                console.log("media", doctor["media"]);
             });
         },
-        search() {
+
+        searchnew(page) {
+            this.currentPage = page;
+            this.isLoading = true;
+            console.log("cerco: ", this.mspecs);
+            console.log("cerco pagina: ", this.currentPage);
+
+            axios
+                .get("http://127.0.0.1:8000/api/alldoctors", {
+                    params: { specname: this.mspecs, page: page }
+                })
+                .then(res => {
+                    console.log(res.data);
+                    this.totalPages = res.data.last_page;
+                    this.isLoading = false;
+                    this.filteredArray = res.data.data;
+                    this.calcoloMedia();
+                    this.filteredArray.sort(function(a, b) {
+                        return b.media - a.media;
+                    });
+                    this.orderBy = "desc";
+                    this.orderByCount = "";
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        },
+        nextpage(page) {
+            console.log("pagina corrente:", page);
+            if (page <= this.totalPages) {
+                console.log("next");
+                /* this.currentPage; */
+                this.searchnew(++this.currentPage);
+            }
+        },
+        prevpage(page) {
+            console.log("pagina corrente:", page);
+            if (page >= 0) {
+                this.currentPage--;
+                this.searchnew(this.currentPage);
+            }
+        },
+        /* STAMPA SELECT SPECIALIZZAZIONI */
+        getSpecs() {
+            axios
+                .get("http://127.0.0.1:8000/api/doctors/specs")
+                .then(res => {
+                    this.specs = res.data;
+                    /* console.log(this.specs) */
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        }
+        /* getDoctors() {
+            axios
+                .get("http://127.0.0.1:8000/api/alldoctors",{params:{specname:this.mspecs}})
+                .then(res => {
+                    this.doctors = res.data;
+                    this.calcoloMedia();
+                    console.log(this.doctors)
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        }, */
+        /* getCities() {
+            axios
+                .get("http://127.0.0.1:8000/api/cities")
+                .then(res => {
+                    this.cities = res.data;
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        } */
+        /* search() {
             this.initiated=true;
             this.filteredArray = [];
-            console.log("test");
-            console.log(this.mcity);
-            console.log(this.mspecs);
+            console.log("cerco: ",this.mspecs);
+            console.log(this.doctors);
             for (let i = 0; i < this.doctors.length; i++) {
-                // RICERCA CASO MULTIPLE SPECIALIZZAZIONI
                 for (
                     let j = 0;
                     j < this.doctors[i].specializations.length;
@@ -168,40 +284,7 @@ export default {
                     return b.media - a.media;
                 });
 
-        },
-        getSpecs() {
-            axios
-                .get("http://127.0.0.1:8000/api/doctors/specs")
-                .then(res => {
-                    this.specs = res.data;
-                    /* console.log(this.specs) */
-                })
-                .catch(err => {
-                    console.error(err);
-                });
-        },
-        getDoctors() {
-            axios
-                .get("http://127.0.0.1:8000/api/doctors-spec")
-                .then(res => {
-                    this.doctors = res.data;
-                    this.calcoloMedia();
-                    /* console.log(this.doctors) */
-                })
-                .catch(err => {
-                    console.error(err);
-                });
-        },
-        getCities() {
-            axios
-                .get("http://127.0.0.1:8000/api/cities")
-                .then(res => {
-                    this.cities = res.data;
-                })
-                .catch(err => {
-                    console.error(err);
-                });
-        }
+        }, */
     }
 };
 </script>

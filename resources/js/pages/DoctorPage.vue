@@ -13,6 +13,8 @@
           :key="index"
           >{{spec.name}}</li>
         </ul>
+        <h3>Curriculum Vitae:</h3>
+         <a :href="doctor.url_cv">Vai</a>
         <h3>Reviews:</h3>
         <ul>
           <li v-for="(review,index) in doctor.reviews" :key='index'>

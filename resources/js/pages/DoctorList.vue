@@ -87,7 +87,6 @@ export default {
     getDoctors(page){
       this.current_page=page
         console.log(this.current_page);
-        if(this.c)
       if(this.current_page !=1 || this.current_page != this.total_pages) this.doctors = [];
       axios.get('http://127.0.0.1:8000/api/doctors', {
           params: {

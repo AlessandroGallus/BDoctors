@@ -24,9 +24,9 @@ const router = new VueRouter({
       component:DoctorList
     },
     {
-      path:'/advanced-seach',
+      path:'/advanced-search',
       name:'advancedSearch',
-      component:AdvancedSearch
+      component:AdvancedSearch,
     },
     {
       path:'/doctor/:id',
