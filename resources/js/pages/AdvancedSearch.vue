@@ -41,6 +41,14 @@
                         <option value="desc">Decrescente</option>
                     </select>
                 </div>
+                 <div>
+                    <label for="orderByCount">Numero recensioni:</label>
+                    <select name="orderByCount" id="orderByCount" v-model="orderByCount">
+                        <option value="">--Seleziona--</option>
+                        <option value="asc">Crescente</option>
+                        <option value="desc">Decrescente</option>
+                    </select>
+                </div>
                 
             </div>
             <div class="result"></div>
@@ -57,6 +65,7 @@
                         :city="doctor.city"
                         :id="doctor.id"
                         :media="doctor.media"
+                        :nReviews='doctor.reviews.length'
                     />
                 </div>
         </div>
@@ -80,6 +89,7 @@ export default {
             doctors: [],
             cities: [],
             orderBy: "desc",
+            orderByCount: "",
             initiated:false
         };
     },
@@ -100,8 +110,22 @@ export default {
                     return b.media - a.media;
                 });
             }
+        },
+        
+        orderByCount:function(){
+            if(this.orderByCount=='asc'){
+                this.filteredArray.sort(function(a,b){
+                    return a.reviews.length-b.reviews.length;
+                })
+            }else if (this.orderBy == "desc") {
+                this.filteredArray.sort(function(a, b) {
+                    return b.reviews.length - a.reviews.length;
+                });
+            }
         }
     },
+    
+    
     methods: {
         calcoloMedia() {
             this.doctors.forEach(doctor => {
@@ -139,6 +163,7 @@ export default {
                     }
                 }
             }
+            console.log('array',this.filteredArray);
             this.filteredArray.sort(function(a, b) {
                     return b.media - a.media;
                 });
