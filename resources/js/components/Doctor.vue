@@ -4,7 +4,7 @@
       <h3>Nome: {{username}}</h3>
     <h5>Città: {{city}}</h5>
     <h5>Specializzazione/i: {{spec_name}}</h5>
-    <h5>Media Voti: {{(!isNaN(media))? media: 'Non disponibile'}}</h5>
+    <h5>Media Voti: {{(!isNaN(media))? media: 'Non disponibile'}} ({{nReviews}})</h5>
     <div class="star d-inline"
     v-for="index in 5"
     :key="index"
@@ -32,7 +32,7 @@
 <script>
 export default {
   name:'Card',
-  props:['spec_name','url_img','username','sponsor_name','spec_name','exp_date','city','id','media'],
+  props:['spec_name','url_img','username','sponsor_name','spec_name','exp_date','city','id','media','nReviews'],
   methods:{
     currentDate(){
       const current = new Date();

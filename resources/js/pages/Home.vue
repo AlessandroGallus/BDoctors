@@ -29,6 +29,7 @@
     :city='doctor.city'
     :id='doctor.id'
     :media='doctor.media'
+    :nReviews="doctor.reviews.length"
     />
     </div>
   </div>
