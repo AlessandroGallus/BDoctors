@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="msgNot" v-if="msgNot">
-      <h3>MESSAGGIO INVIATO CORRETTAMENTE</h3>
+      <h3>PORCO DIOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</h3>
     </div>
     <div class="buttons">
       <button class="btn btn-primary" type="button" v-on:click="()=>{isHidden=!isHidden; isHiddenReview=true}">INVIA MESSAGGIO</button>
