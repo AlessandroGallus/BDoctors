@@ -14,7 +14,7 @@ class UserController extends Controller
 
     $doctors = User::with('specializations','sponsors','reviews')
         ->orderBy('users.id','desc')
-        ->paginate(5);
+        ->paginate(4);
 
     return response()->json($doctors);
 }

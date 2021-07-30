@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class=" ">
   <h1 class="mb-3">LISTA DOTTORI:</h1>
-    <div class="container">
+    <div class="doctor container d-flex flex-wrap justify-content-center  ">
       <Doctor
     v-for="(doctor,key) in doctors"
     :key="key"
@@ -114,4 +114,5 @@ export default {
       flex-wrap: wrap;
       margin-bottom: 30px;
   }
+
 </style>

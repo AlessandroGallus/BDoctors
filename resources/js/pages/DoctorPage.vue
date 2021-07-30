@@ -115,6 +115,7 @@ export default {
             transition: 0.2s;
             transform: scale(1 ,1.1);
             box-shadow: 3px 7px 5px #888888;
+            
           }
   }
 </style>
