@@ -14,7 +14,6 @@
     </div>
     <h5>Sponsor: {{sponsor_name}}</h5>
     <h5>Scadenza Sponsor: {{exp_date}}</h5>
-    <h5>Oggi: {{currentDate()}}</h5>
     <router-link id="id" :to="{name:'doctorPage',params:{'fullname':username,'id':id}}">Vedi Profilo</router-link>
     </div>
     <div class="doc-img">

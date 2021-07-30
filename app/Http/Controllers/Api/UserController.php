@@ -93,9 +93,20 @@ public function getDoctors(Request $request){
     $doctors = User::with(['specializations','sponsors','reviews'])->orderBy('users.id','desc')->paginate(5);
     
 
-    if($request->has('specname') && $request->has('orderBy')){
+
+    if($request->has('specname') && $request->has('orderByCount')){
         $toSearchSpec = $request->input('specname');
-        $toSearchOrder = $request->input('orderBy'); 
+        $doctors = User::withCount('reviews')->orderBy('reviews_count',$request->input('orderByCount'))->with('reviews','sponsors','specializations')
+        ->whereHas('specializations',function(Builder $query) use ($toSearchSpec){
+            $query->where('name','=',$toSearchSpec);
+        })
+        ->paginate(5);
+        return response()->json($doctors);
+    }
+
+    if($request->has('specname') && $request->has('orderByAverage')){
+        $toSearchSpec = $request->input('specname');
+        $toSearchOrder = $request->input('orderByAverage'); 
         $doctors = User::select('users.*', DB::raw('avg(reviews.vote) AS average'))
         ->with('specializations','reviews','sponsors')
         ->whereHas('specializations',function(Builder $query) use ($toSearchSpec){
@@ -119,10 +130,14 @@ public function getDoctors(Request $request){
         $doctors = User::with('specializations','reviews','sponsors')->whereHas('sponsors',function(Builder $query){
             $query->where('sponsor_level','>','1');
         })->paginate(5);
+        return response()->json($doctors);
     }
     return response()->json($doctors);
 }
 
+
+
+/* TEST API */
 public function getDoctorsDesc(Request $request){
 
     /* $doctors = User::select('users.*', DB::raw('avg(reviews.vote) AS average'))
@@ -145,7 +160,7 @@ public function getDoctorsDesc(Request $request){
         ->orderBy('average',$toSearchOrder)
         ->get();
     } */
-    if($request->has('specname') && $request->has('orderByCount')){
+    /* if($request->has('specname') && $request->has('orderByCount')){
         $toSearchSpec = $request->input('specname');
         $toSearchOrder = $request->input('orderByCount'); 
         $doctors = User::select('users.*', DB::raw('count(reviews) AS count'))
@@ -156,10 +171,10 @@ public function getDoctorsDesc(Request $request){
         ->join('reviews','reviews.user_id','=','users.id')
         ->groupBy('users.id')
         ->orderBy('count',$toSearchOrder)
-        ->get();
-    
-   return response()->json($doctors);
+        ->get(); */
+    /* $doctors = User::withCount('reviews')->orderBy('reviews_count','asc')->with('reviews','sponsors','specializations')->get();
+   return response()->json($doctors); */
 }
 
 }
-}
+

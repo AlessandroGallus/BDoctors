@@ -32,6 +32,7 @@
                 <div>
                     <label for="orderBy">Media voti:</label>
                     <select name="orderBy" id="orderBy" v-model="orderBy">
+                        <option value="default" disabled>--Seleziona--</option>
                         <option value="asc">Crescente</option>
                         <option value="desc">Decrescente</option>
                     </select>
@@ -43,7 +44,7 @@
                         id="orderByCount"
                         v-model="orderByCount"
                     >
-                        <option value="">--Seleziona--</option>
+                        <option value="default" disabled>--Seleziona--</option>
                         <option value="asc">Crescente</option>
                         <option value="desc">Decrescente</option>
                     </select>
@@ -119,8 +120,8 @@ export default {
             mspecs: "",
             doctors: [],
             cities: [],
-            orderBy: "desc",
-            orderByCount: "",
+            orderBy: "default",
+            orderByCount: "default",
             initiated: false,
             isLoading: false,
             currentPage: 1,
@@ -134,10 +135,12 @@ export default {
         this.getSpecs();
         console.log("params", this.$route.params.spec);
         console.log(this.$route.params.spec);
-        /* this.mspecs=this.$route.params.spec; */
+       
+
         if (this.$route.params.spec != undefined) {
             this.mspecs = this.$route.params.spec;
-            this.searchnew(this.currentPage);
+            this.searchnew(this.currentPage,'desc');
+            this.orderBy='desc'
         }
     },
     watch: {
@@ -147,19 +150,16 @@ export default {
             } else if (this.orderBy == "desc") {
                 this.searchnew(1,'DESC');
             }
-            /* this.searchnew(1); */
+            this.orderByCount='default'
         },
 
         orderByCount: function() {
             if (this.orderByCount == "asc") {
-                this.filteredArray.sort(function(a, b) {
-                    return a.reviews.length - b.reviews.length;
-                });
-            } else if (this.orderBy == "desc") {
-                this.filteredArray.sort(function(a, b) {
-                    return b.reviews.length - a.reviews.length;
-                });
+                this.searchbycount(1,'asc');
+            } else if (this.orderByCount == "desc") {
+                this.searchbycount(1,'desc');
             }
+            this.orderBy='default'
         }
     },
 
@@ -167,7 +167,8 @@ export default {
         
         inizioRicerca() {
             this.currentPage = 1;
-            this.searchnew(this.currentPage,this.orderBy);
+            this.searchnew(this.currentPage,'desc');
+            this.orderBy='desc'
         },
         calcoloMedia() {
             this.filteredArray.forEach(doctor => {
@@ -180,6 +181,33 @@ export default {
             });
         },
 
+
+
+    searchbycount(page,orderBy){
+        this.filteredArray=[];
+            this.currentPage = page;
+            this.isLoading = true;
+            this.initiated = true;
+            console.log("cerco: ", this.mspecs);
+            console.log("cerco pagina: ", this.currentPage);
+
+            axios
+                .get("http://127.0.0.1:8000/api/alldoctors", {
+                    params: { specname: this.mspecs, page: page, orderByCount:orderBy }
+                })
+                .then(res => {
+                    console.log(res.data);
+                    this.totalPages = res.data.last_page;
+                    this.isLoading = false;
+                    this.filteredArray = res.data.data;
+                    this.orderByCount=orderBy;
+                    this.calcoloMedia();
+                    console.log('array filtrato:',this.filteredArray);
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+    },
         searchnew(page,orderBy) {
             this.filteredArray=[];
             this.currentPage = page;
@@ -190,7 +218,7 @@ export default {
 
             axios
                 .get("http://127.0.0.1:8000/api/alldoctors", {
-                    params: { specname: this.mspecs, page: page, orderBy:orderBy }
+                    params: { specname: this.mspecs, page: page, orderByAverage:orderBy }
                 })
                 .then(res => {
                     console.log(res.data);
@@ -198,12 +226,7 @@ export default {
                     this.isLoading = false;
                     this.filteredArray = res.data.data;
                     this.calcoloMedia();
-                    /*this.filteredArray.sort(function(a, b) {
-                        return b.media - a.media;
-                    }); */
                     console.log('array filtrato:',this.filteredArray);
-                    /* this.orderBy = "desc"; */
-                    /* this.orderByCount = ""; */
                 })
                 .catch(err => {
                     console.error(err);
