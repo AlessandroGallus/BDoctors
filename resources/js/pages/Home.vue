@@ -1,6 +1,6 @@
 <template>
 
-  <div class="mt-3" >
+  <div class="mt-3 home" >
     <div class="inputs-ricerca d-flex">
       <input list="specializations" class="input-form form-control d-inline"
     @keyup.enter="searchdoctor()"
@@ -11,10 +11,10 @@
      </datalist>
      <router-link :to="{name:'advancedSearch',params:{'spec':ricerca}}"><button>GO</button></router-link>
     </div>
-    
-     
+
+
     <h3 class="mt-3">Lista dottori PREMIUM:</h3>
-    <div class="container">
+    <div class="container doctor">
       <Doctor
     v-for="(doctor,key) in premium"
     :key="key"
@@ -70,7 +70,7 @@ export default {
         this.specs=res.data;
       })
       .catch(err => {
-        console.error(err); 
+        console.error(err);
       })
     },
     calcoloMedia() {
@@ -93,7 +93,7 @@ export default {
         console.log('premium: ',this.premium)
       })
       .catch(err => {
-        console.error(err); 
+        console.error(err);
       })
     }
   }
@@ -102,6 +102,9 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.home{
+    margin-bottom: 50px;
+}
   .input-form{
     width: 50%;
     margin-right: 20px;
@@ -109,4 +112,7 @@ export default {
   ::placeholder{
     font-style: italic;
   }
+  // .doctor{
+  //   flex-basis: (100% / 3);
+  // }
 </style>
