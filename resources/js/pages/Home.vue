@@ -14,7 +14,7 @@
     
      
     <h3 class="mt-3">Lista dottori PREMIUM:</h3>
-    <div class="container">
+    <div class="container doctor">
       <Doctor
     v-for="(doctor,key) in premium"
     :key="key"
@@ -109,4 +109,7 @@ export default {
   ::placeholder{
     font-style: italic;
   }
+  // .doctor{
+  //   flex-basis: (100% / 3);
+  // }
 </style>

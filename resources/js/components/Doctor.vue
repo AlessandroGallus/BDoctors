@@ -1,30 +1,46 @@
 <template>
   <div class="doctor-container">
-    <div class="doc-infos">
-      <h3>Nome: {{username}}</h3>
-    <h5>Città: {{city}}</h5>
-    <h5>Specializzazione/i: {{spec_name}}</h5>
-    <h5>Media Voti: {{(!isNaN(media))? media: 'Non disponibile'}} ({{nReviews}})</h5>
-    <div class="star d-inline"
-    v-for="index in 5"
-    :key="index"
-    >
-    <i v-if="index<=Math.round(media)" class="fas fa-star"></i>
-          <i class="far fa-star" v-else ></i>
-    </div>
-    <h5>Sponsor: {{sponsor_name}}</h5>
-    <h5>Scadenza Sponsor: {{exp_date}}</h5>
-    <h5>Oggi: {{currentDate()}}</h5>
-    <router-link id="id" :to="{name:'doctorPage',params:{'fullname':username,'id':id}}">Vedi Profilo</router-link>
-    </div>
-    <div class="doc-img">
+
+    <div class="card" style="width: 18rem;">
+
+              <img  class="card-img-top"
+                  v-if="!url_img.startsWith('uploads')"
+                  :src="url_img" alt="">
+              <img class="storage" v-else :src="'storage/'+url_img" alt="">
+    
+            <h5 class="card-title">Doctor page</h5>
+            <ul>
+                  <li>nome: {{username}}</li>
+                  <li>città: {{city}}</li>
+                  <li>Specializzazione/i: {{spec_name}}</li>
+                  <li>Media Voti: {{(!isNaN(media))? media: 'Non disponibile'}} ({{nReviews}})</li>
+            </ul>
+   
+          <div class="stars d-flex">
+              <div class="star d-inline "
+              v-for="index in 5"
+              :key="index"
+              >
+              <i v-if="index<=Math.round(media)" class="fas fa-star"></i>
+              <i class="far fa-star" v-else ></i>
+            </div>
+         </div> 
+         
+          <div class="card-body">
+            <h5>Sponsor: {{sponsor_name}}</h5>
+            <h5>Scadenza Sponsor: {{exp_date}}</h5>
+            <h5>Oggi: {{currentDate()}}</h5>
+            <router-link id="id" :to="{name:'doctorPage',params:{'fullname':username,'id':id}}">Vedi Profilo</router-link> 
+          </div>
+     </div>
+    <!-- <div class="doc-img">
 
       <img 
       v-if="!url_img.startsWith('uploads')"
      :src="url_img" alt="">
      <img class="storage" v-else :src="'storage/'+url_img" alt="">
 
-    </div>
+    </div> -->
 
   </div>
 </template>
@@ -47,27 +63,57 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.fill-star{
-  color: black;
+.star{
+   color: rgb(243, 230, 148);
   overflow: hidden;
 }
   .doctor-container{
-    display: flex;
-    background-color: #add8e6;
-    margin-bottom:10px;
+   
+    // width: 33%;
+    // height: 550px;
+    margin: 1px;
+    margin-bottom:50px;
     justify-content:space-between;
-    padding:10px 20px;
-    background-image: url('../../../public/img/back2.jpg');
+    padding:10px 10px;
+        // background: linear-gradient( #56a7da 45%, #386db3);
     background-size: cover;
-    border-radius: 20px;
+    
+    // border-radius: 20px;
 
     .doc-img{
-        width: 400px;
+        width:397px;
     }
   }
+  .card{
+     background: linear-gradient( #56a7da 45%, #386db3);
+     overflow: hidden;
+     border-radius: 25px ;
+       &:hover{
+            transition: 0.3s;
+            transform: scale(1.05 ,1.05);
+             background: linear-gradient(#75a3d6 45%, #56a7da);
+            box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.78)
+            
+           
+          }
+    
+  }
+  
 
+  li{
+    list-style: none;
+   
+  }
+   a{
+      color: white;
+      &:hover{
+        color: #ff6600;
+      } 
+    }
+  
   .storage{
-     width: 145px;
+  
+     height:287px ;
   }
 </style>
 
