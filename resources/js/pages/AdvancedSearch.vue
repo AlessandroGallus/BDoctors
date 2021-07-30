@@ -32,6 +32,7 @@
                 <div>
                     <label for="orderBy">Media voti:</label>
                     <select name="orderBy" id="orderBy" v-model="orderBy">
+                        <option value="default" disabled>--Seleziona--</option>
                         <option value="asc">Crescente</option>
                         <option value="desc">Decrescente</option>
                     </select>
@@ -43,7 +44,7 @@
                         id="orderByCount"
                         v-model="orderByCount"
                     >
-                        <option value="">--Seleziona--</option>
+                        <option value="default" disabled>--Seleziona--</option>
                         <option value="asc">Crescente</option>
                         <option value="desc">Decrescente</option>
                     </select>
@@ -53,7 +54,7 @@
             <div v-if="isLoading"><h1>LOADING...</h1></div>
             <div
                 class="noResult"
-                v-if="filteredArray.length == 0 || initiated == true"
+                v-if="filteredArray.length == 0 && initiated == true"
             >
                 <h3>Nessun risultato per i parametri scelti</h3>
             </div>
@@ -119,8 +120,8 @@ export default {
             mspecs: "",
             doctors: [],
             cities: [],
-            orderBy: "desc",
-            orderByCount: "",
+            orderBy: "default",
+            orderByCount: "default",
             initiated: false,
             isLoading: false,
             currentPage: 1,
@@ -129,38 +130,36 @@ export default {
     },
 
     mounted() {
+        console.log(this.filteredArray.length);
+        console.log(this.initiated);
         this.getSpecs();
         console.log("params", this.$route.params.spec);
         console.log(this.$route.params.spec);
-        /* this.mspecs=this.$route.params.spec; */
+       
+
         if (this.$route.params.spec != undefined) {
             this.mspecs = this.$route.params.spec;
-            this.searchnew(this.currentPage);
+            this.searchnew(this.currentPage,'desc');
+            this.orderBy='desc'
         }
     },
     watch: {
         orderBy: function() {
             if (this.orderBy == "asc") {
-                this.filteredArray.sort(function(a, b) {
-                    return a.media - b.media;
-                });
+                this.searchnew(1,'ASC');
             } else if (this.orderBy == "desc") {
-                this.filteredArray.sort(function(a, b) {
-                    return b.media - a.media;
-                });
+                this.searchnew(1,'DESC');
             }
+            this.orderByCount='default'
         },
 
         orderByCount: function() {
             if (this.orderByCount == "asc") {
-                this.filteredArray.sort(function(a, b) {
-                    return a.reviews.length - b.reviews.length;
-                });
-            } else if (this.orderBy == "desc") {
-                this.filteredArray.sort(function(a, b) {
-                    return b.reviews.length - a.reviews.length;
-                });
+                this.searchbycount(1,'asc');
+            } else if (this.orderByCount == "desc") {
+                this.searchbycount(1,'desc');
             }
+            this.orderBy='default'
         }
     },
 
@@ -168,7 +167,8 @@ export default {
         
         inizioRicerca() {
             this.currentPage = 1;
-            this.searchnew(this.currentPage);
+            this.searchnew(this.currentPage,'desc');
+            this.orderBy='desc'
         },
         calcoloMedia() {
             this.filteredArray.forEach(doctor => {
@@ -181,15 +181,44 @@ export default {
             });
         },
 
-        searchnew(page) {
+
+
+    searchbycount(page,orderBy){
+        this.filteredArray=[];
             this.currentPage = page;
             this.isLoading = true;
+            this.initiated = true;
             console.log("cerco: ", this.mspecs);
             console.log("cerco pagina: ", this.currentPage);
 
             axios
                 .get("http://127.0.0.1:8000/api/alldoctors", {
-                    params: { specname: this.mspecs, page: page }
+                    params: { specname: this.mspecs, page: page, orderByCount:orderBy }
+                })
+                .then(res => {
+                    console.log(res.data);
+                    this.totalPages = res.data.last_page;
+                    this.isLoading = false;
+                    this.filteredArray = res.data.data;
+                    this.orderByCount=orderBy;
+                    this.calcoloMedia();
+                    console.log('array filtrato:',this.filteredArray);
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+    },
+        searchnew(page,orderBy) {
+            this.filteredArray=[];
+            this.currentPage = page;
+            this.isLoading = true;
+            this.initiated = true;
+            console.log("cerco: ", this.mspecs);
+            console.log("cerco pagina: ", this.currentPage);
+
+            axios
+                .get("http://127.0.0.1:8000/api/alldoctors", {
+                    params: { specname: this.mspecs, page: page, orderByAverage:orderBy }
                 })
                 .then(res => {
                     console.log(res.data);
@@ -197,11 +226,7 @@ export default {
                     this.isLoading = false;
                     this.filteredArray = res.data.data;
                     this.calcoloMedia();
-                    this.filteredArray.sort(function(a, b) {
-                        return b.media - a.media;
-                    });
-                    this.orderBy = "desc";
-                    this.orderByCount = "";
+                    console.log('array filtrato:',this.filteredArray);
                 })
                 .catch(err => {
                     console.error(err);
