@@ -109,9 +109,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .doctor{
-//   width: 100%;
-//   flex-basis: (100% / 4);
-// }
+  .container{
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+  }
 
 </style>

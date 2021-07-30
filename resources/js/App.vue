@@ -5,6 +5,8 @@
         <router-view></router-view>
     </div>
 
+    <Footer />
+
   </div>
 </template>
 
@@ -12,7 +14,7 @@
 import Header from './components/Header.vue'
 
 import Doctor from './components/Doctor.vue'
-
+import Footer from './components/Footer.vue'
 
 import axios from 'axios'
 export default {
@@ -20,7 +22,8 @@ export default {
   components:{
     Header,
     Doctor,
- 
+    Footer
+
   },
   mounted(){
   },
@@ -29,7 +32,7 @@ export default {
       doctors:[],
     }
   },
-  
+
 }
 </script>
 
