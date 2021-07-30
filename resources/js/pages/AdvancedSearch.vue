@@ -53,7 +53,7 @@
             <div v-if="isLoading"><h1>LOADING...</h1></div>
             <div
                 class="noResult"
-                v-if="filteredArray.length == 0 || initiated == true"
+                v-if="filteredArray.length == 0 && initiated == true"
             >
                 <h3>Nessun risultato per i parametri scelti</h3>
             </div>
@@ -129,6 +129,8 @@ export default {
     },
 
     mounted() {
+        console.log(this.filteredArray.length);
+        console.log(this.initiated);
         this.getSpecs();
         console.log("params", this.$route.params.spec);
         console.log(this.$route.params.spec);
@@ -141,14 +143,11 @@ export default {
     watch: {
         orderBy: function() {
             if (this.orderBy == "asc") {
-                this.filteredArray.sort(function(a, b) {
-                    return a.media - b.media;
-                });
+                this.searchnew(1,'ASC');
             } else if (this.orderBy == "desc") {
-                this.filteredArray.sort(function(a, b) {
-                    return b.media - a.media;
-                });
+                this.searchnew(1,'DESC');
             }
+            /* this.searchnew(1); */
         },
 
         orderByCount: function() {
@@ -168,7 +167,7 @@ export default {
         
         inizioRicerca() {
             this.currentPage = 1;
-            this.searchnew(this.currentPage);
+            this.searchnew(this.currentPage,this.orderBy);
         },
         calcoloMedia() {
             this.filteredArray.forEach(doctor => {
@@ -181,15 +180,17 @@ export default {
             });
         },
 
-        searchnew(page) {
+        searchnew(page,orderBy) {
+            this.filteredArray=[];
             this.currentPage = page;
             this.isLoading = true;
+            this.initiated = true;
             console.log("cerco: ", this.mspecs);
             console.log("cerco pagina: ", this.currentPage);
 
             axios
                 .get("http://127.0.0.1:8000/api/alldoctors", {
-                    params: { specname: this.mspecs, page: page }
+                    params: { specname: this.mspecs, page: page, orderBy:orderBy }
                 })
                 .then(res => {
                     console.log(res.data);
@@ -197,11 +198,12 @@ export default {
                     this.isLoading = false;
                     this.filteredArray = res.data.data;
                     this.calcoloMedia();
-                    this.filteredArray.sort(function(a, b) {
+                    /*this.filteredArray.sort(function(a, b) {
                         return b.media - a.media;
-                    });
-                    this.orderBy = "desc";
-                    this.orderByCount = "";
+                    }); */
+                    console.log('array filtrato:',this.filteredArray);
+                    /* this.orderBy = "desc"; */
+                    /* this.orderByCount = ""; */
                 })
                 .catch(err => {
                     console.error(err);

@@ -74,11 +74,12 @@ public function getDoctorById($id){
 
 public function getDoctors(Request $request){
 
+
+    /* AGGIORNAMENTE SCADENZE */
     $doctors = User::with('specializations','sponsors','reviews')
         ->orderBy('users.id','desc')
         ->get();
         foreach ($doctors as $doctor) {
-            /* dd($doctor->sponsors); */
             $today= date("Y-m-d");
             $d1today= date_create($today);
             $d2exp= date_create($doctor['sponsors'][0]->getOriginal()['pivot_expiring_date']);
@@ -90,17 +91,23 @@ public function getDoctors(Request $request){
         }
 
     $doctors = User::with(['specializations','sponsors','reviews'])->orderBy('users.id','desc')->paginate(5);
-    /* if($request->has('spec-name')){
-        $filtered = [];
-        foreach ($doctors as $doctor) {
-            foreach ($doctor['specializations'] as $spec) {
-                if($spec['name']==$request->input('spec-name')){
-                    array_push($filtered,$doctor);
-                }
-            }
-        }
-        return response()->json($filtered);
-    } */
+    
+
+    if($request->has('specname') && $request->has('orderBy')){
+        $toSearchSpec = $request->input('specname');
+        $toSearchOrder = $request->input('orderBy'); 
+        $doctors = User::select('users.*', DB::raw('avg(reviews.vote) AS average'))
+        ->with('specializations','reviews','sponsors')
+        ->whereHas('specializations',function(Builder $query) use ($toSearchSpec){
+            $query->where('name','=',$toSearchSpec);
+        })
+        ->join('reviews','reviews.user_id','=','users.id')
+        ->groupBy('users.id')
+        ->orderBy('average',$toSearchOrder)
+        ->paginate(5);
+        return response()->json($doctors);
+    }
+
     if($request->has('specname')){
         $tosearch = $request->input('specname');
         $doctors = User::with('specializations','reviews','sponsors')->whereHas('specializations',function(Builder $query) use ($tosearch){
@@ -114,5 +121,45 @@ public function getDoctors(Request $request){
         })->paginate(5);
     }
     return response()->json($doctors);
+}
+
+public function getDoctorsDesc(Request $request){
+
+    /* $doctors = User::select('users.*', DB::raw('avg(reviews.vote) AS average'))
+    ->with('specializations','reviews','sponsors')
+    ->join('reviews','reviews.user_id','=','users.id')
+    ->groupBy('users.id')
+    ->orderBy('average','desc')
+    ->get(); */
+
+    /* if($request->has('specname') && $request->has('orderBy')){
+        $toSearchSpec = $request->input('specname');
+        $toSearchOrder = $request->input('orderBy'); 
+        $doctors = User::select('users.*', DB::raw('avg(reviews.vote) AS average'))
+        ->with('specializations','reviews','sponsors')
+        ->whereHas('specializations',function(Builder $query) use ($toSearchSpec){
+            $query->where('name','=',$toSearchSpec);
+        })
+        ->join('reviews','reviews.user_id','=','users.id')
+        ->groupBy('users.id')
+        ->orderBy('average',$toSearchOrder)
+        ->get();
+    } */
+    if($request->has('specname') && $request->has('orderByCount')){
+        $toSearchSpec = $request->input('specname');
+        $toSearchOrder = $request->input('orderByCount'); 
+        $doctors = User::select('users.*', DB::raw('count(reviews) AS count'))
+        ->with('specializations','reviews','sponsors')
+        ->whereHas('specializations',function(Builder $query) use ($toSearchSpec){
+            $query->where('name','=',$toSearchSpec);
+        })
+        ->join('reviews','reviews.user_id','=','users.id')
+        ->groupBy('users.id')
+        ->orderBy('count',$toSearchOrder)
+        ->get();
+    
+   return response()->json($doctors);
+}
+
 }
 }
