@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="doctor-page">
     <h1>Dott/ssa: {{doctor.name}} {{doctor.surname}} </h1>
     <div class="doc-details d-flex justify-content-between">
       <div class="infos">
@@ -38,7 +38,7 @@
     </div>
     <div class="buttons">
       <button class="btn btn-primary" type="button" v-on:click="()=>{isHidden=!isHidden; isHiddenReview=true}">Invia Messaggio</button>
-      <button class="btn btn-primary" type="button" v-on:click="()=>{isHiddenReview=!isHiddenReview; isHidden=true}">Invia Recensione</button>
+      <button class="btn btn-primary" type="button" v-on:click="()=>{isHiddenReview=!isHiddenReview; isHidden=true}">Scrivi Recensione</button>
     </div>
 
     <!-- MESSAGE FORM -->
@@ -104,6 +104,9 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.doctor-page{
+  min-height: calc(100vh - 60px);
+}
   img{
     width: 150px;
   }

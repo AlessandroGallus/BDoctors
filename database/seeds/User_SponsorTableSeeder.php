@@ -16,10 +16,12 @@ class User_SponsorTableSeeder extends Seeder
         $sponsors = Sponsor::all();
 
         foreach ($users as $user) {
+            $timestamp = rand(strtotime("Jan 01 2015"), strtotime("Sep 01 2021"));
+            $random_date = date('Y-m-d H:i:s',$timestamp);
             DB::table('user_sponsor')->insert([
                 'user_id'=>$user['id'],
                 'sponsor_id'=>rand(1,4),
-                'expiring_date'=>date('Y-m-d H:i:s',1627382756)
+                'expiring_date'=>date($random_date)
             ]);
     }
 }

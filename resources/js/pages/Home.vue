@@ -14,12 +14,12 @@
 
 
     <h3 class="mt-3">Lista dottori PREMIUM:</h3>
-    <div class="container doctor">
+    <div class="container doctor d-flex flex-wrap">
       <Doctor
     v-for="(doctor,key) in premium"
     :key="key"
     :username='doctor.name'
-    :spec_name='doctor.specializations[0].name'
+    :spec_name='doctor.specializations'
     :url_img="doctor.url_img"
     :sponsor_name='doctor.sponsors[0].name'
     :exp_date='doctor.sponsors[0].pivot.expiring_date'

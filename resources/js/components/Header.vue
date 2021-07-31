@@ -32,11 +32,13 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+
   header{
     display: flex;
     align-items: center;
     color: white;
-    height: 80px;
+    height: 60px;
+    line-height: 60px;
     /* background-color: #386db3; */
     background-image: linear-gradient( to right , #386db3, #56a7da);
     nav{
@@ -61,18 +63,35 @@ export default {
               margin-bottom: 0;
                font-size:22px;
                a{
-                   color: #fff;
+                   color: white;
                    &:hover{
                        color: #ff6600;
                    }
                }
+               li::after{
+                 display: block;
+                 position: absolute;
+                 content: '';
+                 top: 50px;
+                 left: 0;
+                 height: 1px;
+                 width: 0%;
+                 background-color: white;
+                 -webkit-transition: width .3s;
+               }
                li{
+                 font-size: 15px;
+                 position: relative;
                   /*  margin: 0 10px; */
                   height: 100%;
                   padding: 25px;
                   &:hover{
-                    background-color: #043d6b;
-                    transition: 1s;
+                    /* background-color: #043d6b;
+                    transition: .5s; */
+                    &::after{
+                      width: 100%;
+                      transition:ease-in-out .3s;
+                    }
                   }
                }
           }

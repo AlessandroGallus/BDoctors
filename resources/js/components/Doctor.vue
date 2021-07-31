@@ -2,19 +2,24 @@
   <div class="doctor-container">
 
     <div class="card" style="width: 18rem;">
-
+      <div class="premium-icon" v-if="sponsor_name!='basic'"><i class="fas fa-bookmark"></i></div>
               <img  class="card-img-top"
                   v-if="!url_img.startsWith('uploads')"
                   :src="url_img" alt="">
               <img class="storage" v-else :src="'storage/'+url_img" alt="">
-    
-            <h5 class="card-title">Doctor page</h5>
-            <ul>
-                  <li>nome: {{username}}</li>
-                  <li>città: {{city}}</li>
-                  <li>Specializzazione/i: {{spec_name}}</li>
-                  <li>Media Voti: {{(!isNaN(media))? media: 'Non disponibile'}} ({{nReviews}})</li>
-            </ul>
+    <div class="card-infos container">
+            
+              <h6>Nome: {{username}}</h6>
+              <h6>Città: {{city}}</h6>
+              <h6>{{exp_date}}</h6>
+              <h6>Specializzazione/i:</h6>
+              <ul>
+                <li
+                v-for="(spec,index) in spec_name" :key='index'
+                >{{spec.name}}</li>
+              </ul>
+              <h6>Media Voti: {{(!isNaN(media))? media: 'Non disponibile'}} ({{nReviews}})</h6>
+            
    
           <div class="stars d-flex">
               <div class="star d-inline "
@@ -25,14 +30,17 @@
               <i class="far fa-star" v-else ></i>
             </div>
          </div> 
-         
-          <div class="card-body">
-            <h5>Sponsor: {{sponsor_name}}</h5>
-            <h5>Scadenza Sponsor: {{exp_date}}</h5>
-            <h5>Oggi: {{currentDate()}}</h5>
+         <router-link id="id" :to="{name:'doctorPage',params:{'fullname':username,'id':id}}">Vedi Profilo</router-link> 
+          <!-- <div class="card-body">
+            
+            <h6>{{exp_date}}</h6>
+            <h6>Oggi: {{currentDate()}}</h6>
             <router-link id="id" :to="{name:'doctorPage',params:{'fullname':username,'id':id}}">Vedi Profilo</router-link> 
-          </div>
+          </div> -->
+    </div>
+            
      </div>
+     
     <!-- <div class="doc-img">
 
       <img 
@@ -85,8 +93,18 @@ export default {
     }
   }
   .card{
+    position: relative;
+    .premium-icon{
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      color: gold;
+      font-size: 2rem;
+      text-shadow:2px 2px 1px #ff0000 ;
+    }
      background: linear-gradient( #56a7da 45%, #386db3);
      overflow: hidden;
+     padding-bottom: 20px;
      border-radius: 25px ;
        &:hover{
             transition: 0.3s;

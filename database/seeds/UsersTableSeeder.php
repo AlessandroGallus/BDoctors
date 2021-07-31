@@ -12,7 +12,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i=0;$i<100;$i++){
+        for($i=0;$i<500;$i++){
             $new_user = new User();
             $new_user['name']=$this->get('name');
             $new_user['email']='testmail'.($i+1).'@gmail.com';
