@@ -58,18 +58,18 @@
             >
                 <h3>Nessun risultato per i parametri scelti</h3>
             </div>
-            <div class="container" v-else>
+            <div class="container d-flex flex-wrap" v-else>
                 <Doctor
                     v-for="(doctor, key) in filteredArray"
                     :key="key"
                     :username="doctor.name"
-                    :spec_name="doctor.specializations[0].name"
+                    :spec_name="doctor.specializations"
                     :url_img="doctor.url_img"
                     :sponsor_name="doctor.sponsors[0].name"
                     :exp_date="doctor.sponsors[0].pivot.expiring_date"
                     :city="doctor.city"
                     :id="doctor.id"
-                    :media="doctor.media"
+                    :media="doctor.media.toFixed(2)"
                     :nReviews="doctor.reviews.length"
                 />
             </div>
@@ -85,7 +85,7 @@
                     <li
                         class="page-item"
                         v-for="(indice, index) in this.totalPages"
-                        v-on:click="searchnew(indice)"
+                        v-on:click="searchIndex(indice)"
                         :key="index"
                     >
                         <button class="page-link">{{ indice }}</button>
@@ -182,7 +182,15 @@ export default {
         },
 
 
-
+    searchIndex(index){
+        console.log('ricerca su indice');
+        if(this.orderBy!='default'){
+            this.searchnew(index,this.orderBy);
+        }
+        else{
+            this.searchbycount(index,this.orderByCount);
+        }
+    },
     searchbycount(page,orderBy){
         this.filteredArray=[];
             this.currentPage = page;
@@ -237,14 +245,21 @@ export default {
             if (page <= this.totalPages) {
                 console.log("next");
                 /* this.currentPage; */
-                this.searchnew(++this.currentPage);
+                if(this.orderBy!='default') this.searchnew(++this.currentPage,this.orderBy);
+                else{
+                    this.searchbycount(++this.currentPage,this.orderByCount)
+                }
+                
             }
         },
         prevpage(page) {
             console.log("pagina corrente:", page);
-            if (page >= 0) {
+            if (page > 0) {
                 this.currentPage--;
-                this.searchnew(this.currentPage);
+                 if(this.orderBy!='default') this.searchnew(--this.currentPage,this.orderBy);
+                else{
+                    this.searchbycount(--this.currentPage,this.orderByCount)
+                }
             }
         },
         /* STAMPA SELECT SPECIALIZZAZIONI */
