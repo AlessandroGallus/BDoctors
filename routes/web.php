@@ -28,11 +28,12 @@ Route::namespace('Admin')
     ->group(function(){
         Route::resource('/user','UserController');
         Route::resource('/dashboard/messages','MessageController');
+        Route::resource('/dashboard/reviews','ReviewController');
     });
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
-Route::get('/dashboard/messages', 'HomeController@messages')->name('messages');
-Route::get('/dashboard/reviews', 'HomeController@reviews')->name('messages');
+/* Route::get('/dashboard/messages', 'HomeController@messages')->name('messages');
+Route::get('/dashboard/reviews', 'HomeController@reviews')->name('messages'); */
 
 
 Route::get('/dashboard/payment',  function(){

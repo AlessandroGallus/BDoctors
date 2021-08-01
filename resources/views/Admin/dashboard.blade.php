@@ -49,6 +49,6 @@
     </div>
     <hr>
     <a href="/dashboard/messages">See Messages</a><br>
-    <a href="/dashboard/reviews">See Reviews</a>      
+    <a href="{{route('reviews.index')}}">See Reviews</a>      
 </div>
 @endsection

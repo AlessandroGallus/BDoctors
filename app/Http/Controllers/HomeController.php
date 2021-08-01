@@ -27,10 +27,4 @@ class HomeController extends Controller
     }
 
 
-    public function messages(){
-        return view('admin.messages');
-    }
-    public function reviews(){
-        return view('Admin.reviews');
-    }
 }

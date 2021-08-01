@@ -46,10 +46,10 @@ class User extends Authenticatable
     }
 
     public function messages(){
-        return $this->hasMany('App\Message');
+        return $this->hasMany('App\Message')->orderBy('created_at');
     }
 
     public function reviews(){
-        return $this->hasMany('App\Review');
+        return $this->hasMany('App\Review')->orderBy('created_at');
     }
 }
