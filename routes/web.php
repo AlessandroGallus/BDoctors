@@ -22,6 +22,7 @@ Auth::routes();
 
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
+Route::get('/dashboard/sponsors', 'HomeController@sponsor')->name('sponsors');
 /* Route::delete('/dashboard/{user}','Admin\UserController@destroy')->middleware('auth')->name('user.destroy'); */
 Route::namespace('Admin')
     ->middleware('auth')
@@ -29,6 +30,7 @@ Route::namespace('Admin')
         Route::resource('/user','UserController');
         Route::resource('/dashboard/messages','MessageController');
         Route::resource('/dashboard/reviews','ReviewController');
+        
     });
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
@@ -36,7 +38,8 @@ Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::get('/dashboard/reviews', 'HomeController@reviews')->name('messages'); */
 
 
-Route::get('/dashboard/payment',  function(){
+Route::get('/dashboard/payment/{value}',  function(Request $request){
+    $value=$request->value;
     $gateway = new Braintree\Gateway([
         'environment' => config('services.braintree.enviroment'),
         'merchantId' => config('services.braintree.merchantId'),
@@ -45,7 +48,8 @@ Route::get('/dashboard/payment',  function(){
     ]);
     $token = $gateway->ClientToken()->generate();
     return view('Admin.payment', [
-        'token'=>$token
+        'token'=>$token,
+        'value'=>$value
     ]);
 })->name('payment');
 

@@ -25,6 +25,9 @@ class HomeController extends Controller
     {
         return view('admin.dashboard');
     }
+    public function sponsor(){
+        return view('Admin.sponsor');
+    }
 
 
 }

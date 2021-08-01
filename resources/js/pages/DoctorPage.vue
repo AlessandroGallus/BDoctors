@@ -6,6 +6,10 @@
         <h3>Indirizzo: {{doctor.address}}</h3>
         <h3>Città: {{doctor.city}}</h3>
         <h3>Telefono: {{doctor.phone_number}}</h3>
+        <div v-if="doctor.visit_types!=null">
+          <h3>Prestazioni:</h3>
+          <p>{{doctor.visit_types}}</p>
+        </div>
         <h3>Specializzazioni:</h3>
         <ul>
           <li
