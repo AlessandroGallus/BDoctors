@@ -153,6 +153,16 @@
                                    @enderror
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="visit_types" class="col-md-4 col-form-label text-md-right">{{ __('Prestazioni') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="visit_types" value='{{old('CF',$to_edit['visit_types'])}}' type="text" class="form-control " name="visit_types">
+                                    
+                                </div>
+    
+    
+                            </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

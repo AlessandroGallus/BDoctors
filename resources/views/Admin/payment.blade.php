@@ -21,9 +21,9 @@
   @csrf
   <section>
       <label for="amount">
-          <span class="input-label">Amount</span>
+          <span class="input-label">You are getting a {{strtoupper($value)}} sponsorship</span>
           <div class="input-wrapper amount-wrapper">
-              <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10">
+              <input id="amount" name="amount" type="hidden" min="1" placeholder="Amount" value="@if ($value=='silver')2.99 @elseif ($value=='gold')5.99 @elseif($value=='platinum')9.99 @endif" readonly>
           </div>
       </label>
 
@@ -33,7 +33,7 @@
   </section>
 
   <input id="nonce" name="payment_method_nonce" type="hidden" />
-  <button class="button" type="submit"><span>Test Transaction</span></button>
+  <button class="button" type="submit"><span>Pay</span></button>
 </form>
 
 <script src="https://js.braintreegateway.com/web/dropin/1.31.0/js/dropin.min.js"></script>

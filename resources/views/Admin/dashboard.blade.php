@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <header></header>
 <div class="container">
     <div class="row ">
@@ -14,6 +15,10 @@
                 <h3>Codice Fiscale: {{ Auth::user()->CF }}</h3>
                 <h3>Data di Nascita: {{ Auth::user()->date_of_birth }}</h3>
                 <h3>Numero Telefono: {{ Auth::user()->phone_number }}</h3>
+                @if (Auth::user()->visit_types)
+                    <h3>Prestazioni: </h3>
+                    <p>{{Auth::user()->visit_types}}</p>
+                @endif
                 <div>
                     <h3>Specializzazioni:</h3>
                     @foreach (Auth::user()->specializations as $spec)
@@ -29,12 +34,13 @@
                 <img src="{{ asset('storage/'.Auth::user()->url_img) }}" alt="">
             </div>
             {{-- <img src="{{ asset('storage/'.Auth::user()->url_cv) }}" alt=""> --}}
-
-            <form action="{{route('user.destroy',Auth::user()->id)}}" method="POST">
+            <button  style=" height:55px " class="btn btn-danger" id="click">Delete test</button>
+            <div id="delete" style="position: absolute; background-color:white ;  left:50%"></div>
+            {{-- <form action="{{route('user.destroy',Auth::user()->id)}}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-danger">DELETE</button>
-            </form>
+            </form> --}}
             
             <a href="{{route('user.edit',Auth::user()->id)}}">EDIT</a>
             
@@ -50,5 +56,25 @@
     <hr>
     <a href="/dashboard/messages">See Messages</a><br>
     <a href="{{route('reviews.index')}}">See Reviews</a>      
+    <a href="/dashboard/sponsors">Sponsor yourself</a>      
 </div>
+<script>
+    $(document).ready(function(){
+         let index =1;
+        $('#click').click(function(){
+            $('#delete').append(`<div id='confirm-delete' style="padding: 10px 15px;border:1px solid red;border-radius:5px">
+            <h2>Are you sure you want to delete your profile?</h2>
+            <form action="{{route('user.destroy',Auth::user()->id)}}" class="text-center d-inline" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger">YES</button>
+            </form> <button id="close" class="btn btn-danger text-center" >NO</button>
+            </div>`)
+        })
+        $(document).delegate("#close",'click',function(){
+            console.log('chiusura');
+            $('#confirm-delete').remove()
+        })
+    })
+ </script>
 @endsection
