@@ -49,11 +49,11 @@
       <div v-if="isLoading"><h1>LOADING...</h1></div>
       <div
         class="noResult"
-        v-if="filteredArray.length == 0 && initiated == true"
+        v-if="(isEmpty == true) && initiated == true"
       >
         <h3>Nessun risultato per i parametri scelti</h3>
       </div>
-      <div class="container d-flex flex-wrap" v-else>
+      <div class="container d-flex flex-wrap">
         <Doctor
           v-for="(doctor, key) in filteredArray"
           :key="key"
@@ -68,7 +68,7 @@
           :nReviews="doctor.reviews.length"
         />
       </div>
-      <nav aria-label="Page navigation example">
+      <nav aria-label="Page navigation example" v-if="initiated">
         <ul class="pagination">
           <li
             class="page-item"
@@ -118,6 +118,7 @@ export default {
       orderBy: "default",
       orderByCount: "default",
       initiated: false,
+      isEmpty:false,
       isLoading: false,
       currentPage: 1,
       totalPages: null,
@@ -199,6 +200,12 @@ export default {
           this.totalPages = res.data.last_page;
           this.isLoading = false;
           this.filteredArray = res.data.data;
+          if(this.filteredArray.length==0){
+            this.isEmpty=true;
+            this.currentPage=1
+          }else{
+            this.isEmpty=false
+          }
           this.orderByCount = orderBy;
           this.calcoloMedia();
           console.log("array filtrato:", this.filteredArray);
@@ -228,6 +235,12 @@ export default {
           this.totalPages = res.data.last_page;
           this.isLoading = false;
           this.filteredArray = res.data.data;
+          if(this.filteredArray.length==0){
+            this.isEmpty=true;
+            this.currentPage=1
+          }else{
+            this.isEmpty=false
+          }
           this.calcoloMedia();
           console.log("array filtrato:", this.filteredArray);
         })
@@ -270,57 +283,7 @@ export default {
           console.error(err);
         });
     },
-    /* getDoctors() {
-            axios
-                .get("http://127.0.0.1:8000/api/alldoctors",{params:{specname:this.mspecs}})
-                .then(res => {
-                    this.doctors = res.data;
-                    this.calcoloMedia();
-                    console.log(this.doctors)
-                })
-                .catch(err => {
-                    console.error(err);
-                });
-        }, */
-    /* getCities() {
-            axios
-                .get("http://127.0.0.1:8000/api/cities")
-                .then(res => {
-                    this.cities = res.data;
-                })
-                .catch(err => {
-                    console.error(err);
-                });
-        } */
-    /* search() {
-            this.initiated=true;
-            this.filteredArray = [];
-            console.log("cerco: ",this.mspecs);
-            console.log(this.doctors);
-            for (let i = 0; i < this.doctors.length; i++) {
-                for (
-                    let j = 0;
-                    j < this.doctors[i].specializations.length;
-                    j++
-                ) {
-                    if (
-                        this.doctors[i].specializations[j].name == this.mspecs
-                    ) {
-                        console.log("trovato");
-                        if (!this.filteredArray.includes(this.doctors[i])) {
-                            this.filteredArray.push(this.doctors[i]);
-                        }
-                    } else {
-                        console.log("non trovato");
-                    }
-                }
-            }
-            console.log('array',this.filteredArray);
-            this.filteredArray.sort(function(a, b) {
-                    return b.media - a.media;
-                });
-
-        }, */
+    
   },
 };
 </script>
