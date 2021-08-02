@@ -79,7 +79,7 @@ header {
 
         img {
             width: 50px;
-           padding: 0 5px;
+            padding: 0 5px;
             border-right: 1px solid rgb(255, 255, 255);
         }
         .home {
