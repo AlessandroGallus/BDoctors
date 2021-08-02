@@ -1,5 +1,6 @@
 <template>
-    <div class="mt-3 home">
+    <div class="home">
+        <Jumbotron/>
         <div class="container inputs-ricerca d-flex">
             <input
                 list="specializations"
@@ -38,7 +39,7 @@
                     :exp_date="doctor.sponsors[0].pivot.expiring_date"
                     :city="doctor.city"
                     :id="doctor.id"
-                    :media="doctor.media"
+                    :media="doctor.media.toFixed(2)"
                     :nReviews="doctor.reviews.length"
                     :urlCv="doctor.url_cv"
                 />
@@ -199,10 +200,12 @@
 <script>
 import axios from "axios";
 import Doctor from "../components/Doctor.vue";
+import Jumbotron from "../components/Jumbotron.vue";
 export default {
     name: "DoctorList",
     components: {
-        Doctor
+        Doctor,
+        Jumbotron
     },
     mounted() {
         this.getSpecs();

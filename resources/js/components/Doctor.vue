@@ -11,10 +11,34 @@
                 alt=""
             />
             <img class="storage" v-else :src="'storage/' + url_img" alt="" />
+            <span class="badge badge-secondary">{{spec_name[0]['name']}}</span>
+            <!-- <div class="first-infos p-5 d-none">
+                <h6>Specializzazione/i:</h6>
+                <ul>
+                    <li v-for="(spec, index) in spec_name" :key="index">
+                        {{ spec.name }}
+                    </li>
+                </ul>
+            <h6>
+                    Media Voti:
+                    {{ !isNaN(media) ? media : "Non disponibile" }} ({{
+                        nReviews
+                    }})
+                </h6>
+                <div class="stars d-flex">
+                    <div class="star d-inline" v-for="index in 5" :key="index">
+                        <i
+                            v-if="index <= Math.round(media)"
+                            class="fas fa-star"
+                        ></i>
+                        <i class="far fa-star" v-else></i>
+                    </div>
+                </div>
+            </div> -->
+            
             <div class="card-infos container">
                 <h6>Nome: {{ username }}</h6>
                 <h6>Città: {{ city }}</h6>
-                <h6>{{ exp_date }}</h6>
                 <h6>Specializzazione/i:</h6>
                 <ul>
                     <li v-for="(spec, index) in spec_name" :key="index">
@@ -36,15 +60,16 @@
                         ></i>
                         <i class="far fa-star" v-else></i>
                     </div>
-                </div>
-                <router-link
+                </div >
+                <div class="text-center"><router-link
                     id="id"
                     :to="{
                         name: 'doctorPage',
                         params: { fullname: username, id: id }
                     }"
-                    >Vedi Profilo</router-link
-                >
+                    ><button class="btn btn-success profile ">Vedi Profilo</button></router-link>
+                    </div>
+                
             </div>
         </div>
     </div>
@@ -79,8 +104,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.stars{
+    position: relative;
+    width: 100%;
+    &::after{
+        position: absolute;
+        top: 28px;
+        content: '';
+        display: block;
+        transform: translate(-50%,-50%);
+        width: 75%;
+        left: 50%;
+        height: 1px;
+        background-color: black;
+    }
+}
 .star {
-    color: rgb(243, 230, 148);
+    color: rgb(0, 0, 0);
     overflow: hidden;
 }
 .doctor-container {
@@ -95,7 +135,7 @@ export default {
 }
 .card {
     position: relative;
-    height: 350px;
+    /* height: 286px; */
     .premium-icon {
         position: absolute;
         top: 5px;
@@ -104,16 +144,37 @@ export default {
         font-size: 2rem;
         text-shadow: 2px 2px 1px #ff0000;
     }
-    background: linear-gradient(#56a7da 45%, #386db3);
+    background: linear-gradient(#56a7da 45%, #438167);
     overflow: hidden;
-    padding-bottom: 20px;
-    border-radius: 25px;
+    /* padding-bottom: 20px; */
+    /* border-radius: 25px; */
     &:hover {
         transition: 0.3s;
         transform: scale(1.05, 1.05);
         background: linear-gradient(#75a3d6 45%, #56a7da);
         box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.78);
+        .card-infos{
+        display: block;
+        top:0%;
+        }
     }
+}
+.card-infos{
+    overflow: auto;
+    display: block;
+    padding:15px 15px;
+    background-color: rgba($color: white, $alpha: .8);
+    color:black;
+    position: absolute;
+    top: 100%;
+    height: 100%;
+    transition: top .3s;
+    button.profile{
+        border-radius: 25px;
+        padding: 5px 25px;
+        margin-top: 20px;
+    }
+    
 }
 
 li {

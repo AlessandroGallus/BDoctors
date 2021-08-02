@@ -1,6 +1,6 @@
 <template>
 
-    <header class="mb-3">
+    <header class="">
         <div class="container ">
             <nav>
                 <div class="left home">
