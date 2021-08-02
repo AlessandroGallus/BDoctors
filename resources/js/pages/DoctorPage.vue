@@ -1,18 +1,18 @@
 <template>
   <div class="doctor-page">
 
-    <div class="wrapper">
-      <div class="header">
+      <div class="wrapper">
+          <div class="header">
 
-    <div class="doc-details d-flex justify-content-between">
-      <div class="infos">
-        <h3>Indirizzo: {{doctor.address}}</h3>
-        <h3>Città: {{doctor.city}}</h3>
-        <h3>Telefono: {{doctor.phone_number}}</h3>
-        <div v-if="doctor.visit_types!=null">
-          <h3>Prestazioni:</h3>
-          <p>{{doctor.visit_types}}</p>
-        </div>
+              <div class="doc-details d-flex justify-content-between">
+                  <div class="infos">
+                    <h3>Indirizzo: {{doctor.address}}</h3>
+                   <h3>Città: {{doctor.city}}</h3>
+                   <h3>Telefono: {{doctor.phone_number}}</h3>
+                    <div v-if="doctor.visit_types!=null">
+                       <h3>Prestazioni:</h3>
+                        <p>{{doctor.visit_types}}</p>
+                    </div>
         <h3>Specializzazioni:</h3>
         <ul>
           <li
@@ -35,7 +35,7 @@
           </li>
         </ul>
 
-      </div>
+                </div>
       <div class="doc-details d-flex justify-content-between">
         <div class="infos">
           <h4>
@@ -80,7 +80,7 @@
       <div class="msgNot" v-if="msgNot">
         <h3>MESSAGGIO INVIATO CORRETTAMENTE</h3>
       </div>
-    </div>
+              </div>
     <div class="buttons">
       <button
         class="btn btn-primary"
@@ -117,6 +117,8 @@
     <div class="form" v-if="!isHiddenReview">
       <ReviewForm :doctorId="doctor.id" />
     </div>
+  </div>
+  </div>
   </div>
 </template>
 
