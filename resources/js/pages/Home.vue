@@ -30,6 +30,9 @@
     :urlCv="doctor.url_cv"
     />
     </div>
+
+
+
   </div>
 </template>
 

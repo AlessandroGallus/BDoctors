@@ -3,22 +3,47 @@
     <div class="container ">
 
         <nav class="d-flex justify-content-between align-items-center">
-      <div class="left home">
-         <router-link :to="{name:'home'}"><img src="../../../public/img/logo1.png" alt="Logo"></router-link>
+            <div class="left home">
+               <router-link :to="{name:'home'}"><img src="../../../public/img/logo1.png" alt="Logo"></router-link>
+                <p class="logo-text">bdoctors</p>
+             </div>
+            
+       <div class='right'> 
+         <div class="hambuger">
+              <div class="dropdown hamburger menu">
+              <button class="btn btn-custom btn-secondary dropdown-toggle" type="button" id="#dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"> 
+                 <i class="fas fa-align-justify"></i>
+              </button>
+                 <ul class="dropdown-menu width" aria-labelledby="dropdownMenuButton1">
+                  <li class="text-center ">
+                       <router-link class="dropdown-item " :to="{name:'advancedSearch'}">Ricerca</router-link> 
+                   </li>
+                  <li class="text-center">
+                      <a href="/register">Registrati</a>
+                  </li>
+                 
+                 </ul>
+            </div>
+         </div>
          
-     </div>
-      <div class='right'>
-      
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-        <ul class="list-style-none list">
-         <router-link :to="{name:'doctorlist'}"> <li class="d-inline">Dottori</li> </router-link>
-         <router-link :to="{name:'advancedSearch'}"><li class="d-inline">Ricerca</li> </router-link>
-         <a href="/register"><li class="d-inline">Registrati</li></a>
+             
+          <div class="links">
+             <ul class="list-style-none list">
 
-        </ul>
-      </div>
+            
+              <li class="d-inline">
+                   <!-- <router-link :to="{name:'doctorlist'}">Dottori</router-link>  -->
+              </li>
+              <li class="d-inline">
+                   <router-link :to="{name:'advancedSearch'}">Ricerca</router-link> 
+              </li>
+             <li class="d-inline ">
+                <a href="/register">Registrati</a>
+             </li>
+            </ul>
+          </div>
+       
+       </div> 
     </nav>
     </div>
 
@@ -27,7 +52,8 @@
 
 <script>
 export default {
-    name:'Header'
+    name:'Header',
+    
 }
 </script>
 
@@ -41,11 +67,15 @@ export default {
     line-height: 60px;
     /* background-color: #386db3; */
     background-image: linear-gradient( to right , #386db3, #56a7da);
+    .logo-text{
+      display: contents;
+    }
     nav{
       height: inherit;
 
       img{
           width: 50px;
+        
       }
       .home{
           font-size: 2rem;
@@ -54,6 +84,17 @@ export default {
       a{
           color: #fff;
           text-decoration: none;
+      }
+      .btn-custom{
+         border: none;
+         background: none;
+         &:focus{
+             border: 1px solid #fff;
+         }
+      }
+      i{
+        font-size: 20px;
+        
       }
 
       .right{
@@ -97,5 +138,29 @@ export default {
           }
       }
     }
+    .link-hamburger{
+      display: block;
+    }
+    .hamburger{
+      display: none;
+   
+    }
+    .dropdown-menu{
+      background-color: #56a7da;
+    }
+    
+    @media all and (max-width: 776px) {
+      .hamburger{
+        display: block;
+    
+       
+      }
+      .links{
+        display: none;
+       
+      }
+     
+   
+}
   }
 </style>
