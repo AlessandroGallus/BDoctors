@@ -36,86 +36,84 @@
         <!-- <div class="alert alert-success">
             {{session('message')}}
         </div> -->
-        <button type="submit" class="btn btn-primary mt-3" >Invia Recensione</button>
+        <button type="submit" class="btn btn-primary mt-3" >Invia</button>
     </form>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
-  name:'ReviewForm',
-  data(){
-      return{
-          vote:null,
-          mail:null,
-          description:null,
-          id:'',
-          errors:[]
-      }
+  name: "ReviewForm",
+  data() {
+    return {
+      vote: null,
+      mail: null,
+      description: null,
+      id: "",
+      errors: [],
+    };
   },
-  props:[
-      'doctorId',
-  ],
-  mounted(){
-      this.id=this.doctorId;
-      console.log(this.id);
-
+  props: ["doctorId"],
+  mounted() {
+    this.id = this.doctorId;
+    console.log(this.id);
   },
-  methods:{
-      checkData(e){
-          this.errors=[]
-          if(!this.vote){
-              this.errors.push('Voto necessario')
-          }
-          if(!this.mail){
-              this.errors.push('Email necessaria')
-          }
-          if(!this.description){
-              this.errors.push('Corpo review necessario')
-          }
-          if(this.errors.length>0){
-              e.preventDefault();
-              console.log('errori presenti');
-            }else{
-                console.log('nessun errore');
-                /* this.sendMessage(); */
-            }
-      },
-      sendMessage(){
-          console.log(this.doctorId);
-          console.log('send message');
-          axios.post('../api/review',)
-          .then(res => {
-              console.log(res)
-              console.log('mandato');
-          })
-          .catch(err => {
-              console.error(err);
-          })
+  methods: {
+    checkData(e) {
+      this.errors = [];
+      if (!this.vote) {
+        this.errors.push("Voto necessario");
       }
-  }
-}
+      if (!this.mail) {
+        this.errors.push("Email necessaria");
+      }
+      if (!this.description) {
+        this.errors.push("Corpo review necessario");
+      }
+      if (this.errors.length > 0) {
+        e.preventDefault();
+        console.log("errori presenti");
+      } else {
+        console.log("nessun errore");
+        /* this.sendMessage(); */
+      }
+    },
+    sendMessage() {
+      console.log(this.doctorId);
+      console.log("send message");
+      axios
+        .post("../api/review")
+        .then((res) => {
+          console.log(res);
+          console.log("mandato");
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-form{
-    margin-top: 15px;
-    margin-bottom: 15px;
+form {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
-.errors{
-        padding: 10px;
-        margin-top: 10px;
-        border: 1px solid red;
-        border-radius: 5px;
-    }
-      button{
-/*       background-color: #3f7bbd; */
-      background-image: linear-gradient( 135deg , #386db3 45%, #56a7da);
-         &:hover{
-           background: linear-gradient(135deg, #56a7da 45%, #386db3);
-            transition: 0.2s;
-            transform: scale(1 ,1.1);
-            box-shadow: 3px 7px 5px #888888;
-          }
+.errors {
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid red;
+  border-radius: 5px;
+}
+button {
+  border: none;
+  margin: 0 30px;
+  background-image: linear-gradient(135deg, #1e6650 45%, #63987a);
+  &:hover {
+    background: linear-gradient(135deg, #63987a 45%, #1e6650);
+    transition: 0.3s;
+    box-shadow: 3px 7px 5px #888888;
   }
+}
 </style>

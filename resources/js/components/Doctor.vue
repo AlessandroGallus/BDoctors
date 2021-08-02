@@ -1,138 +1,128 @@
 <template>
   <div class="doctor-container">
+    <div class="card" style="width: 18rem">
+      <div class="premium-icon" v-if="sponsor_name != 'basic'">
+        <i class="fas fa-bookmark"></i>
+      </div>
+      <img
+        class="card-img-top"
+        v-if="!url_img.startsWith('uploads')"
+        :src="url_img"
+        alt=""
+      />
+      <img class="storage" v-else :src="'storage/' + url_img" alt="" />
+      <div class="card-infos container">
+        <h6>Nome: {{ username }}</h6>
+        <h6>Città: {{ city }}</h6>
+        <h6>{{ exp_date }}</h6>
+        <h6>Specializzazione/i:</h6>
+        <ul>
+          <li v-for="(spec, index) in spec_name" :key="index">
+            {{ spec.name }}
+          </li>
+        </ul>
+        <h6>
+          Media Voti: {{ !isNaN(media) ? media : "Non disponibile" }} ({{
+            nReviews
+          }})
+        </h6>
 
-    <div class="card" style="width: 18rem;">
-      <div class="premium-icon" v-if="sponsor_name!='basic'"><i class="fas fa-bookmark"></i></div>
-              <img  class="card-img-top"
-                  v-if="!url_img.startsWith('uploads')"
-                  :src="url_img" alt="">
-              <img class="storage" v-else :src="'storage/'+url_img" alt="">
-    <div class="card-infos container">
-            
-              <h6>Nome: {{username}}</h6>
-              <h6>Città: {{city}}</h6>
-              <h6>{{exp_date}}</h6>
-              <h6>Specializzazione/i:</h6>
-              <ul>
-                <li
-                v-for="(spec,index) in spec_name" :key='index'
-                >{{spec.name}}</li>
-              </ul>
-              <h6>Media Voti: {{(!isNaN(media))? media: 'Non disponibile'}} ({{nReviews}})</h6>
-            
-   
-          <div class="stars d-flex">
-              <div class="star d-inline "
-              v-for="index in 5"
-              :key="index"
-              >
-              <i v-if="index<=Math.round(media)" class="fas fa-star"></i>
-              <i class="far fa-star" v-else ></i>
-            </div>
-         </div> 
-         <router-link id="id" :to="{name:'doctorPage',params:{'fullname':username,'id':id}}">Vedi Profilo</router-link> 
-          <!-- <div class="card-body">
-            
-            <h6>{{exp_date}}</h6>
-            <h6>Oggi: {{currentDate()}}</h6>
-            <router-link id="id" :to="{name:'doctorPage',params:{'fullname':username,'id':id}}">Vedi Profilo</router-link> 
-          </div> -->
+        <div class="stars d-flex">
+          <div class="star d-inline" v-for="index in 5" :key="index">
+            <i v-if="index <= Math.round(media)" class="fas fa-star"></i>
+            <i class="far fa-star" v-else></i>
+          </div>
+        </div>
+        <router-link
+          id="id"
+          :to="{ name: 'doctorPage', params: { fullname: username, id: id } }"
+          >Vedi Profilo</router-link
+        >
+      </div>
     </div>
-            
-     </div>
-     
-    <!-- <div class="doc-img">
-
-      <img 
-      v-if="!url_img.startsWith('uploads')"
-     :src="url_img" alt="">
-     <img class="storage" v-else :src="'storage/'+url_img" alt="">
-
-    </div> -->
-
   </div>
 </template>
 
 <script>
 export default {
-  name:'Card',
-  props:['spec_name','url_img','username','sponsor_name','spec_name','exp_date','city','id','media','nReviews'],
-  methods:{
-    currentDate(){
+  name: "Card",
+  props: [
+    "spec_name",
+    "url_img",
+    "username",
+    "sponsor_name",
+    "spec_name",
+    "exp_date",
+    "city",
+    "id",
+    "media",
+    "nReviews",
+  ],
+  methods: {
+    currentDate() {
       const current = new Date();
-      const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
-      let scaduta = '- scaduto'
-      let diff = Date.now()>(new Date(this.exp_date).getTime());
+      const date = `${current.getFullYear()}-${
+        current.getMonth() + 1
+      }-${current.getDate()}`;
+      let scaduta = "- scaduto";
+      let diff = Date.now() > new Date(this.exp_date).getTime();
       return diff;
-    }
-  }
-  
-}
+    },
+  },
+};
 </script>
 
 <style lang='scss' scoped>
-.star{
-   color: rgb(243, 230, 148);
+.star {
+  color: rgb(243, 230, 148);
   overflow: hidden;
 }
-  .doctor-container{
-   
-    // width: 33%;
-    // height: 550px;
-    margin: 1px;
-    margin-bottom:50px;
-    justify-content:space-between;
-    padding:10px 10px;
-        // background: linear-gradient( #56a7da 45%, #386db3);
-    background-size: cover;
-    
-    // border-radius: 20px;
+.doctor-container {
+  margin: 1px;
+  margin-bottom: 50px;
+  justify-content: space-between;
+  padding: 10px 10px;
+  background-size: cover;
+  .doc-img {
+    width: 397px;
+  }
+}
+.card {
+  position: relative;
+  height: 350px;
+  .premium-icon {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: gold;
+    font-size: 2rem;
+    text-shadow: 2px 2px 1px #ff0000;
+  }
+  background: linear-gradient(#56a7da 45%, #386db3);
+  overflow: hidden;
+  padding-bottom: 20px;
+  border-radius: 25px;
+  &:hover {
+    transition: 0.3s;
+    transform: scale(1.05, 1.05);
+    background: linear-gradient(#75a3d6 45%, #56a7da);
+    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.78);
+  }
+}
 
-    .doc-img{
-        width:397px;
-    }
+li {
+  list-style: none;
+}
+a {
+  color: white;
+  &:hover {
+    color: #ff6600;
   }
-  .card{
-    position: relative;
-    .premium-icon{
-      position: absolute;
-      top: 5px;
-      right: 10px;
-      color: gold;
-      font-size: 2rem;
-      text-shadow:2px 2px 1px #ff0000 ;
-    }
-     background: linear-gradient( #56a7da 45%, #386db3);
-     overflow: hidden;
-     padding-bottom: 20px;
-     border-radius: 25px ;
-       &:hover{
-            transition: 0.3s;
-            transform: scale(1.05 ,1.05);
-             background: linear-gradient(#75a3d6 45%, #56a7da);
-            box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.78)
-            
-           
-          }
-    
-  }
-  
+}
 
-  li{
-    list-style: none;
-   
-  }
-   a{
-      color: white;
-      &:hover{
-        color: #ff6600;
-      } 
-    }
-  
-  .storage{
-  
-     height:287px ;
-  }
+.storage {
+  height: 287px;
+}
 </style>
 
 
