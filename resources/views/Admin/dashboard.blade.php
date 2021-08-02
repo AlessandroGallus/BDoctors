@@ -26,12 +26,15 @@
                     @endforeach
                     <h3>Livello:</h3>
                     {{Auth::user()->sponsors[0]->name}}
+                    <h3>Scadenza:</h3>
+                    {{Auth::user()->sponsors[0]['pivot']['expiring_date']}}
                     
                 </div>
             </div>
             
             <div class="profile-image">
                 <img src="{{ asset('storage/'.Auth::user()->url_img) }}" alt="">
+                <img src="{{Auth::user()->url_img}}" alt="">
             </div>
             {{-- <img src="{{ asset('storage/'.Auth::user()->url_cv) }}" alt=""> --}}
             <button  style=" height:55px " class="btn btn-danger" id="click">Delete test</button>
@@ -55,7 +58,7 @@
     </div>
     <hr>
     <a href="/dashboard/messages">See Messages</a><br>
-    <a href="{{route('reviews.index')}}">See Reviews</a>      
+    <a href="{{route('reviews.index')}}">See Reviews</a><br>   
     <a href="/dashboard/sponsors">Sponsor yourself</a>      
 </div>
 <script>

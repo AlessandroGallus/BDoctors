@@ -76,15 +76,31 @@ Route::post('/checkout', function (Request $request) {
         /* header("Location: " . $baseUrl . "transaction.php?id=" . $transaction->id); */
         if($transaction->amount == '2.99'){
             $user = User::find(Auth::user()->id);
-            $user->sponsors()->sync([2=>['expiring_date'=>date('Y-m-d', strtotime('tomorrow'))]]);
+            if($user->sponsors[0]->name!='basic'){
+                $datatotale= date('Y-m-d',strtotime("+1 day",strtotime($user->sponsors[0]['pivot']['expiring_date'])));
+                $user->sponsors()->sync([2=>['expiring_date'=>date('Y-m-d', strtotime($datatotale))]]);
+            }else{
+                $user->sponsors()->sync([2=>['expiring_date'=>date('Y-m-d', strtotime('tomorrow'))]]);
+            }
+            
         }
         if($transaction->amount == '5.99'){
             $user = User::find(Auth::user()->id);
-            $user->sponsors()->sync([3=>['expiring_date'=>date('Y-m-d', strtotime('+3 day'))]]);
+            if($user->sponsors[0]->name!='basic'){
+                $datatotale= date('Y-m-d',strtotime("+3 day",strtotime($user->sponsors[0]['pivot']['expiring_date'])));
+                $user->sponsors()->sync([3=>['expiring_date'=>date('Y-m-d', strtotime($datatotale))]]);
+            }else{
+                $user->sponsors()->sync([3=>['expiring_date'=>date('Y-m-d', strtotime('+3 day'))]]);
+            }
         }
         if($transaction->amount == '9.99'){
             $user = User::find(Auth::user()->id);
-            $user->sponsors()->sync([4=>['expiring_date'=>date('Y-m-d', strtotime('+6 day'))]]);
+            if($user->sponsors[0]->name!='basic'){
+                $datatotale= date('Y-m-d',strtotime("+6 day",strtotime($user->sponsors[0]['pivot']['expiring_date'])));
+                $user->sponsors()->sync([4=>['expiring_date'=>date('Y-m-d', strtotime($datatotale))]]);
+            }else{
+                $user->sponsors()->sync([4=>['expiring_date'=>date('Y-m-d', strtotime('+6 day'))]]);
+            }
         }
         return redirect()->back()->with('success_message','Transaction Successful. The Id is    ' .$transaction->id);
     } else {
