@@ -1,6 +1,6 @@
 <template>
   <form action="../api/message" method="POST" @submit="checkData">
-    
+
     <p class="errors" v-if="errors.length">
     <b>Si prega di correggere i seguenti errori:</b>
     <ul>
@@ -29,7 +29,7 @@
         <!-- <div class="alert alert-success">
             {{session('message')}}
         </div> -->
-        <button type="submit" value="submit" class="btn btn-primary mt-3" >Invia Messaggio</button>
+        <button type="submit" value="submit" class="btn btn-primary mt-3" >Invia</button>
     </form>
 </template>
 
@@ -102,14 +102,14 @@ form{
         border: 1px solid red;
         border-radius: 5px;
     }
-      button{
-/*       background-color: #3f7bbd; */
-      background-image: linear-gradient( 135deg , #386db3 45%, #56a7da);
-         &:hover{
-           background: linear-gradient(135deg, #56a7da 45%, #386db3);
-            transition: 0.2s;
-            transform: scale(1 ,1.1);
-            box-shadow: 3px 7px 5px #888888;
-          }
-  }
+button{
+    border: none;
+    margin: 0 30px;
+    background-image: linear-gradient( 135deg , #1e6650 45%, #63987a);
+    &:hover{
+        background: linear-gradient(135deg, #63987a 45%, #1e6650);
+        transition: 0.3s;
+        box-shadow: 3px 7px 5px #888888;
+    }
+}
 </style>
