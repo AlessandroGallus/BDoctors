@@ -1,4 +1,5 @@
 <template>
+
     <header class="mb-3">
         <div class="container ">
             <nav>
@@ -55,28 +56,48 @@
 
 <script>
 export default {
-    name: "Header"
+  name: "Header",
 };
+
 </script>
 
 <style lang="scss" scoped>
 header {
-    display: flex;
-    align-items: center;
-    color: white;
-    height: 60px;
-    line-height: 60px;
-    /* background-color: #386db3; */
-    background-image: linear-gradient(to right, #1e6650, #63987a);
-    .logo-text {
-        display: contents;
-    }
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: inherit;
+  display: flex;
+  align-items: center;
+  color: white;
+  height: 60px;
+  line-height: 60px;
+  /* background-color: #386db3; */
+  background-image: linear-gradient(to right, #1e6650, #63987a);
+  nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    height: inherit;
+      img{
+          width: 50px;
 
+      }
+      .home{
+          font-size: 2rem;
+      }
+
+      a{
+          color: #fff;
+          text-decoration: none;
+      }
+      .btn-custom{
+         border: none;
+         background: none;
+         &:focus{
+             border: 1px solid #fff;
+         }
+      }
+      i{
+        font-size: 20px;
+
+      }
         img {
             width: 50px;
             padding: 0 5px;

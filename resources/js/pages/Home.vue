@@ -190,8 +190,10 @@
   </button> -->
         </div>
 
+
         <!-- FINE CAROUSEL-->
     </div>
+
 </template>
 
 <script>

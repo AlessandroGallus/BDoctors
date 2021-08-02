@@ -4,4 +4,5 @@
   <a href="{{route('payment',['value'=>'silver'])}}">silver</a>
   <a href="{{route('payment',['value'=>'gold'])}}">gold</a>
   <a href="{{route('payment',['value'=>'platinum'])}}">platinum</a>
+
 @endsection

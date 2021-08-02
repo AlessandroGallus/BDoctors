@@ -6,6 +6,7 @@
 @if(session('success_message'))
   <div class="alert alert-success">
     {{session('success_message')}}
+    {{-- <a href="/dashboard">ritorna alla tua dashboard</a> --}}
   </div>
 @endif
 @if(count($errors)>0)
