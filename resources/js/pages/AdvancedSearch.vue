@@ -1,5 +1,5 @@
 <template>
-  <div class="container-top">
+  <div class="container wrapper-top">
     <h2>RICERCA AVANZATA</h2>
     <div class="ricerca">
       <div class="inputs-ricerca d-flex justify-content-between mb-5">
@@ -326,7 +326,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container-top {
+.wrapper-top {
   min-height: calc(100vh - 15.8rem);
 }
 
