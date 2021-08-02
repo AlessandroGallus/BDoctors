@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('phone_number', 15);
             $table->string('url_cv');
             $table->string('url_img');
+            $table->text('visit_types')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

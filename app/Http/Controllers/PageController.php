@@ -9,4 +9,8 @@ class PageController extends Controller
     public function index(){
         return view('guest.index');
     }
+
+    public function sponsor(){
+        return view('Admin.sponsor');
+    }
 }

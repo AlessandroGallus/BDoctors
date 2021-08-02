@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/admin.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -79,6 +80,6 @@
             @yield('content')
         </main>
     </div>
-
+    @stack('scripts')
 </body>
 </html>

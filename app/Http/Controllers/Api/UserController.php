@@ -93,17 +93,26 @@ class UserController extends Controller
             }
         }
 
-        $doctors = User::with(['specializations','sponsors','reviews'])->orderBy('users.id', 'desc')->paginate(5);
+
+    $doctors = User::with(['specializations','sponsors','reviews'])
+    ->join('user_sponsor','user_sponsor.user_id','=','users.id')
+    ->join('sponsors','sponsors.id','=','user_sponsor.sponsor_id')
+    ->orderBy('sponsors.sponsor_level','desc')->paginate(4);
+    
 
 
+    if($request->has('specname') && $request->has('orderByCount')){
+        $toSearchSpec = $request->input('specname');
+        $doctors = User::withCount('reviews')
+        ->whereHas('specializations',function(Builder $query) use ($toSearchSpec){
+            $query->where('name','=',$toSearchSpec);
 
-        if ($request->has('specname') && $request->has('orderByCount')) {
-            $toSearchSpec = $request->input('specname');
-            $doctors = User::withCount('reviews')->orderBy('reviews_count', $request->input('orderByCount'))->with('reviews', 'sponsors', 'specializations')
-        ->whereHas('specializations', function (Builder $query) use ($toSearchSpec) {
-            $query->where('name', '=', $toSearchSpec);
         })
-        ->paginate(5);
+        ->join('user_sponsor','user_sponsor.user_id','=','users.id')
+        ->join('sponsors','sponsors.id','=','user_sponsor.sponsor_id')
+        ->orderBy('sponsors.sponsor_level','desc')
+        ->orderBy('reviews_count',$request->input('orderByCount'))->with('reviews','sponsors','specializations')
+        ->paginate(4);
             return response()->json($doctors);
         }
 
@@ -115,24 +124,29 @@ class UserController extends Controller
         ->whereHas('specializations', function (Builder $query) use ($toSearchSpec) {
             $query->where('name', '=', $toSearchSpec);
         })
-        ->join('reviews', 'reviews.user_id', '=', 'users.id')
+
+        ->join('user_sponsor','user_sponsor.user_id','=','users.id')
+        ->join('sponsors','sponsors.id','=','user_sponsor.sponsor_id')
+        ->join('reviews','reviews.user_id','=','users.id')
         ->groupBy('users.id')
-        ->orderBy('average', $toSearchOrder)
+        ->orderBy('sponsors.sponsor_level','desc')
+        ->orderBy('average',$toSearchOrder)
         ->paginate(4);
-            return response()->json($doctors);
-        }
+        return response()->json($doctors);
+    }
+
 
         if ($request->has('specname')) {
             $tosearch = $request->input('specname');
             $doctors = User::with('specializations', 'reviews', 'sponsors')->whereHas('specializations', function (Builder $query) use ($tosearch) {
                 $query->where('name', '=', $tosearch);
-            })->paginate(5);
+            })->paginate(4);
         }
         if ($request->has('premium')) {
             $tosearch=$request->input('premium');
             $doctors = User::with('specializations', 'reviews', 'sponsors')->whereHas('sponsors', function (Builder $query) {
                 $query->where('sponsor_level', '>', '1');
-            })->paginate(5);
+            })->paginate(4);
             return response()->json($doctors);
         }
         return response()->json($doctors);

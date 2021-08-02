@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
             $new_user = new User();
             $new_user['name']=$this->get('name');
             $new_user['email']='testmail'.($i+1).'@gmail.com';
-            $new_user['password']='password';
+            $new_user['password']=Hash::make(12345678);
             $new_user['surname']=$this->get('surname');
             $new_user['city']=$this->get('city');
             $new_user['address']='via '.$this->get('city').' '.rand(1,60);
@@ -30,7 +30,7 @@ class UsersTableSeeder extends Seeder
         $new_user = new User();
         $new_user['name']=$this->get('name');
         $new_user['email']='testmail@gmail.com';
-        $new_user['password']='password';
+        $new_user['password']=Hash::make(12345678);
         $new_user['surname']=$this->get('surname');
         $new_user['city']=$this->get('city');
         $new_user['address']='via '.$this->get('city').' '.rand(1,60);

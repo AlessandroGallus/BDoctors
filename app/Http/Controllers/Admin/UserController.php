@@ -83,7 +83,9 @@ class UserController extends Controller
         $url_img = Storage::put('uploads', $data['url_img']);
         $data['url_img']=$url_img;
         /* dd($data); */
+
         $to_update->update($data);
+        /* dd($to_update); */
         $to_update->specializations()->sync($data['specializations']);
         return redirect()->route('home');
     }

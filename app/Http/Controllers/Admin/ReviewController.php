@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Message;
+use App\User;
+use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-class MessageController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages= Auth::user()->messages;
-        return view('Admin.messages', compact('messages'));
+        $reviews= Auth::user()->reviews;
+        return view('Admin.reviews', compact('reviews'));
     }
 
     /**
@@ -48,8 +49,7 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        $message = Message::find($id);
-        return view('Admin.singleMessage',compact('message'));
+        //
     }
 
     /**
@@ -83,8 +83,6 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        $message = Message::find($id);
-        $message->delete();
-        return redirect()->route('messages.index');
+        //
     }
 }

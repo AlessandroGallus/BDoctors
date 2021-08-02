@@ -23,15 +23,19 @@ class ReviewsTableSeeder extends Seeder
         ];
         foreach($users as $user){
 
-            $limite = rand(1,3);
+            
+
+            $limite = rand(1,10);
             for($i=0;$i<$limite;$i++){
+            $timestamp = rand(strtotime("Jan 01 2020"), strtotime("Sep 01 2021"));
+            $random_date = date('Y-m-d H:i:s',$timestamp);
             $random_number = rand(0,5);
             $new_review = new Review();
             $new_review['user_id']=$user['id'];
             $new_review['description']=$text[$random_number];
             $new_review['mail']='testmail'. $i . '@aaaaaa.biiiiii';
             $new_review['vote']=rand(1,5);
-
+            $new_review['created_at'] = $random_date;
             $new_review->save();
             }
         }

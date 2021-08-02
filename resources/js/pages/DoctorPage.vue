@@ -1,8 +1,40 @@
 <template>
   <div class="doctor-page">
+
     <div class="wrapper">
       <div class="header">
-        <h1>Dott/ssa: {{ doctor.name }} {{ doctor.surname }}</h1>
+
+    <div class="doc-details d-flex justify-content-between">
+      <div class="infos">
+        <h3>Indirizzo: {{doctor.address}}</h3>
+        <h3>Città: {{doctor.city}}</h3>
+        <h3>Telefono: {{doctor.phone_number}}</h3>
+        <div v-if="doctor.visit_types!=null">
+          <h3>Prestazioni:</h3>
+          <p>{{doctor.visit_types}}</p>
+        </div>
+        <h3>Specializzazioni:</h3>
+        <ul>
+          <li
+          v-for="(spec,index) in doctor.specializations"
+          :key="index"
+          >{{spec.name}}</li>
+        </ul>
+        <h3>Curriculum Vitae:</h3>
+         <a target="_blank" :href="doctor.url_cv">Clicca qui per accedere al curriculum</a>
+        <h3>Reviews:</h3>
+        <ul>
+          <li v-for="(review,index) in doctor.reviews" :key='index'>
+            <p>{{review.description}} <span class="star d-inline"
+    v-for="index in 5"
+    :key="index"
+    >
+    <i v-if="index<=Math.round(review.vote)" class="fas fa-star"></i>
+          <i class="far fa-star" v-else ></i>
+    </span></p>
+          </li>
+        </ul>
+
       </div>
       <div class="doc-details d-flex justify-content-between">
         <div class="infos">
