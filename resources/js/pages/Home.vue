@@ -44,6 +44,20 @@
                     :urlCv="doctor.url_cv"
                 />
             </div>
+            <div class="links text-center d-flex justify-content-center" >
+                <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li
+            class="page-item"
+            v-for="(indice, index) in this.totalPages"
+            v-on:click="premiumDoctor(indice)"
+            :key="index"
+          >
+            <button class="page-link" style="color:white">{{ indice }}</button>
+          </li>
+        </ul>
+      </nav>
+            </div>
         </section>
 
         <!-- CAROUSEL DA SISTEMARE -->
@@ -209,14 +223,16 @@ export default {
     },
     mounted() {
         this.getSpecs();
-        this.premiumDoctor();
+        this.premiumDoctor(this.currentPage);
     },
     data() {
         return {
             ricerca: "",
             premium: [],
             specs: [],
-            datalistID: "ciao"
+            datalistID: "ciao",
+            currentPage:1,
+            totalPages:null
         };
     },
     watch: {
@@ -226,6 +242,9 @@ export default {
             } else {
                 this.datalistID = "inactive";
             }
+        },
+        currentPage:function(){
+            this.premium(this.currentPage);
         }
     },
     methods: {
@@ -250,11 +269,12 @@ export default {
             });
         },
 
-        premiumDoctor() {
+        premiumDoctor(page) {
             axios
-                .get("http://127.0.0.1:8000/api/alldoctors?premium")
+                .get("http://127.0.0.1:8000/api/alldoctors?premium",{params:{page:page}})
                 .then(res => {
                     this.premium = res.data.data;
+                    this.totalPages=res.data.last_page
                     this.calcoloMedia();
                     console.log("premium: ", this.premium);
                 })
