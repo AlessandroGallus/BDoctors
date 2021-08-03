@@ -1,9 +1,11 @@
 <template>
     <div class="home">
+
         <!-- inizio carousel -->
                 <div
             id="carouselExampleFade"
             class="carousel slide carousel-fade"
+
             data-bs-ride="carousel"
         >
             <div class="carousel-inner custom-item">
@@ -200,14 +202,16 @@ export default {
     },
     mounted() {
         this.getSpecs();
-        this.premiumDoctor();
+        this.premiumDoctor(this.currentPage);
     },
     data() {
         return {
             ricerca: "",
             premium: [],
             specs: [],
-            datalistID: "ciao"
+            datalistID: "ciao",
+            currentPage:1,
+            totalPages:null
         };
     },
     watch: {
@@ -217,6 +221,9 @@ export default {
             } else {
                 this.datalistID = "inactive";
             }
+        },
+        currentPage:function(){
+            this.premium(this.currentPage);
         }
     },
     methods: {
@@ -241,11 +248,12 @@ export default {
             });
         },
 
-        premiumDoctor() {
+        premiumDoctor(page) {
             axios
-                .get("http://127.0.0.1:8000/api/alldoctors?premium")
+                .get("http://127.0.0.1:8000/api/alldoctors?premium",{params:{page:page}})
                 .then(res => {
                     this.premium = res.data.data;
+                    this.totalPages=res.data.last_page
                     this.calcoloMedia();
                     console.log("premium: ", this.premium);
                 })

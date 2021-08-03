@@ -44,7 +44,7 @@
                                 >
                             </li>
                             <li class="d-inline ">
-                                <a href="/register">Registrati</a>
+                                <a href="/register"><i style="font-size:25px" class="fas fa-user-md"></i></a>
                             </li>
                         </ul>
                     </div>
