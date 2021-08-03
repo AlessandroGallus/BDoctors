@@ -105,6 +105,21 @@
                     :urlCv="doctor.url_cv"
                 />
             </div>
+            <div class="links d-flex justify-content-center">
+                <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li
+            class="page-item"
+            v-for="(indice, index) in this.totalPages"
+            v-on:click="premiumDoctor(indice)"
+            :key="index"
+          >
+            <button class="page-link" style="color:white">{{ indice }}</button>
+          </li>
+        </ul>
+      </nav>
+            </div>
+            
         </section>
 
         <!-- CAROUSEL DA SISTEMARE -->
