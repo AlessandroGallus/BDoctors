@@ -1,86 +1,56 @@
 <template>
   <div class="doctor-page">
-
       <div class="wrapper">
           <div class="header">
-
               <div class="doc-details d-flex justify-content-between">
-                  <div class="infos">
-                    <h3>Indirizzo: {{doctor.address}}</h3>
-                   <h3>Città: {{doctor.city}}</h3>
-                   <h3>Telefono: {{doctor.phone_number}}</h3>
-                    <div v-if="doctor.visit_types!=null">
-                       <h3>Prestazioni:</h3>
-                        <p>{{doctor.visit_types}}</p>
-                    </div>
-        <h3>Specializzazioni:</h3>
-        <ul>
-          <li
-          v-for="(spec,index) in doctor.specializations"
-          :key="index"
-          >{{spec.name}}</li>
-        </ul>
-        <h3>Curriculum Vitae:</h3>
-         <a target="_blank" :href="doctor.url_cv">Clicca qui per accedere al curriculum</a>
-        <h3>Reviews:</h3>
-        <ul>
-          <li v-for="(review,index) in doctor.reviews" :key='index'>
-            <p>{{review.description}} <span class="star d-inline"
-    v-for="index in 5"
-    :key="index"
-    >
-    <i v-if="index<=Math.round(review.vote)" class="fas fa-star"></i>
-          <i class="far fa-star" v-else ></i>
-    </span></p>
-          </li>
-        </ul>
+                    <div class="infos container">
+                        <div class="left">
+                           <h3>Nome: {{doctor.name}}</h3>
+                            <h3>Cognome: {{doctor.surname}}</h3>
+                            <h3>Indirizzo: {{doctor.address}}</h3>
+                            <h3>Città: {{doctor.city}}</h3>
+                            <h3>Telefono: {{doctor.phone_number}}</h3>
+                            <div v-if="doctor.visit_types!=null">
+                                <h3>Prestazioni:</h3>
+                                    <p>{{doctor.visit_types}}</p>
+                            </div>
+                            <h3>Specializzazioni:</h3>
+                            <ul>
+                                <li
+                                v-for="(spec,index) in doctor.specializations"
+                                :key="index"
+                                >{{spec.name}}
+                                </li>
+                            </ul>
+                            <h3>Curriculum Vitae:</h3>
+                            <a target="_blank" :href="doctor.url_cv">Clicca qui per accedere al curriculum</a>
+                            <h3>Reviews:</h3>
+                            <ul>
+                                <li v-for="(review,index) in doctor.reviews" :key='index'>
+                                    <p>{{review.description}}
+                                        <span class="star d-inline"
+                                        v-for="index in 5"
+                                        :key="index"
+                                        >
+                                            <i v-if="index<=Math.round(review.vote)" class="fas fa-star"></i>
+                                            <i class="far fa-star" v-else ></i>
+                                        </span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="right">
+                            <img :src="doctor.url_img" alt="" />
+                        </div>
 
+                    </div>
                 </div>
-      <div class="doc-details d-flex justify-content-between">
-        <div class="infos">
-          <h4>
-            Indirizzo: <span>{{ doctor.address }}</span>
-          </h4>
-          <h4>
-            Città: <span>{{ doctor.city }}</span>
-          </h4>
-          <h4>
-            Telefono: <span>{{ doctor.phone_number }}</span>
-          </h4>
-          <h4>Specializzazioni:</h4>
-          <ul>
-            <li v-for="(spec, index) in doctor.specializations" :key="index">
-              {{ spec.name }}
-            </li>
-          </ul>
-          <h4>Curriculum Vitae:</h4>
-          <a target="_blank" :href="doctor.url_cv"
-            >Clicca qui per accedere al curriculum</a
-          >
-          <h4>Reviews:</h4>
-          <ul>
-            <li v-for="(review, index) in doctor.reviews" :key="index">
-              <p>
-                {{ review.description }}
-                <span class="star d-inline" v-for="index in 5" :key="index">
-                  <i
-                    v-if="index <= Math.round(review.vote)"
-                    class="fas fa-star"
-                  ></i>
-                  <i class="far fa-star" v-else></i>
-                </span>
-              </p>
-            </li>
-          </ul>
+                <div class="msgNot" v-if="msgNot">
+                    <h3>MESSAGGIO INVIATO CORRETTAMENTE</h3>
+                </div>
+            </div>
         </div>
-        <div class="img">
-          <img :src="doctor.url_img" alt="" />
-        </div>
-      </div>
-      <div class="msgNot" v-if="msgNot">
-        <h3>MESSAGGIO INVIATO CORRETTAMENTE</h3>
-      </div>
-              </div>
+    <!-- MESSAGE FORM -->
     <div class="buttons">
       <button
         class="btn btn-primary"
@@ -108,8 +78,6 @@
       </button>
     </div>
 
-    <!-- MESSAGE FORM -->
-
     <div class="form" v-if="!isHidden">
       <ContactForm @confermaInviato="confirmSent()" :doctorId="doctor.id" />
     </div>
@@ -117,8 +85,6 @@
     <div class="form" v-if="!isHiddenReview">
       <ReviewForm :doctorId="doctor.id" />
     </div>
-  </div>
-  </div>
   </div>
 </template>
 
@@ -197,9 +163,11 @@ export default {
   }
   .infos {
     margin-left: 30px;
-    /*     h3{
-            font-size: 30px;
-        } */
+    display: flex;
+    .left , .right{
+        width: 49%;
+        float: left;
+    }
     a {
       font-size: 16px;
       color: rgb(50, 13, 153);
