@@ -1,4 +1,5 @@
 <template>
+
     <div class="doctor-page">
         <div class="wrapper">
             <div class="header">
@@ -107,12 +108,14 @@
                     />
                 </div>
 
+
                 <div class="form" v-if="!isHiddenReview">
                     <ReviewForm :doctorId="doctor.id" />
                 </div>
             </div>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -173,6 +176,7 @@ export default {
   min-height: calc(100vh - 15.8rem);
 } */
 .wrapper {
+
   color: white;
     width: 80%;
     margin: 0 auto;
@@ -205,6 +209,7 @@ export default {
             font-size: 18px;
             color: black;
         }
+
     }
     img {
         width: 150px;

@@ -283,14 +283,14 @@ export default {
           console.error(err);
         });
     },
-    
+
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .wrapper-top {
-  min-height: calc(100vh - 15.8rem);
+  min-height: calc(100vh - 14.8rem);
 }
 
 .search {

@@ -1,6 +1,67 @@
 <template>
     <div class="home">
-        <Jumbotron/>
+
+        <!-- inizio carousel -->
+                <div
+            id="carouselExampleFade"
+            class="carousel slide carousel-fade"
+
+            data-bs-ride="carousel"
+        >
+            <div class="carousel-inner custom-item">
+                <div class="carousel-item active">
+                    <img
+                        src="https://d3043uog1ad1l6.cloudfront.net/uploads/2020/06/Medicina-do-futuro.jpg"
+                        class="d-block w-100 image-fluid"
+                        alt="..."
+                    />
+                </div>
+                <div class="carousel-item">
+                    <img
+                        src="https://www.mec2pc.it/wp-content/uploads/2017/06/banner22-2.jpg"
+                        class="d-block w-100"
+                        alt="..."
+                    />
+                </div>
+                <div class="carousel-item">
+                    <img
+                        src="https://wallpapercave.com/wp/wp2217871.jpg"
+                        class="d-block w-100"
+                        alt="..."
+                    />
+                </div>
+                <div class="carousel-item">
+                    <img
+                        src="https://saocamilo-sp.br/assets/uploads/topo-medicina-diagnostica-01.jpg"
+                        class="d-block w-100"
+                        alt="..."
+                    />
+                </div>
+                <div class="carousel-item">
+                    <img
+                        src="https://images3.alphacoders.com/203/thumb-1920-203679.jpg"
+                        class="d-block w-100"
+                        alt="..."
+                    />
+                </div>
+                <div class="carousel-item">
+                    <img
+                        src="https://wallpaperaccess.com/full/1267758.jpg"
+                        class="d-block w-100"
+                        alt="..."
+                    />
+                </div>
+                <div class="carousel-item">
+                    <img
+                        src="https://pennystocks.news/wp-content/uploads/2020/07/geo.jpg"
+                        class="d-block w-100"
+                        alt="..."
+                    />
+                </div>
+            </div>
+        </div>
+        <!-- fine carousel -->
+
         <div class="container inputs-ricerca d-flex">
             <input
                 list="specializations"
@@ -44,34 +105,20 @@
                     :urlCv="doctor.url_cv"
                 />
             </div>
-            <div class="links text-center d-flex justify-content-center" >
-                <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li
-            class="page-item"
-            v-for="(indice, index) in this.totalPages"
-            v-on:click="premiumDoctor(indice)"
-            :key="index"
-          >
-            <button class="page-link" style="color:white">{{ indice }}</button>
-          </li>
-        </ul>
-      </nav>
-            </div>
         </section>
 
         <!-- CAROUSEL DA SISTEMARE -->
-        <div
+      <!--   <div
             id="carouselExampleIndicators"
             class="carousel slide"
             data-bs-ride="carousel"
         >
-            <!--   <div class="carousel-indicators">
+              <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-  </div> -->
+  </div>
             <div class="carousel-inner custom-item">
                 <div class="carousel-item active">
                     <img
@@ -123,90 +170,22 @@
                     />
                 </div>
             </div>
-            <!--   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
   <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
-  </button> -->
-        </div>
-
-        <div
-            id="carouselExampleFade"
-            class="carousel slide carousel-fade"
-            data-bs-ride="carousel"
-        >
-            <!--   <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-  </div> -->
-            <div class="carousel-inner custom-item">
-                <div class="carousel-item active">
-                    <img
-                        src="https://d3043uog1ad1l6.cloudfront.net/uploads/2020/06/Medicina-do-futuro.jpg"
-                        class="d-block w-100 image-fluid"
-                        alt="..."
-                    />
-                </div>
-                <div class="carousel-item">
-                    <img
-                        src="https://www.mec2pc.it/wp-content/uploads/2017/06/banner22-2.jpg"
-                        class="d-block w-100"
-                        alt="..."
-                    />
-                </div>
-                <div class="carousel-item">
-                    <img
-                        src="https://wallpapercave.com/wp/wp2217871.jpg"
-                        class="d-block w-100"
-                        alt="..."
-                    />
-                </div>
-                <div class="carousel-item">
-                    <img
-                        src="https://saocamilo-sp.br/assets/uploads/topo-medicina-diagnostica-01.jpg"
-                        class="d-block w-100"
-                        alt="..."
-                    />
-                </div>
-                <div class="carousel-item">
-                    <img
-                        src="https://images3.alphacoders.com/203/thumb-1920-203679.jpg"
-                        class="d-block w-100"
-                        alt="..."
-                    />
-                </div>
-                <div class="carousel-item">
-                    <img
-                        src="https://wallpaperaccess.com/full/1267758.jpg"
-                        class="d-block w-100"
-                        alt="..."
-                    />
-                </div>
-                <div class="carousel-item">
-                    <img
-                        src="https://pennystocks.news/wp-content/uploads/2020/07/geo.jpg"
-                        class="d-block w-100"
-                        alt="..."
-                    />
-                </div>
-            </div>
-            <!--   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button> -->
+        </div> -->
+    <!-- FINE CAROUSEL-->
+       <Jumbotron/>
+    <section>
+        <div class="prova">
+
         </div>
-
-
-        <!-- FINE CAROUSEL-->
+    </section>
     </div>
 
 </template>
@@ -289,6 +268,7 @@ export default {
 <style lang="scss" scoped>
 .home {
     margin-bottom: 50px;
+    min-height: calc(100vh - 25.1rem);
 }
 .input-form {
     width: 50%;
@@ -297,14 +277,12 @@ export default {
 ::placeholder {
     font-style: italic;
 }
-// .doctor{
-//   flex-basis: (100% / 3);
-// }
+
 
 .carousel {
     height: 80vh;
     width: 100%;
-    margin-bottom: 350px;
+    margin-bottom: 50px;
 }
 
 .custom-item {
