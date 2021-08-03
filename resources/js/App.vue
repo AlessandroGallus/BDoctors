@@ -32,5 +32,11 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+body{
+    background: #d9ffe6;
+    color: #666;
+font-family: Arial,Verdana,sans-serif;
+}
+
 </style>
