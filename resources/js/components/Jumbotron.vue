@@ -32,14 +32,14 @@
                     alt=""
                 />
             </div>
-            <div class="sign-in">
+          <!--   <div class="sign-in">
                 <a href="/register"
                     ><button class="btn btn-primary">REGISTRATI</button></a
                 >
                 <a href="/login"
                     ><button class="btn btn-primary">LOGIN</button></a
                 >
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
@@ -88,7 +88,7 @@ export default {
         align-items: center;
     }
     .container-img {
-        position: relative;
+ /*        position: relative; */
         width: 100%;
         height: 80%;
         background-size: cover;
@@ -97,12 +97,12 @@ export default {
             background-size: contain;
         }
     }
-    .sign-in {
+/*     .sign-in {
         position: absolute;
         background-color: rgba(6, 6, 6, 0.4);
         padding: 20px;
         border-radius: 10px;
-    }
+    } */
 }
 button {
     border: none;

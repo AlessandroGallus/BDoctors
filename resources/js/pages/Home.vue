@@ -6,6 +6,17 @@
             class="carousel slide carousel-fade"
             data-bs-ride="carousel"
         >
+            <div class="sign-in">
+                <h5>
+                    Sei un dottore?
+                </h5>
+                <a href="/register"
+                    ><button class="btn btn-primary">REGISTRATI</button></a
+                >
+                <a href="/login"
+                    ><button class="btn btn-primary">LOGIN</button></a
+                >
+            </div>
             <div class="carousel-inner custom-item">
                 <div class="carousel-item active">
                     <img
@@ -84,7 +95,6 @@
                 </button>
             </router-link>
         </div>
-
         <section>
             <div class="container title">
                 <h3 class="mt-3">Dottori in evidenza:</h3>
@@ -124,6 +134,7 @@
                 </nav>
             </div>
         </section>
+
         <Jumbotron />
     </div>
 </template>
@@ -222,10 +233,27 @@ export default {
     height: 80vh;
     width: 100%;
     margin-bottom: 50px;
+    position: relative;
 }
-
+.sign-in {
+    position: absolute;
+    z-index: 999;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50% , -50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 3px 7px 5px #888888;
+    h5{
+        text-align: center;
+        color: #1e6650;
+        margin-bottom: 20px;
+    }
+}
 .custom-item {
     width: 100%;
+
     img {
         height: 80vh;
     }
