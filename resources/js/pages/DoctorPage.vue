@@ -1,102 +1,118 @@
 <template>
     <div class="doctor-page">
-        <div class="wrapper">
+
+          <div class="wrapper">
+
             <div class="header">
-                <div class="doc-details d-flex justify-content-between">
-                    <div class="infos">
-                        <h4>
-                            Indirizzo: <span>{{ doctor.address }}</span>
-                        </h4>
-                        <h4>
-                            Città: <span>{{ doctor.city }}</span>
-                        </h4>
-                        <h4>
-                            Telefono: <span>{{ doctor.phone_number }}</span>
-                        </h4>
-                        <h4>Specializzazioni:</h4>
-                        <ul>
-                            <li
-                                v-for="(spec, index) in doctor.specializations"
-                                :key="index"
-                            >
-                                {{ spec.name }}
-                            </li>
-                        </ul>
-                        <h4>Curriculum Vitae:</h4>
-                        <a target="_blank" :href="doctor.url_cv"
-                            >Clicca qui per accedere al curriculum</a
-                        >
-                        <div class="buttons">
-                            <button
-                                class="btn btn-primary"
-                                type="button"
-                                v-on:click="
-                                    () => {
-                                        isHidden = !isHidden;
-                                        isHiddenReview = true;
-                                        openReviews = false;
-                                    }
-                                "
-                            >
-                                Invia Messaggio
-                            </button>
-                            <button
-                                class="btn btn-primary"
-                                type="button"
-                                v-on:click="
-                                    () => {
-                                        isHiddenReview = !isHiddenReview;
-                                        isHidden = true;
-                                        openReviews = false;
-                                    }
-                                "
-                            >
-                                Invia Recensione
-                            </button>
-                        </div>
+
+                    <div class="doc-details">
+                         <div class="img">
+                            <img :src="doctor.url_img" alt="" />
+                            <h4>{{doctor.name}} {{doctor.surname}}</h4>
+                          </div>
+                         <div class="infos">
+                                  <h4>
+                                      Indirizzo: <span>{{ doctor.address }}</span>
+                                  </h4>
+                                  <h4>
+                                      Città: <span>{{ doctor.city }}</span>
+                                  </h4>
+                                  <h4>
+                                      Telefono: <span>{{ doctor.phone_number }}</span>
+                                  </h4>
+                                  <h4>Specializzazioni:</h4>
+                                  <ul>
+                                      <li
+                                          v-for="(spec,
+                                          index) in doctor.specializations"
+                                          :key="index"
+                                      >
+                                          {{ spec.name }}
+                                      </li>
+                                  </ul>
+                                  <h4>Curriculum Vitae:</h4>
+                                  <a target="_blank" :href="doctor.url_cv"
+                                      >Clicca qui per accedere al curriculum</a
+                                  >
+                                
+                                  
+                                  
+                         </div>
+                      
                     </div>
-                    <div class="img">
-                        <img :src="doctor.url_img" alt="" />
-                        <h4>{{ doctor.name }} {{ doctor.surname }}</h4>
+                     <div class="buttons">
+                                      <button
+                                          class="btn btn-primary"
+                                          type="button"
+                                          v-on:click="
+                                              () => {
+                                                  isHidden = !isHidden;
+                                                  isHiddenReview = true;
+                                                  openReviews=false;
+                                              }
+                                          "
+                                      >
+                                          Invia Messaggio
+                                        </button>
+                                        <button
+                              class="btn btn-primary"
+                              type="button"
+                              v-on:click="
+                                  () => {
+                                      isHiddenReview = !isHiddenReview;
+                                      isHidden = true;
+                                      openReviews=false;
+                                  }
+                              "
+                          >
+                              Invia Recensione
+                                     </button>
+                          </div>
+
+                    <div class="reviews">
+                      <h4>Reviews: <i class="open-reviews fas fa-chevron-down" v-on:click='openReviews=!openReviews'></i></h4>
+                            <div class="reviews-list" v-if="openReviews">
+                              <ul >
+                                <li class="single-review"
+                                    v-for="(review, index) in doctor.reviews"
+                                    :key="index"
+                                >
+                                    <p>
+                                        {{ review.description }}
+                                        
+                                      
+                                    </p>
+                                      <span
+                                            class="star d-inline"
+                                            v-for="index in 5"
+                                            :key="index"
+                                        >
+                                            <i
+                                                v-if="
+                                                    index <=
+                                                        Math.round(review.vote)
+                                                "
+                                                class="fas fa-star"
+                                            ></i>
+                                            <i class="far fa-star" v-else></i>
+                                        </span>
+
+                                </li>
+                            </ul>
+                            </div>
                     </div>
-                </div>
-                <div class="reviews">
-                    <h4>
-                        Reviews:
-                        <i
-                            class="open-reviews fas fa-chevron-down"
-                            v-on:click="openReviews = !openReviews"
-                        ></i>
-                    </h4>
-                    <div class="reviews-list" v-if="openReviews">
-                        <ul>
-                            <li
-                                v-for="(review, index) in doctor.reviews"
-                                :key="index"
-                            >
-                                <p>
-                                    {{ review.description }}
-                                    <span
-                                        class="star d-inline"
-                                        v-for="index in 5"
-                                        :key="index"
-                                    >
-                                        <i
-                                            v-if="
-                                                index <= Math.round(review.vote)
-                                            "
-                                            class="fas fa-star"
-                                        ></i>
-                                        <i class="far fa-star" v-else></i>
-                                    </span>
-                                </p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </div>
 
-            <!-- MESSAGE FORM -->
+
+                <!-- MESSAGE FORM -->
+
+            <div class="form" v-if="!isHidden">
+               <ContactForm
+                @confermaInviato="confirmSent()"
+                :doctorId="doctor.id"
+                />
+           </div>
+
 
             <div class="form" v-if="!isHidden">
                 <ContactForm
@@ -106,10 +122,12 @@
             </div>
 
             <div class="form" v-if="!isHiddenReview">
+
                 <ReviewForm :doctorId="doctor.id" />
             </div>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -183,6 +201,11 @@ export default {
         background-image: linear-gradient(135deg, #1e6650 45%, #63987a);
         /*       border-radius: 16px 16px 0 0; */
     }
+    .doc-details{
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row-reverse;
+    }
     .infos {
         margin-left: 30px;
         /*     h3{
@@ -235,7 +258,44 @@ export default {
         margin-bottom: 15px;
     }
 }
-.form {
-    padding: 15px;
+
+li.single-review{
+  border-bottom: 1px solid gray;
+  padding-bottom: 15px;
+  list-style: none;
 }
+.form{
+  padding: 15px;
+}
+
+ @media all and (min-width:400px) and (max-width:767px) {
+  .wrapper .doc-details {
+    display: block;
+    
+}
+.wrapper {
+    color: white;
+    text-align: center;
+}
+.wrapper img {
+    width: 150px;
+    margin-right: 0%;
+    margin-bottom: 10px;
+}
+.wrapper .infos {
+    margin-left: 0%;
+}
+
+  
+  .buttons button {
+   
+    height: 70px;
+}
+.reviews{
+  margin-top: 20px;
+}
+
+   
+}
+
 </style>

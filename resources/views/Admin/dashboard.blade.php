@@ -6,7 +6,16 @@
     <div class="container">
 
         <h1><b>DASHBOARD</b> <span>{{ Auth::user()->name }} {{ Auth::user()->surname }}</span></h1><br>
-        <div class=" d-flex justify-content-between">
+
+        <div class="profile-container ">
+            <div class="profile-image">
+                <img src="{{ asset('storage/' . Auth::user()->url_img) }}" alt="">
+                @if (substr(Auth::user()->url_img,0,4)==='http')
+                <img src="{{ Auth::user()->url_img }}" alt="">
+                @endif
+               
+            </div>
+            <hr class="border-hr">
 
             <div class="infos">
 
@@ -31,6 +40,7 @@
 
                 </div>
                 <hr>
+                
                 <button style=" height:55px " class="btn btn-danger" id="click">CANCELLA</button>
                 <div id="delete" style="position: absolute; background-color:white ;  left:50%"></div>
                 <a href="{{ route('user.edit', Auth::user()->id) }}"><button class="btn btn-secondary"
@@ -45,9 +55,11 @@
 
 
         <hr>
+
         <a href="/dashboard/messages">Visualizza Messaggi</a><br>
         <a href="{{ route('reviews.index') }}">Visualizza Recensioni</a><br>
         <a href="/dashboard/sponsors">Mettiti in evidenza, scegli il tuo sponsor!!</a>
+
     </div>
     <script>
         $(document).ready(function() {
