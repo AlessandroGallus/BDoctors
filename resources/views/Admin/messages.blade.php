@@ -13,8 +13,8 @@
       </thead>
       <tbody>
         @foreach ($messages as $key=>$message)
-            
-        
+
+
         <tr>
           <th scope="row">{{$key}}</th>
           <td>{{$message['mail']}}</td>
@@ -60,10 +60,7 @@
   messages.forEach(message => {
     let date = new Date(message['created_at']);
     let trueDate = (date.getMonth()+1)+'/'+date.getFullYear();
-    
-    /* if(arrayDates.includes(trueDate)){
-      i++
-    } */
+
     arrayValues[trueDate]+=1;
 
   });
@@ -77,7 +74,7 @@
       labels:arrayDates,
       datasets:[{
         label:'Numero Messaggi',
-        data: arrayValues       
+        data: arrayValues
       }]
     },
     oprions:{},

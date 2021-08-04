@@ -23,21 +23,16 @@ Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::get('/dashboard/sponsors', 'HomeController@sponsor')->name('sponsors');
-/* Route::delete('/dashboard/{user}','Admin\UserController@destroy')->middleware('auth')->name('user.destroy'); */
 Route::namespace('Admin')
     ->middleware('auth')
     ->group(function(){
         Route::resource('/user','UserController');
         Route::resource('/dashboard/messages','MessageController');
         Route::resource('/dashboard/reviews','ReviewController');
-        
+
     });
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
-/* Route::get('/dashboard/messages', 'HomeController@messages')->name('messages');
-Route::get('/dashboard/reviews', 'HomeController@reviews')->name('messages'); */
-
-
 Route::get('/dashboard/payment/{value}',  function(Request $request){
     $value=$request->value;
     $gateway = new Braintree\Gateway([
@@ -82,7 +77,7 @@ Route::post('/checkout', function (Request $request) {
             }else{
                 $user->sponsors()->sync([2=>['expiring_date'=>date('Y-m-d', strtotime('tomorrow'))]]);
             }
-            
+
         }
         if($transaction->amount == '5.99'){
             $user = User::find(Auth::user()->id);
@@ -102,7 +97,7 @@ Route::post('/checkout', function (Request $request) {
                 $user->sponsors()->sync([4=>['expiring_date'=>date('Y-m-d', strtotime('+6 day'))]]);
             }
         }
-        return redirect()->back()->with('success_message','Transaction Successful. The Id is    ' .$transaction->id);
+        return redirect()->back()->with('success_message','Transazione eseguita con successo. Id:      ' .$transaction->id);
     } else {
         $errorString = "";
 

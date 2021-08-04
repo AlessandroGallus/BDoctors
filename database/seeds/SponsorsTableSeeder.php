@@ -23,9 +23,7 @@ class SponsorsTableSeeder extends Seeder
             $new_sponsor->price = $price[$i];
             $new_sponsor->name = $names[$i];
             $new_sponsor->duration = $duration[$i];
-
             $new_sponsor->save();
         }
-
     }
 }

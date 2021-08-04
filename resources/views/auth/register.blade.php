@@ -186,7 +186,7 @@
                                     name="specializations[]" id="specializations">
                                         <option value=""> - selezionare una categoria - </option>
                                         @foreach($specializations as $spec)
-                                            
+
                                             <option @if (old('specializations')== $spec->id)
                                                 selected
                                             @endif
@@ -203,10 +203,10 @@
                             </div>
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button id="click" type="button" class="btn btn-dark">TEST</button>
+                                    <button id="click" type="button" class="btn btn-dark">Aggiungi specializzazione</button>
                                 </div>
                             </div>
-                            
+
                             <hr>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -215,7 +215,7 @@
                                 </button>
                             </div>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>

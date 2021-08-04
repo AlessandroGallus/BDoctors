@@ -1,5 +1,4 @@
 <template>
-
     <header>
         <div class="container ">
             <nav>
@@ -44,7 +43,12 @@
                                 >
                             </li>
                             <li class="d-inline ">
-                                <a href="/register"><i style="font-size:25px" class="fas fa-user-md"></i></a>
+                                <a href="/register"
+                                    ><i
+                                        style="font-size:25px"
+                                        class="fas fa-user-md"
+                                    ></i
+                                ></a>
                             </li>
                         </ul>
                     </div>
@@ -56,48 +60,44 @@
 
 <script>
 export default {
-  name: "Header",
+    name: "Header"
 };
-
 </script>
 
 <style lang="scss" scoped>
 header {
-  display: flex;
-  align-items: center;
-  color: white;
-  height: 60px;
-  line-height: 60px;
-  /* background-color: #386db3; */
-  background-image: linear-gradient(to right, #1e6650, #63987a);
-  nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    height: inherit;
-      img{
-          width: 50px;
+    display: flex;
+    align-items: center;
+    color: white;
+    height: 60px;
+    line-height: 60px;
+    background-image: linear-gradient(to right, #1e6650, #63987a);
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: inherit;
+        img {
+            width: 50px;
+        }
+        .home {
+            font-size: 2rem;
+        }
 
-      }
-      .home{
-          font-size: 2rem;
-      }
-
-      a{
-          color: #fff;
-          text-decoration: none;
-      }
-      .btn-custom{
-         border: none;
-         background: none;
-         &:focus{
-             border: 1px solid #fff;
-         }
-      }
-      i{
-        font-size: 20px;
-
-      }
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .btn-custom {
+            border: none;
+            background: none;
+            &:focus {
+                border: 1px solid #fff;
+            }
+        }
+        i {
+            font-size: 20px;
+        }
         img {
             width: 50px;
             padding: 0 5px;
@@ -147,16 +147,11 @@ header {
                 li {
                     font-size: 15px;
                     position: relative;
-                    /*  margin: 0 10px; */
                     height: 100%;
                     padding: 25px;
-                    &:hover {
-                        /* background-color: #043d6b;
-                    transition: .5s; */
-                        &::after {
-                            width: 100%;
-                            transition: ease-in-out 0.3s;
-                        }
+                    &::after {
+                        width: 100%;
+                        transition: ease-in-out 0.3s;
                     }
                 }
             }
@@ -174,6 +169,10 @@ header {
         border: 2px solid black;
         li {
             text-align: center;
+            cursor: pointer;
+            &:first-child {
+                border-bottom: 1px solid black;
+            }
         }
     }
     .dropdown-item-custom:hover {

@@ -56,8 +56,8 @@ class UsersTableSeeder extends Seeder
             return $cities[array_rand($cities,1)];
         }
         if($type=='date'){
-            $min = strtotime('1950-1-1');//you can change it to your timestamp;
-            $max = strtotime('2000-1-1');//you can change it to your timestamp;
+            $min = strtotime('1950-1-1');
+            $max = strtotime('2000-1-1');
             $val = rand($min, $max);
             return date('Y-m-d', $val);
         }

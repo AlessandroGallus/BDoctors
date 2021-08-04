@@ -8,11 +8,6 @@
     </ul>
   </p>
     <input type="hidden" name="user_id" id="user_id" :value="doctorId" >
-        <!-- <div class="form-group">
-            <label for="name">Namee</label>
-            <input type="text" class="form-control" name="name" v-model="name" id="name" />
-        </div> -->
-
         <div class="form-group">
             <label for="mail">E-mail</label>
             <input type="email" class="form-control" v-model="mail" placeholder="Inserisci qui la tua mail" name="mail" id="mail"/>
@@ -33,9 +28,6 @@
               <option value="5">5</option>
             </select>
         </div>
-        <!-- <div class="alert alert-success">
-            {{session('message')}}
-        </div> -->
         <button type="submit" class="btn btn-primary mt-3" >Invia</button>
     </form>
 </template>

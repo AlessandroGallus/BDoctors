@@ -21,10 +21,8 @@ class ReviewsTableSeeder extends Seeder
             'Ha probabilmente fatto un miracolo.',
             'Se l’arcivescovo di Costantinopoli si disarcivescoviscostantinopolizzasse vi disarcivescoviscostantinopolizzereste come si è disarcivescociscostantinopolizzato l’arcivescovo di Costantinopoli?'
         ];
+
         foreach($users as $user){
-
-            
-
             $limite = rand(1,10);
             for($i=0;$i<$limite;$i++){
             $timestamp = rand(strtotime("Jan 01 2020"), strtotime("Sep 01 2021"));

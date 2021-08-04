@@ -28,5 +28,4 @@ Route::namespace('Api')
         Route::resource('review','ReviewController');
         Route::get('/doctors-spec','UserController@home');
         Route::get('alldoctors','UserController@getDoctors');
-      //  Route::get('testapi','UserController@getDoctorsDesc');
     });
