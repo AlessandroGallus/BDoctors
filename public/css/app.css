@@ -1,7 +1,108 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
 .profile-image img {
-  height: 150px;
+  /* height: 150px; */
+}
+
+.border-hr {
+  display: none;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+@media all and (max-width: 768px) {
+  .profile-container {
+    display: block;
+    text-align: center;
+  }
+
+  .profile-container .border-hr {
+    display: block;
+  }
+}
+
+.payment-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.payment-options .card {
+  margin-bottom: 25px;
+  transform: scale(1);
+  transition: transform 0.4s;
+  cursor: pointer;
+  width: 300px;
+  padding: 30px;
+  /* background-color: red; */
+  border: 1px solid black;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.payment-options .card button {
+  border-radius: 25px;
+  width: 100%;
+}
+
+.payment-options .card span.price {
+  font-size: 20px;
+}
+
+.payment-options .card i.silver {
+  color: silver;
+}
+
+.payment-options .card i.gold {
+  color: gold;
+}
+
+.payment-options .card i.platinum {
+  color: #111312;
+}
+
+.payment-options .card:hover {
+  transform: scale(1.1);
+}
+
+.container.single-message .left,
+.container.single-message .right {
+  float: left;
+  height: 100%;
+}
+
+.container.single-message .left {
+  width: 35%;
+}
+
+.container.single-message .right {
+  border-left: 1px solid grey;
+  width: 65%;
+  padding-left: 25px;
+}
+
+.container.single-message .right .messaggio {
+  padding-bottom: 25px;
+  /* border-bottom: 1px solid rgba($color: grey, $alpha: .5); */
+}
+
+@media all and (max-width: 768px) {
+  .container.single-message .left,
+  .container.single-message .right {
+    float: none;
+  }
+
+  .container.single-message .right {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid grey;
+    padding-top: 25px;
+    margin-top: 25px;
+  }
 }
 
 /*!

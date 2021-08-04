@@ -121,14 +121,14 @@ export default {
         font-size: 2rem;
         text-shadow: 2px 2px 1px #ff0000;
     }
-    background: linear-gradient(#56a7da 45%, #438167);
+    background-image: linear-gradient(#1e6650 45%, #63987a);
     overflow: hidden;
     /* padding-bottom: 20px; */
     /* border-radius: 25px; */
     &:hover {
         transition: 0.3s;
         transform: scale(1.05, 1.05);
-        background: linear-gradient(#75a3d6 45%, #56a7da);
+        background-image: linear-gradient(#1e6650 45%, #63987a);
         box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.78);
         .card-infos{
         display: block;
