@@ -25,7 +25,7 @@
                 <h3><b>Data di Nascita:</b> {{ Auth::user()->date_of_birth }}</h3>
                 <h3><b>Numero Telefono:</b> {{ Auth::user()->phone_number }}</h3>
                 @if (Auth::user()->visit_types)
-                    <h3><b>Numero Telefono:</b> </h3>
+                    <h3><b>Prestazioni:</b> </h3>
                     <p>{{ Auth::user()->visit_types }}</p>
                 @endif
                 <div>

@@ -20,6 +20,10 @@
                                   <h4>
                                       Telefono: <span>{{ doctor.phone_number }}</span>
                                   </h4>
+                                  <h4>
+                                      Prestazioni:
+                                  </h4>
+                                  <p>{{doctor.visit_types}}</p>
                                   <h4>Specializzazioni:</h4>
                                   <ul style="padding:0px">
                                       <li style="list-style:none"

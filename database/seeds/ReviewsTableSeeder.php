@@ -14,8 +14,8 @@ class ReviewsTableSeeder extends Seeder
     {
         $users = User::all();
         $text = [
-            'Peggior dottore della mia vita: mio figlio è morto.',
-            'Me la sono cavata perdendo un braccio',
+            'Molto disponibile.',
+            'Molto professionale, CONSIGLIATISSIMO',
             'Sono contento, la mia gastroscopia è andata bene',
             'Miglior medico della mia vita, è riuscito a guarire mia figlia e magicamente anche me',
             'Ha probabilmente fatto un miracolo.',
@@ -23,7 +23,7 @@ class ReviewsTableSeeder extends Seeder
         ];
 
         foreach($users as $user){
-            $limite = rand(1,10);
+            $limite = rand(6,10);
             for($i=0;$i<$limite;$i++){
             $timestamp = rand(strtotime("Jan 01 2020"), strtotime("Sep 01 2021"));
             $random_date = date('Y-m-d H:i:s',$timestamp);

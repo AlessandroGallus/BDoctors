@@ -55,7 +55,7 @@ class RegisterController extends Controller
     {
 
         $message = [
-            'name.required'=>'Questo campo è obbligatorio test',
+            'name.required'=>'Questo campo è obbligatorio',
             'name.max'=>'Ciò che hai inserito è troppo lungo',
             'email.required'=>'Questo campo è obbligatorio',
             'email.max'=>'Ciò che hai inserito è troppo lungo',

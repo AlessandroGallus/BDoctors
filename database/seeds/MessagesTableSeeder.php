@@ -14,7 +14,6 @@ class MessagesTableSeeder extends Seeder
     {
         $users = User::all();
         $messages = [
-            'SomeBody once told me the world was gonna roll me; they were right',
             'Un ambulanza per favore',
             'Li vuoi quei kiwi? E se non vuoi quei kiwi che kiwi vuoi?',
             'Se l’arcivescovo di Costantinopoli si disarcivescoviscostantinopolizzasse vi disarcivescoviscostantinopolizzereste come si è disarcivescociscostantinopolizzato l’arcivescovo di Costantinopoli?',
@@ -33,15 +32,15 @@ class MessagesTableSeeder extends Seeder
         }
         foreach($users as $user){
 
-        $limite = rand(1,10);
+        $limite = rand(6,10);
             for($i=0;$i<$limite;$i++){
                 $timestamp = rand(strtotime("Jan 01 2020"), strtotime("Sep 01 2021"));
                 $random_date = date('Y-m-d H:i:s',$timestamp);
-                $random_number = rand(0,5);
+                $random_number = rand(0,4);
                 $new_message = new Message();
                 $new_message['user_id']=$user['id'];
                 $new_message['message_text']=$messages[$random_number];
-                $new_message['mail']='testmail'. $i . '@aaaaaa.biiiiii';
+                $new_message['mail']='testmail'. $i . '@gmail.com';
                 $new_message['phone_number']=generatePhoneNumber();
                 $new_message['created_at'] = $random_date;
                 $new_message->save();
