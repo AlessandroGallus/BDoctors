@@ -87,9 +87,9 @@
 
         <section>
             <div class="container title">
-                <h3 class="mt-3">Lista dottori PREMIUM:</h3>
+                <h3 class="mt-3">Dottori in evidenza:</h3>
             </div>
-            <div class="container doctor d-flex flex-wrap">
+            <div class="container doctor d-flex flex-wrap justify-content-center">
                 <Doctor
                     v-for="(doctor, key) in premium"
                     :key="key"
@@ -119,7 +119,7 @@
         </ul>
       </nav>
             </div>
-            
+
         </section>
 
         <!-- CAROUSEL DA SISTEMARE -->

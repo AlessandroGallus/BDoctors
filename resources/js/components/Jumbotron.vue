@@ -1,7 +1,7 @@
 <template>
   <div class="jumbotron-container container">
-    <div class="left-jumbo ">
-      <div class="title">
+    <div class="title">
+      <div class="left-jumbo ">
           <h3>
               Solo su bDoctors puoi consultare oltre 109.000 recensioni di pazienti verificati
           </h3>
@@ -9,7 +9,7 @@
               13 anni di storia, 717.000 pazienti soddisfatti. Le nostre recensioni sono totalmente affidabili, come testimoniato da
           </p>
           <span>
-             <img src="https://ciaologo.com/timthumb.php?src=upload/247/1496/0_orig_20150617110608_3ef7b796e3.png&h=250&w=400&zc=2&b=15" alt="">
+             <img class="img-fluid" src="https://ciaologo.com/timthumb.php?src=upload/247/1496/0_orig_20150617110608_3ef7b796e3.png&h=250&w=400&zc=2&b=15" alt="">
           </span>
           <p>
               I giudizi che puoi leggere sono rilasciati esclusivamente dai pazienti che hanno prenotato attraverso iDoctors ed hanno realmente effettuato una prestazione medica.
@@ -109,10 +109,10 @@ button{
     height: 568px;
   }
  }
- @media all and (min-width:450px) and (max-width:767px) {
+/*  @media all and (min-width:450px) and (max-width:767px) {
    .jumbotron-container .left-jumbo, .jumbotron-container .right-jumbo {
      float: none;
-   
+
 }
 .jumbotron-container .left-jumbo .title {
     width: 500px;
@@ -128,11 +128,27 @@ button{
   .img-fluid{
     display: none;
   }
- 
+
 }
 
 
 
-} 
+}  */
+@media all and (min-width:400px) and (max-width:767px) {
+    .jumbotron-container .title .left-jumbo{
+        width: 100%;
+    }
+    .jumbotron-container .right-jumbo{
+        width: 100%;
+    }
+    .jumbotron-container{
+      /*   height: 400px; */
+        text-align: center;
+        margin-bottom: 600px;
+    }
+    .doctor{
+        justify-content: center;
+    }
+}
 
 </style>
