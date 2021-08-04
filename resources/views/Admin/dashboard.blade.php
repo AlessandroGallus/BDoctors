@@ -47,10 +47,10 @@
                         style=" height:55px ">MODIFICA</button></a>
             </div>
 
-            <div class="profile-image">
+            {{-- <div class="profile-image">
                 <img src="{{ asset('storage/' . Auth::user()->url_img) }}" alt="">
                 <img src="{{ Auth::user()->url_img }}" alt="">
-            </div>
+            </div> --}}
         </div>
 
 

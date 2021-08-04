@@ -21,8 +21,8 @@
                                       Telefono: <span>{{ doctor.phone_number }}</span>
                                   </h4>
                                   <h4>Specializzazioni:</h4>
-                                  <ul>
-                                      <li
+                                  <ul style="padding:0px">
+                                      <li style="list-style:none"
                                           v-for="(spec,
                                           index) in doctor.specializations"
                                           :key="index"
@@ -70,7 +70,7 @@
                           </div>
 
                     <div class="reviews">
-                      <h4>Reviews: <i class="open-reviews fas fa-chevron-down" v-on:click='openReviews=!openReviews'></i></h4>
+                      <h4>Reviews: <i class="open-reviews fas fa-chevron-down" style="cursor:pointer" v-on:click='openReviews=!openReviews'></i></h4>
                             <div class="reviews-list" v-if="openReviews">
                               <ul >
                                 <li class="single-review"
@@ -105,15 +105,6 @@
 
 
                 <!-- MESSAGE FORM -->
-
-            <div class="form" v-if="!isHidden">
-               <ContactForm
-                @confermaInviato="confirmSent()"
-                :doctorId="doctor.id"
-                />
-           </div>
-
-
             <div class="form" v-if="!isHidden">
                 <ContactForm
                     @confermaInviato="confirmSent()"

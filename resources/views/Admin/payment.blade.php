@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
     <h1>Pagamento</h1>
 
     @if (session('success_message'))
@@ -34,9 +35,11 @@
         </section>
 
         <input id="nonce" name="payment_method_nonce" type="hidden" />
-        <button class="button" type="submit"><span>Paga</span></button>
+        <button class="btn btn-success text-center" type="submit"><span>Paga</span></button>
     </form>
 
+</div>
+    
     <script src="https://js.braintreegateway.com/web/dropin/1.31.0/js/dropin.min.js"></script>
     <script>
         var form = document.querySelector('#payment-form');

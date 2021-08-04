@@ -149,10 +149,13 @@ header {
                     position: relative;
                     height: 100%;
                     padding: 25px;
-                    &::after {
+                    &:hover{
+                        &::after {
                         width: 100%;
                         transition: ease-in-out 0.3s;
                     }
+                    }
+                    
                 }
             }
         }
