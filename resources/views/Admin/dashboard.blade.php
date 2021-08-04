@@ -31,10 +31,10 @@
 
                 </div>
                 <hr>
-                <button style=" height:55px " class="btn btn-danger" id="click">DELETE</button>
+                <button style=" height:55px " class="btn btn-danger" id="click">CANCELLA</button>
                 <div id="delete" style="position: absolute; background-color:white ;  left:50%"></div>
                 <a href="{{ route('user.edit', Auth::user()->id) }}"><button class="btn btn-secondary"
-                        style=" height:55px ">EDIT</button></a>
+                        style=" height:55px ">MODIFICA</button></a>
             </div>
 
             <div class="profile-image">
@@ -45,9 +45,9 @@
 
 
         <hr>
-        <a href="/dashboard/messages">See Messages</a><br>
-        <a href="{{ route('reviews.index') }}">See Reviews</a><br>
-        <a href="/dashboard/sponsors">Sponsor yourself</a>
+        <a href="/dashboard/messages">Visualizza Messaggi</a><br>
+        <a href="{{ route('reviews.index') }}">Visualizza Recensioni</a><br>
+        <a href="/dashboard/sponsors">Mettiti in evidenza, scegli il tuo sponsor!!</a>
     </div>
     <script>
         $(document).ready(function() {
