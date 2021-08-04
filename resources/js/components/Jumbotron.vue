@@ -1,6 +1,6 @@
 <template>
   <div class="jumbotron-container container">
-    <div class="left-jumbo">
+    <div class="left-jumbo ">
       <div class="title">
           <h3>
               Solo su bDoctors puoi consultare oltre 109.000 recensioni di pazienti verificati
@@ -44,6 +44,7 @@ export default {
           width: 90%;
           margin: 0 auto;
           margin-top: 30px;
+          // background-color: blue;
           h3{
               margin: 40px 0;
               font-family: 'Ubuntu',sans-serif;
@@ -98,4 +99,40 @@ button{
         box-shadow: 3px 7px 5px #888888;
     }
 }
+@media all and (min-width: 1100px){
+ .jumbotron-container{
+    height: 500px;
+  }
+}
+@media all and (min-width:768px) and (max-width:1100px) {
+  .jumbotron-container{
+    height: 568px;
+  }
+ }
+ @media all and (min-width:450px) and (max-width:767px) {
+   .jumbotron-container .left-jumbo, .jumbotron-container .right-jumbo {
+     float: none;
+   
+}
+.jumbotron-container .left-jumbo .title {
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-top: 30px;
+    // background-color: blue;
+}
+ .jumbotron-container{
+   .right-jumbo {
+     display: none;
+   }
+  .img-fluid{
+    display: none;
+  }
+ 
+}
+
+
+
+} 
+
 </style>

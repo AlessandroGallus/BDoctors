@@ -318,4 +318,23 @@ button {
         box-shadow: 3px 7px 5px #888888;
     }
 }
+
+// @media all and (min-width:768px) and (max-width:1100px) {
+//  .jumbotron-container{
+//    height: 750px;
+//  }
+// }
+// @media all and (min-width:450px) and (max-width:767px) {
+//  .left-jumbo,
+//  .jumbotron-container,
+//  .right-jumbo{
+//    float: none;
+//   display: block;
+//   flex-wrap: wrap;
+//   width: 100%;
+//  }
+
+// }
+
+
 </style>

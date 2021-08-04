@@ -2,7 +2,7 @@
   <div class="container wrapper-top">
     <h2>RICERCA AVANZATA</h2>
     <div class="ricerca">
-      <div class="inputs-ricerca d-flex justify-content-between mb-5">
+      <div class="inputs-ricerca mb-5">
         <div class="d-flex">
           <select
             name="specs"
@@ -27,24 +27,28 @@
             Cerca
           </button>
         </div>
+        <div class="filtri">
+              <div>
+              <label for="orderBy">Media voti:</label>
+              <select name="orderBy" id="orderBy" v-model="orderBy">
+                <option value="default" disabled>--Seleziona--</option>
+                <option value="asc">Crescente</option>
+                <option value="desc">Decrescente</option>
+              </select>
+            </div>
 
-        <div>
-          <label for="orderBy">Media voti:</label>
-          <select name="orderBy" id="orderBy" v-model="orderBy">
-            <option value="default" disabled>--Seleziona--</option>
-            <option value="asc">Crescente</option>
-            <option value="desc">Decrescente</option>
-          </select>
-        </div>
-        <div>
-          <label for="orderByCount">Numero recensioni:</label>
-          <select name="orderByCount" id="orderByCount" v-model="orderByCount">
-            <option value="default" disabled>--Seleziona--</option>
-            <option value="asc">Crescente</option>
-            <option value="desc">Decrescente</option>
-          </select>
+              <div class="recensioni">
+              <label for="orderByCount">Numero recensioni:</label>
+              <select name="orderByCount" id="orderByCount" v-model="orderByCount">
+                <option value="default" disabled>--Seleziona--</option>
+                <option value="asc">Crescente</option>
+                <option value="desc">Decrescente</option>
+              </select>
+            </div>
+
         </div>
       </div>
+
       <div class="result"></div>
       <div v-if="isLoading"><h1>LOADING...</h1></div>
       <div
@@ -53,7 +57,7 @@
       >
         <h3>Nessun risultato per i parametri scelti</h3>
       </div>
-      <div class="container d-flex flex-wrap">
+      <div class="container d-flex justify-content-center  flex-wrap">
         <Doctor
           v-for="(doctor, key) in filteredArray"
           :key="key"
@@ -292,6 +296,12 @@ export default {
 .wrapper-top {
   min-height: calc(100vh - 14.8rem);
 }
+.filtri{
+  margin-top: 10px ;
+}
+.recensioni{
+  margin-top: 20px;
+}
 
 .search {
   margin-left: 15px;
@@ -304,4 +314,17 @@ export default {
     box-shadow: 3px 7px 5px #888888;
   }
 }
+// @media all and (min-width: 1100px){
+ 
+// }
+// @media all and (min-width:768px) and (max-width:1100px) {
+  
+//  }
+//  @media all and (min-width:450px) and (max-width:767px) {
+//   h2{
+//     margin-top: 20px;
+//   }
+// }
+
+
 </style>
