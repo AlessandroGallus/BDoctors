@@ -12,8 +12,6 @@
       <h4 class="messaggio">{{$message['message_text']}}</h4>
       <a href="https://mail.google.com/"><button class="btn btn-primary">Rispondi</button></a>
     </div>
-    
-    
-    
   </div>
 @endsection
+

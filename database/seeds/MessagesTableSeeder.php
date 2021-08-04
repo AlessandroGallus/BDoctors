@@ -27,7 +27,7 @@ class MessagesTableSeeder extends Seeder
             for($j=0;$j<10;$j++){
                 $numero=$numero . $numeri[rand(0,9)];
             };
-            
+
 
             return $numero;
         }
@@ -35,17 +35,16 @@ class MessagesTableSeeder extends Seeder
 
         $limite = rand(1,10);
             for($i=0;$i<$limite;$i++){
-            $timestamp = rand(strtotime("Jan 01 2020"), strtotime("Sep 01 2021"));
-            $random_date = date('Y-m-d H:i:s',$timestamp);
-            $random_number = rand(0,5);
-            $new_message = new Message();
-            $new_message['user_id']=$user['id'];
-            $new_message['message_text']=$messages[$random_number];
-            $new_message['mail']='testmail'. $i . '@aaaaaa.biiiiii';
-            $new_message['phone_number']=generatePhoneNumber();
-            $new_message['created_at'] = $random_date;
-            
-            $new_message->save();
+                $timestamp = rand(strtotime("Jan 01 2020"), strtotime("Sep 01 2021"));
+                $random_date = date('Y-m-d H:i:s',$timestamp);
+                $random_number = rand(0,5);
+                $new_message = new Message();
+                $new_message['user_id']=$user['id'];
+                $new_message['message_text']=$messages[$random_number];
+                $new_message['mail']='testmail'. $i . '@aaaaaa.biiiiii';
+                $new_message['phone_number']=generatePhoneNumber();
+                $new_message['created_at'] = $random_date;
+                $new_message->save();
             }
         }
     }

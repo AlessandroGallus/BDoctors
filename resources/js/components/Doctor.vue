@@ -12,30 +12,7 @@
             />
             <img class="storage" v-else :src="'storage/' + url_img" alt="" />
             <span class="badge badge-secondary">{{spec_name[0]['name']}}</span>
-            <!-- <div class="first-infos p-5 d-none">
-                <h6>Specializzazione/i:</h6>
-                <ul>
-                    <li v-for="(spec, index) in spec_name" :key="index">
-                        {{ spec.name }}
-                    </li>
-                </ul>
-            <h6>
-                    Media Voti:
-                    {{ !isNaN(media) ? media : "Non disponibile" }} ({{
-                        nReviews
-                    }})
-                </h6>
-                <div class="stars d-flex">
-                    <div class="star d-inline" v-for="index in 5" :key="index">
-                        <i
-                            v-if="index <= Math.round(media)"
-                            class="fas fa-star"
-                        ></i>
-                        <i class="far fa-star" v-else></i>
-                    </div>
-                </div>
-            </div> -->
-            
+
             <div class="card-infos container">
                 <h6>Nome: {{ username }}</h6>
                 <h6>Città: {{ city }}</h6>
@@ -69,7 +46,7 @@
                     }"
                     ><button class="btn btn-success profile ">Vedi Profilo</button></router-link>
                     </div>
-                
+
             </div>
         </div>
     </div>
@@ -174,7 +151,6 @@ export default {
         padding: 5px 25px;
         margin-top: 20px;
     }
-    
 }
 
 li {

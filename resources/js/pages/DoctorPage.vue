@@ -1,5 +1,4 @@
 <template>
-
     <div class="doctor-page">
 
           <div class="wrapper">
@@ -103,7 +102,7 @@
                             </div>
                     </div>
             </div>
-                
+
 
                 <!-- MESSAGE FORM -->
 
@@ -115,12 +114,20 @@
            </div>
 
 
+            <div class="form" v-if="!isHidden">
+                <ContactForm
+                    @confermaInviato="confirmSent()"
+                    :doctorId="doctor.id"
+                />
+            </div>
+
             <div class="form" v-if="!isHiddenReview">
-                    <ReviewForm :doctorId="doctor.id" />
-           </div>
-         </div>
-     </div>
-   
+
+                <ReviewForm :doctorId="doctor.id" />
+            </div>
+        </div>
+    </div>
+
 </template>
 
 <script>
@@ -139,7 +146,7 @@ export default {
             isHidden: true,
             isHiddenReview: true,
             msgNot: false,
-            openReviews:false
+            openReviews: false
         };
     },
     mounted() {
@@ -177,12 +184,8 @@ export default {
     margin-bottom: 7.1rem;
     min-height: calc(100vh - 25.1rem);
 }
-/* .container-top {
-  min-height: calc(100vh - 15.8rem);
-} */
 .wrapper {
-
-  color: white;
+    color: white;
     width: 80%;
     margin: 0 auto;
     margin-top: 50px;
@@ -219,7 +222,6 @@ export default {
             font-size: 18px;
             color: black;
         }
-
     }
     img {
         width: 150px;
@@ -227,7 +229,7 @@ export default {
     }
 }
 .buttons {
-  margin-top:15px;
+    margin-top: 15px;
     width: 100%;
     height: 50px;
     display: flex;
@@ -243,19 +245,20 @@ export default {
         }
     }
 }
-.doc-details{
-  padding: 20px;
-  img{
-    width: 200px;
-    border-radius: 5px;
-  }
+.doc-details {
+    padding: 20px;
+    img {
+        width: 200px;
+        border-radius: 5px;
+    }
 }
-.reviews{
-  padding:20px;
-  h4{
-    margin-bottom: 15px;
-  }
+.reviews {
+    padding: 20px;
+    h4 {
+        margin-bottom: 15px;
+    }
 }
+
 li.single-review{
   border-bottom: 1px solid gray;
   padding-bottom: 15px;

@@ -84,12 +84,9 @@ class RegisterController extends Controller
             'CF'=>['required', 'string', 'min:1',  'max:16'],
             'phone_number'=>['required', 'string', 'min:1', 'max:17'],
             'url_cv'=>['required'],
-      // 'url_img'=>['required']
-          'url_img' => 'required|mimes:png,jpeg,gif',
-          /* 'specializations[]' => 'required|array', */
+            'url_img' => 'required|mimes:png,jpeg,gif',
         ], $message);
     }
-/* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */
 
     /**
      * Create a new user instance after a valid registration.
@@ -99,11 +96,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        /* dd($data); */
         $url_img = Storage::put('uploads', $data['url_img']);
-        /* $url_cv = Storage::put('uploads', $data['url_cv']); */
 
-     /*    return  */ $new_user = User::create([
+        $new_user = User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
             'city' => $data['city'],
@@ -115,7 +110,6 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'url_img' => $url_img,
             'url_cv' => $data['url_cv'],
-      // 'specializations' => $data['specializations'],
         ]);
 
         $new_user->specializations()->attach($data['specializations']);

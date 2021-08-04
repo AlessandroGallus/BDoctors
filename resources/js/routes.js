@@ -9,6 +9,7 @@ import DoctorList from './pages/DoctorList.vue'
 import DoctorPage from './pages/DoctorPage.vue'
 import Confirmation from './pages/Confirmation.vue'
 import AdvancedSearch from './pages/AdvancedSearch.vue'
+import Error404 from './pages/Error404.vue'
 
 const router = new VueRouter({
   mode:'history',
@@ -32,12 +33,17 @@ const router = new VueRouter({
       path:'/doctor/:id',
       name:'doctorPage',
       component:DoctorPage,
-      
+
     },
     {
       path:'/confirmation',
       name:'confirmation',
       component:Confirmation
+    },
+    {
+      path:'/*',
+      name:'error404',
+      component:Error404
     }
   ]
 });

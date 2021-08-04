@@ -23,9 +23,9 @@ class EditRequest extends FormRequest
      */
     public function rules()
     {
-    
 
-  
+
+
 
         return [
             'name' => ['required', 'string', 'max:255'],
@@ -36,11 +36,11 @@ class EditRequest extends FormRequest
             'CF'=>['required', 'string', 'min:1',  'max:16'],
             'phone_number'=>['required', 'string', 'min:1', 'max:17'],
             'url_cv'=>['required'],
-             'url_img' => 'required|mimes:png,jpeg,gif',
-           'specializations' => ['required'],
-      
+            'url_img' => 'required|mimes:png,jpeg,gif',
+            'specializations' => ['required'],
         ];
     }
+
     public function messages(){
         return[
             'name.required'=>'Questo campo è obbligatorio test',
@@ -52,11 +52,8 @@ class EditRequest extends FormRequest
             'CF.required'=>'Questo campo è obbligatorio',
             'phone_number.required'=>'Questo campo è obbligatorio',
             'url_cv.required'=>'Questo campo è obbligatorio',
-      // 'url_img.required'=>'Questo campo è obbligatorio',
-             
-      'url_img.required' => 'Questo campo è obbligatorio',
-      'specializations.required' => 'scegliere specializzazione',
-    ];
-           
+            'url_img.required' => 'Questo campo è obbligatorio',
+            'specializations.required' => 'scegliere specializzazione',
+        ];
     }
 }

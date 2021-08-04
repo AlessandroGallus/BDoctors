@@ -2,17 +2,12 @@
   <form action="../api/message" method="POST" @submit="checkData">
 
     <p class="errors" v-if="errors.length">
-    <b>Si prega di correggere i seguenti errori:</b>
-    <ul>
-      <li v-for="(error,key) in errors" :key="key">{{ error }}</li>
+     <b>Si prega di correggere i seguenti errori:</b>
+     <ul>
+         <li v-for="(error,key) in errors" :key="key">{{ error }}</li>
     </ul>
-  </p>
+    </p>
     <input type="hidden" name="user_id" id="user_id" :value="doctorId" >
-        <!-- <div class="form-group">
-            <label for="name">Namee</label>
-            <input type="text" class="form-control" name="name" v-model="name" id="name" />
-        </div> -->
-
         <div class="form-group">
             <label for="mail">E-mail</label>
             <input type="email" v-model="email" class="form-control" placeholder="Inserisci qui la tua mail" name="mail" id="mail"/>
@@ -26,9 +21,6 @@
             <label for="phone_number">Numero di telefono</label>
             <input type="number" class="form-control" v-model="phone_number" name="phone_number" placeholder="Inserisci qui il tuo numero" id="phone_number"/>
         </div>
-        <!-- <div class="alert alert-success">
-            {{session('message')}}
-        </div> -->
         <button type="submit" value="submit" class="btn btn-primary mt-3" >Invia</button>
     </form>
 </template>

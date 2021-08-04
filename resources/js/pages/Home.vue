@@ -1,11 +1,9 @@
 <template>
     <div class="home">
-
         <!-- inizio carousel -->
-                <div
+        <div
             id="carouselExampleFade"
             class="carousel slide carousel-fade"
-
             data-bs-ride="carousel"
         >
             <div class="carousel-inner custom-item">
@@ -81,7 +79,9 @@
             <router-link
                 :to="{ name: 'advancedSearch', params: { spec: ricerca } }"
             >
-                <button class="btn btn-primary d-inline ml-3 search">Vai a Ricerca Avanzata</button>
+                <button class="btn btn-primary d-inline ml-3 search">
+                    Vai a Ricerca Avanzata
+                </button>
             </router-link>
         </div>
 
@@ -89,7 +89,9 @@
             <div class="container title">
                 <h3 class="mt-3">Dottori in evidenza:</h3>
             </div>
-            <div class="container doctor d-flex flex-wrap justify-content-center">
+            <div
+                class="container doctor d-flex flex-wrap justify-content-center"
+            >
                 <Doctor
                     v-for="(doctor, key) in premium"
                     :key="key"
@@ -107,102 +109,23 @@
             </div>
             <div class="links d-flex justify-content-center">
                 <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li
-            class="page-item"
-            v-for="(indice, index) in this.totalPages"
-            v-on:click="premiumDoctor(indice)"
-            :key="index"
-          >
-            <button class="page-link" style="color:white">{{ indice }}</button>
-          </li>
-        </ul>
-      </nav>
+                    <ul class="pagination">
+                        <li
+                            class="page-item"
+                            v-for="(indice, index) in this.totalPages"
+                            v-on:click="premiumDoctor(indice)"
+                            :key="index"
+                        >
+                            <button class="page-link" style="color:white">
+                                {{ indice }}
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-
         </section>
-
-        <!-- CAROUSEL DA SISTEMARE -->
-      <!--   <div
-            id="carouselExampleIndicators"
-            class="carousel slide"
-            data-bs-ride="carousel"
-        >
-              <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-  </div>
-            <div class="carousel-inner custom-item">
-                <div class="carousel-item active">
-                    <img
-                        src="https://d3043uog1ad1l6.cloudfront.net/uploads/2020/06/Medicina-do-futuro.jpg"
-                        class="d-block w-100 image-fluid"
-                        alt="..."
-                    />
-                </div>
-                <div class="carousel-item">
-                    <img
-                        src="https://www.mec2pc.it/wp-content/uploads/2017/06/banner22-2.jpg"
-                        class="d-block w-100"
-                        alt="..."
-                    />
-                </div>
-                <div class="carousel-item">
-                    <img
-                        src="https://wallpapercave.com/wp/wp2217871.jpg"
-                        class="d-block w-100"
-                        alt="..."
-                    />
-                </div>
-                <div class="carousel-item">
-                    <img
-                        src="https://saocamilo-sp.br/assets/uploads/topo-medicina-diagnostica-01.jpg"
-                        class="d-block w-100"
-                        alt="..."
-                    />
-                </div>
-                <div class="carousel-item">
-                    <img
-                        src="https://images3.alphacoders.com/203/thumb-1920-203679.jpg"
-                        class="d-block w-100"
-                        alt="..."
-                    />
-                </div>
-                <div class="carousel-item">
-                    <img
-                        src="https://wallpaperaccess.com/full/1267758.jpg"
-                        class="d-block w-100"
-                        alt="..."
-                    />
-                </div>
-                <div class="carousel-item">
-                    <img
-                        src="https://pennystocks.news/wp-content/uploads/2020/07/geo.jpg"
-                        class="d-block w-100"
-                        alt="..."
-                    />
-                </div>
-            </div>
-         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-        </div> -->
-    <!-- FINE CAROUSEL-->
-       <Jumbotron/>
-    <section>
-        <div class="prova">
-
-        </div>
-    </section>
+        <Jumbotron />
     </div>
-
 </template>
 
 <script>
@@ -225,8 +148,8 @@ export default {
             premium: [],
             specs: [],
             datalistID: "ciao",
-            currentPage:1,
-            totalPages:null
+            currentPage: 1,
+            totalPages: null
         };
     },
     watch: {
@@ -237,7 +160,7 @@ export default {
                 this.datalistID = "inactive";
             }
         },
-        currentPage:function(){
+        currentPage: function() {
             this.premium(this.currentPage);
         }
     },
@@ -265,10 +188,12 @@ export default {
 
         premiumDoctor(page) {
             axios
-                .get("http://127.0.0.1:8000/api/alldoctors?premium",{params:{page:page}})
+                .get("http://127.0.0.1:8000/api/alldoctors?premium", {
+                    params: { page: page }
+                })
                 .then(res => {
                     this.premium = res.data.data;
-                    this.totalPages=res.data.last_page
+                    this.totalPages = res.data.last_page;
                     this.calcoloMedia();
                     console.log("premium: ", this.premium);
                 })
@@ -293,7 +218,6 @@ export default {
     font-style: italic;
 }
 
-
 .carousel {
     height: 80vh;
     width: 100%;
@@ -306,7 +230,7 @@ export default {
         height: 80vh;
     }
 }
-a{
+a {
     text-decoration: none;
 }
 button {
@@ -318,23 +242,4 @@ button {
         box-shadow: 3px 7px 5px #888888;
     }
 }
-
-// @media all and (min-width:768px) and (max-width:1100px) {
-//  .jumbotron-container{
-//    height: 750px;
-//  }
-// }
-// @media all and (min-width:450px) and (max-width:767px) {
-//  .left-jumbo,
-//  .jumbotron-container,
-//  .right-jumbo{
-//    float: none;
-//   display: block;
-//   flex-wrap: wrap;
-//   width: 100%;
-//  }
-
-// }
-
-
 </style>
