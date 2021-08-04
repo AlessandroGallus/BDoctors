@@ -145,9 +145,11 @@ export default {
   watch: {
     orderBy: function () {
       if (this.orderBy == "asc") {
-        this.searchnew(1, "ASC");
+        this.searchnew(1, "asc");
+        this.orderBy='asc'
       } else if (this.orderBy == "desc") {
-        this.searchnew(1, "DESC");
+        this.searchnew(1, "desc");
+        this.orderBy='desc'
       }
       this.orderByCount = "default";
     },
@@ -219,6 +221,7 @@ export default {
         });
     },
     searchnew(page, orderBy) {
+      this.orderBy=orderBy;
       this.filteredArray = [];
       this.currentPage = page;
       this.isLoading = true;
@@ -245,6 +248,7 @@ export default {
           }else{
             this.isEmpty=false
           }
+          this.orderBy = orderBy;
           this.calcoloMedia();
           console.log("array filtrato:", this.filteredArray);
         })
