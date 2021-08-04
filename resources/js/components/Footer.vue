@@ -1,9 +1,9 @@
 <template>
   <footer>
-    <div class="footer bg_dark_blue padding_top_60 padding_bottom_60">
+    <div class="footer bg_dark_blue padding_top_60 padding_bottom_60 pt-3">
       <div class="container">
         <div class="row">
-          <div class="col-xs-12 col-md-4 white_opacity_color">
+          <div class="col-xs-12 col-md-6 white_opacity_color text-center">
             <p class="margin_top_10">
               <router-link :to="{ name: 'home' }"
                 ><img src="../../../public/img/logo1.png" alt="Logo"
@@ -54,9 +54,9 @@
               </li>
             </ul>
           </div>
-          <div class="col-xs-12 col-sm-6 col-md-2">
+          <!-- <div class="col-xs-12 col-sm-6 col-md-2">
             <h3 class="white_color">FAQ</h3>
-            <!--     <ul class="vertical_menu">
+                <ul class="vertical_menu">
                   <li>
                     <a href="#" class="grey_white_link">About</a>
                   </li>
@@ -87,67 +87,45 @@
                   <li>
                     <a href="#" class="grey_white_link">Legal &amp; Security</a>
                   </li>
-                </ul> -->
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-2">
+                </ul>
+          </div> -->
+          <div class="col-xs-12 col-md-6 text-center ">
             <h3 class="white_color">Contatti</h3>
             <ul class="vertical_menu">
               <li>
                 <a
                   target="_blank"
                   href="https://github.com/merlino79"
-                  class="grey_white_link"
-                  >Alessandro C.</a
+                  class="grey_white_link text-decoration-none"
+                  >Alessandro C. <i class="fab fa-github"></i></a
                 >
               </li>
               <li>
                 <a
                   target="_blank"
                   href="https://github.com/AlessandroGallus"
-                  class="grey_white_link"
-                  >Alessandro G.</a
+                  class="grey_white_link text-decoration-none"
+                  >Alessandro G. <i class="fab fa-github"></i></a
                 >
               </li>
               <li>
                 <a
                   target="_blank"
                   href="https://github.com/AjayNaruka"
-                  class="grey_white_link"
-                  >Ajay N.</a
+                  class="grey_white_link text-decoration-none"
+                  >Ajay N. <i class="fab fa-github"></i></a
                 >
               </li>
               <li>
                 <a
                   target="_blank"
                   href="https://github.com/bigoroberto"
-                  class="grey_white_link"
-                  >Roberto B.</a
+                  class="grey_white_link text-decoration-none"
+                  >Roberto B. <i class="fab fa-github"></i></a
                 >
               </li>
             </ul>
-            <!--
-                  <li>
-                    <a href="#" class="grey_white_link">Block Storage</a>
-                  </li>
-                  <li>
-                    <a href="#" class="grey_white_link">Tools & Integrations</a>
-                  </li>
-                  <li>
-                    <a href="#" class="grey_white_link">One-Click Apps</a>
-                  </li>
-                  <li>
-                    <a href="#" class="grey_white_link">API</a>
-                  </li>
-                  <li>
-                    <a href="#" class="grey_white_link">Pricing</a>
-                  </li>
-                  <li>
-                    <a href="#" class="grey_white_link">Documentation</a>
-                  </li>
-                  <li>
-                    <a href="#" class="grey_white_link">Release Notes</a>
-                  </li>
-                </ul> -->
+            
           </div>
           <!--     <div class="col-xs-12 col-sm-6 col-md-2">
                 <h3 class="white_color">Community</h3>
@@ -184,9 +162,9 @@
                   </li>
                 </ul>
               </div> -->
-          <div class="col-xs-12 col-sm-6 col-md-2">
+          <!-- <div class="col-xs-12 col-sm-6 col-md-2">
             <h3 class="white_color">Assistenza</h3>
-            <!--  <ul class="vertical_menu">
+             <ul class="vertical_menu">
                   <li>
                     <a href="#" class="grey_white_link">Contact support</a>
                   </li>
@@ -196,8 +174,8 @@
                   <li>
                     <a href="#" class="grey_white_link">Network Status</a>
                   </li>
-                </ul> -->
-          </div>
+                </ul>
+          </div> -->
         </div>
       </div>
     </div>

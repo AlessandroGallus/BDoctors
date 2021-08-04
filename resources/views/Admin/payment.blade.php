@@ -5,7 +5,8 @@
 
 @if(session('success_message'))
   <div class="alert alert-success">
-    {{session('success_message')}}
+    {{session('success_message')}}br
+    <br><span>Ritorna alla <a href="/dashboard">dashboard</a>.</span>
     {{-- <a href="/dashboard">ritorna alla tua dashboard</a> --}}
   </div>
 @endif

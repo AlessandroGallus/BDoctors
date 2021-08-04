@@ -182,12 +182,11 @@
                                 </div>
 
                                 <div id="selects" class="col-md-6">
-                                    <select class="form-control @error('specializations') is-invalid @enderror"
+                                    <select class="form-control mb-2 @error('specializations') is-invalid @enderror"
                                     name="specializations[]" id="specializations">
-
-
                                         <option value=""> - selezionare una categoria - </option>
                                         @foreach($specializations as $spec)
+                                            
                                             <option @if (old('specializations')== $spec->id)
                                                 selected
                                             @endif
@@ -202,7 +201,13 @@
                                    @enderror
                                 </div>
                             </div>
-
+                            <div class="form-group row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <button id="click" type="button" class="btn btn-dark">TEST</button>
+                                </div>
+                            </div>
+                            
+                            <hr>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -210,7 +215,7 @@
                                 </button>
                             </div>
                         </div>
-                        <button id="click" type="button">TEST</button>
+                        
                     </form>
                 </div>
             </div>
