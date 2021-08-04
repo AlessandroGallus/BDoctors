@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -133,13 +133,24 @@
                             </div>
                         </div>
 
+                            
+                            <div class="form-group row">
+                                <label for="visit_types" class="col-md-4 col-form-label text-md-right">{{ __('Prestazioni') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="visit_types" value='{{old('CF',$to_edit['visit_types'])}}' type="text" class="form-control " name="visit_types">
+                                    
+                                </div>
+    
+    
+                            </div>
                             <div class="form-group row">
                                 <div class="col-md-4 text-md-right">
                                     <label class="label-control " for="specializations">Specializzazione</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <select class="form-control @error('specializations') is-invalid @enderror"
-                                    name="specializations" id="specializations">
+                                <div id="selects" class="col-md-6">
+                                    <select class="form-control mb-2 @error('specializations') is-invalid @enderror"
+                                    name="specializations[]" id="specializations">
                                         <option value=""> - selezionare una categoria - </option>
                                         @foreach($specializations as $spec)
                                             <option 
@@ -152,18 +163,13 @@
                                         </span>
                                    @enderror
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="visit_types" class="col-md-4 col-form-label text-md-right">{{ __('Prestazioni') }}</label>
-    
-                                <div class="col-md-6">
-                                    <input id="visit_types" value='{{old('CF',$to_edit['visit_types'])}}' type="text" class="form-control " name="visit_types">
-                                    
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-6 offset-md-4">
+                                        <button id="click" type="button" class="btn btn-dark">TEST</button>
+                                    </div>
                                 </div>
-    
-    
                             </div>
-
+                            <hr>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -177,5 +183,23 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(document).ready(function(){
+         let index =1;
+        $('#click').click(function(){
+            console.log('test');
+            $('#selects').append(`<select class="form-control @error('category_id') is-invalid @enderror"
+                                     name="specializations[]" id="specializations">
+ 
+                                         <option value=""> - selezionare una categoria - </option>
+                                         @foreach($specializations as $spec)
+                                             <option @if (old('specializations')== $spec->id)
+                                                 selected
+                                             @endif
+                                             value="{{ $spec->id }}">{{ $spec->name }}</option>
+                                         @endforeach
+                                     </select>`)
+        })
+    })
+ </script>
 @endsection
