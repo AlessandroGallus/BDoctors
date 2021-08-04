@@ -1,0 +1,35 @@
+.container.single-message{
+  .left,.right{
+    float: left;
+    height: 100%;
+  }
+  .left{
+    width: 35%;
+    
+  }
+  .right{
+    border-left: 1px solid grey;
+    width: 65%;
+    padding-left: 25px;
+    .messaggio{
+      padding-bottom: 25px;
+      /* border-bottom: 1px solid rgba($color: grey, $alpha: .5); */
+    }
+  }
+  
+}
+
+@media all and (max-width:768px) {
+  .container.single-message{
+    .left,.right{
+      float: none;
+    }
+    .right{
+      border-left: none;
+      padding-left: 0;
+      border-top: 1px solid grey;
+      padding-top: 25px;
+      margin-top: 25px;
+    }
+  }
+}
