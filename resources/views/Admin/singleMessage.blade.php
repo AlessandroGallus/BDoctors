@@ -1,12 +1,19 @@
 @extends('layouts.app')
 @section('content')
-  <div class="container">
+  <div class="container single-message clearfix">
     <h2>DETTAGLIO MESSAGGIO:</h2>
-    <h2>> Email: </h2>
-    <h4>{{$message['mail']}}</h4>
-    <h2>> Messaggio:</h2>
-    <h4>{{$message['message_text']}}</h4>
-    <h2>> Telefono:</h2>
-    <h4>{{$message['phone_number']}}</h4>
+    <div class="left">
+      <h3>Telefono:</h3>
+      <h4>{{$message['phone_number']}}</h4>
+      <h3>Email: </h3>
+      <h4>{{$message['mail']}}</h4>
+    </div>
+    <div class="right">
+      <h4 class="messaggio">{{$message['message_text']}}</h4>
+      <a href="https://mail.google.com/"><button class="btn btn-primary">Rispondi</button></a>
+    </div>
+    
+    
+    
   </div>
 @endsection

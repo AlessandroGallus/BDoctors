@@ -1,3 +1,22 @@
 .profile-image img{
-  height: 150px;
+  /* height: 150px; */
+}
+.border-hr{
+  display: none;
+}
+
+.profile-container{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+@media all and (max-width:768px) {
+  .profile-container{
+    display: block;
+    text-align: center;
+    .border-hr{
+      display: block;
+    }
+  }
 }
