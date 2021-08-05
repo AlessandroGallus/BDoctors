@@ -41,7 +41,7 @@
                 </div>
                 <hr>
                 
-                <button style=" height:55px " class="btn btn-danger" id="click">CANCELLA</button>
+                <button style=" height:55px " class="btn btn-danger" id="click">CANCELLATI</button>
                 <div id="delete" style="position: absolute; background-color:white ;  left:50%"></div>
                 <a href="{{ route('user.edit', Auth::user()->id) }}"><button class="btn btn-secondary"
                         style=" height:55px ">MODIFICA</button></a>

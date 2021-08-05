@@ -165,7 +165,7 @@
                                 </div>
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
-                                        <button id="click" type="button" class="btn btn-dark">TEST</button>
+                                        <button id="click" type="button" class="btn btn-dark">Aggiungi</button>
                                     </div>
                                 </div>
                             </div>
