@@ -2632,9 +2632,11 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     orderBy: function orderBy() {
       if (this.orderBy == "asc") {
-        this.searchnew(1, "ASC");
+        this.searchnew(1, "asc");
+        this.orderBy = 'asc';
       } else if (this.orderBy == "desc") {
-        this.searchnew(1, "DESC");
+        this.searchnew(1, "desc");
+        this.orderBy = 'desc';
       }
 
       this.orderByCount = "default";
@@ -2716,6 +2718,7 @@ __webpack_require__.r(__webpack_exports__);
     searchnew: function searchnew(page, orderBy) {
       var _this2 = this;
 
+      this.orderBy = orderBy;
       this.filteredArray = [];
       this.currentPage = page;
       this.isLoading = true;
@@ -2740,6 +2743,8 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           _this2.isEmpty = false;
         }
+
+        _this2.orderBy = orderBy;
 
         _this2.calcoloMedia();
 
@@ -2949,6 +2954,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_ContactForm_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/ContactForm.vue */ "./resources/js/components/ContactForm.vue");
 /* harmony import */ var _components_ReviewForm_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/ReviewForm.vue */ "./resources/js/components/ReviewForm.vue");
+//
+//
+//
+//
 //
 //
 //
@@ -3283,6 +3292,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3470,7 +3490,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".jumbotron-container[data-v-0b8439d1] {\n  height: 500px;\n}\n.jumbotron-container .left-jumbo[data-v-0b8439d1] {\n  width: 56%;\n}\n.jumbotron-container .left-jumbo .title[data-v-0b8439d1] {\n  width: 90%;\n  margin: 0 auto;\n  margin-top: 30px;\n}\n.jumbotron-container .left-jumbo .title h3[data-v-0b8439d1] {\n  margin: 40px 0;\n  font-family: \"Ubuntu\", sans-serif;\n  font-size: 40px;\n  color: #333;\n}\n.jumbotron-container .left-jumbo .title span[data-v-0b8439d1] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.jumbotron-container .left-jumbo .title span img[data-v-0b8439d1] {\n  width: 160px;\n}\n.jumbotron-container .left-jumbo[data-v-0b8439d1],\n.jumbotron-container .right-jumbo[data-v-0b8439d1] {\n  float: left;\n  height: 100%;\n}\n.jumbotron-container .right-jumbo[data-v-0b8439d1] {\n  width: 42%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.jumbotron-container .container-img[data-v-0b8439d1] {\n  position: relative;\n  width: 100%;\n  height: 80%;\n  background-size: cover;\n}\n.jumbotron-container .container-img img[data-v-0b8439d1] {\n  height: 100%;\n  background-size: contain;\n}\n.jumbotron-container .sign-in[data-v-0b8439d1] {\n  position: absolute;\n  background-color: rgba(6, 6, 6, 0.4);\n  padding: 20px;\n  border-radius: 10px;\n}\nbutton[data-v-0b8439d1] {\n  border: none;\n  background-image: linear-gradient(135deg, #1e6650 45%, #63987a);\n}\nbutton[data-v-0b8439d1]:hover {\n  background: linear-gradient(135deg, #63987a 45%, #1e6650);\n  transition: 0.3s;\n  box-shadow: 3px 7px 5px #888888;\n}\n@media all and (min-width: 1100px) {\n.jumbotron-container[data-v-0b8439d1] {\n    height: 500px;\n}\n}\n@media all and (min-width: 768px) and (max-width: 1100px) {\n.jumbotron-container[data-v-0b8439d1] {\n    height: 568px;\n}\n}\n@media all and (min-width: 400px) and (max-width: 767px) {\n.jumbotron-container .title .left-jumbo[data-v-0b8439d1] {\n    width: 100%;\n}\n.jumbotron-container .right-jumbo[data-v-0b8439d1] {\n    width: 100%;\n}\n.jumbotron-container[data-v-0b8439d1] {\n    text-align: center;\n    margin-bottom: 600px;\n}\n.doctor[data-v-0b8439d1] {\n    justify-content: center;\n}\n}", ""]);
+exports.push([module.i, ".jumbotron-container[data-v-0b8439d1] {\n  height: 500px;\n  /*     .sign-in {\n          position: absolute;\n          background-color: rgba(6, 6, 6, 0.4);\n          padding: 20px;\n          border-radius: 10px;\n      } */\n}\n.jumbotron-container .left-jumbo[data-v-0b8439d1] {\n  width: 56%;\n}\n.jumbotron-container .left-jumbo .title[data-v-0b8439d1] {\n  width: 90%;\n  margin: 0 auto;\n  margin-top: 30px;\n}\n.jumbotron-container .left-jumbo .title h3[data-v-0b8439d1] {\n  margin: 40px 0;\n  font-family: \"Ubuntu\", sans-serif;\n  font-size: 40px;\n  color: #333;\n}\n.jumbotron-container .left-jumbo .title span[data-v-0b8439d1] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.jumbotron-container .left-jumbo .title span img[data-v-0b8439d1] {\n  width: 160px;\n}\n.jumbotron-container .left-jumbo[data-v-0b8439d1],\n.jumbotron-container .right-jumbo[data-v-0b8439d1] {\n  float: left;\n  height: 100%;\n}\n.jumbotron-container .right-jumbo[data-v-0b8439d1] {\n  width: 42%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.jumbotron-container .container-img[data-v-0b8439d1] {\n  /*        position: relative; */\n  width: 100%;\n  height: 80%;\n  background-size: cover;\n}\n.jumbotron-container .container-img img[data-v-0b8439d1] {\n  height: 100%;\n  background-size: contain;\n}\nbutton[data-v-0b8439d1] {\n  border: none;\n  background-image: linear-gradient(135deg, #1e6650 45%, #63987a);\n}\nbutton[data-v-0b8439d1]:hover {\n  background: linear-gradient(135deg, #63987a 45%, #1e6650);\n  transition: 0.3s;\n  box-shadow: 3px 7px 5px #888888;\n}\n@media all and (min-width: 1100px) {\n.jumbotron-container[data-v-0b8439d1] {\n    height: 500px;\n}\n}\n@media all and (min-width: 768px) and (max-width: 1100px) {\n.jumbotron-container[data-v-0b8439d1] {\n    height: 568px;\n}\n}\n@media all and (min-width: 400px) and (max-width: 767px) {\n.jumbotron-container .title .left-jumbo[data-v-0b8439d1] {\n    width: 100%;\n}\n.jumbotron-container .right-jumbo[data-v-0b8439d1] {\n    width: 100%;\n}\n.jumbotron-container[data-v-0b8439d1] {\n    text-align: center;\n    margin-bottom: 600px;\n}\n.doctor[data-v-0b8439d1] {\n    justify-content: center;\n}\n}", ""]);
 
 // exports
 
@@ -3603,7 +3623,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".home[data-v-b3c5cf30] {\n  margin-bottom: 50px;\n  min-height: calc(100vh - 25.1rem);\n}\n.input-form[data-v-b3c5cf30] {\n  width: 50%;\n  margin-right: 20px;\n}\n[data-v-b3c5cf30]::-moz-placeholder {\n  font-style: italic;\n}\n[data-v-b3c5cf30]:-ms-input-placeholder {\n  font-style: italic;\n}\n[data-v-b3c5cf30]::placeholder {\n  font-style: italic;\n}\n.carousel[data-v-b3c5cf30] {\n  height: 80vh;\n  width: 100%;\n  margin-bottom: 50px;\n}\n.custom-item[data-v-b3c5cf30] {\n  width: 100%;\n}\n.custom-item img[data-v-b3c5cf30] {\n  height: 80vh;\n}\na[data-v-b3c5cf30] {\n  text-decoration: none;\n}\nbutton[data-v-b3c5cf30] {\n  border: none;\n  background-image: linear-gradient(135deg, #1e6650 45%, #63987a);\n}\nbutton[data-v-b3c5cf30]:hover {\n  background: linear-gradient(135deg, #63987a 45%, #1e6650);\n  transition: 0.3s;\n  box-shadow: 3px 7px 5px #888888;\n}", ""]);
+exports.push([module.i, ".home[data-v-b3c5cf30] {\n  margin-bottom: 50px;\n  min-height: calc(100vh - 25.1rem);\n}\n.input-form[data-v-b3c5cf30] {\n  width: 50%;\n  margin-right: 20px;\n}\n[data-v-b3c5cf30]::-moz-placeholder {\n  font-style: italic;\n}\n[data-v-b3c5cf30]:-ms-input-placeholder {\n  font-style: italic;\n}\n[data-v-b3c5cf30]::placeholder {\n  font-style: italic;\n}\n.carousel[data-v-b3c5cf30] {\n  height: 80vh;\n  width: 100%;\n  margin-bottom: 50px;\n  position: relative;\n}\n.sign-in[data-v-b3c5cf30] {\n  position: absolute;\n  z-index: 999;\n  top: 50%;\n  left: 25%;\n  transform: translate(-50%, -50%);\n  background-color: rgba(255, 255, 255, 0.7);\n  padding: 25px;\n  border-radius: 20px;\n  box-shadow: 3px 7px 5px #888888;\n}\n.sign-in h5[data-v-b3c5cf30] {\n  text-align: center;\n  color: #1e6650;\n  margin-bottom: 20px;\n}\n.custom-item[data-v-b3c5cf30] {\n  width: 100%;\n}\n.custom-item img[data-v-b3c5cf30] {\n  height: 80vh;\n}\na[data-v-b3c5cf30] {\n  text-decoration: none;\n}\nbutton[data-v-b3c5cf30] {\n  border: none;\n  background-image: linear-gradient(135deg, #1e6650 45%, #63987a);\n}\nbutton[data-v-b3c5cf30]:hover {\n  background: linear-gradient(135deg, #63987a 45%, #1e6650);\n  transition: 0.3s;\n  box-shadow: 3px 7px 5px #888888;\n}", ""]);
 
 // exports
 
@@ -5777,18 +5797,6 @@ var staticRenderFns = [
               alt: ""
             }
           })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "sign-in" }, [
-          _c("a", { attrs: { href: "/register" } }, [
-            _c("button", { staticClass: "btn btn-primary" }, [
-              _vm._v("REGISTRATI")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "/login" } }, [
-            _c("button", { staticClass: "btn btn-primary" }, [_vm._v("LOGIN")])
-          ])
         ])
       ])
     ])
@@ -6446,6 +6454,14 @@ var render = function() {
               _c("span", [_vm._v(_vm._s(_vm.doctor.phone_number))])
             ]),
             _vm._v(" "),
+            _c("h4", [
+              _vm._v(
+                "\n                                  Prestazioni:\n                              "
+              )
+            ]),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(_vm.doctor.visit_types))]),
+            _vm._v(" "),
             _c("h4", [_vm._v("Specializzazioni:")]),
             _vm._v(" "),
             _c(
@@ -6826,6 +6842,20 @@ var staticRenderFns = [
         attrs: { id: "carouselExampleFade", "data-bs-ride": "carousel" }
       },
       [
+        _c("div", { staticClass: "sign-in" }, [
+          _c("h5", [_vm._v("\n                Sei un dottore?\n            ")]),
+          _vm._v(" "),
+          _c("a", { attrs: { href: "/register" } }, [
+            _c("button", { staticClass: "btn btn-primary" }, [
+              _vm._v("REGISTRATI")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("a", { attrs: { href: "/login" } }, [
+            _c("button", { staticClass: "btn btn-primary" }, [_vm._v("LOGIN")])
+          ])
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "carousel-inner custom-item" }, [
           _c("div", { staticClass: "carousel-item active" }, [
             _c("img", {
@@ -23499,8 +23529,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Roberto\Desktop\Boolean Careers\LARAVEL\prova-master\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Roberto\Desktop\Boolean Careers\LARAVEL\prova-master\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/resme/Desktop/doctors/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/resme/Desktop/doctors/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

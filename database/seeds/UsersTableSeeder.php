@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
             $new_user['phone_number']=$this->get('number');
             $new_user['url_img']=$this->get('img');
             $new_user['visit_types']='Primo soccorso, controllo di emergenza';
-            $new_user['url_cv']='https://drive.google.com/file/d/1A2JYavC8iGDy9tEHLs4-JN16GwGGjTVD/view?usp=sharing';
+            $new_user['url_cv']= 'https://drive.google.com/file/d/1-YRtpAjHC3LtyjKqOG-e7BlfCPSPJuEN/view?usp=sharing';
             $new_user->save();
         }
         $new_user = new User();
@@ -39,7 +39,7 @@ class UsersTableSeeder extends Seeder
         $new_user['CF']=$this->get('CF');
         $new_user['phone_number']=$this->get('number');
         $new_user['url_img']=$this->get('img');
-        $new_user['url_cv']='https://drive.google.com/file/d/1A2JYavC8iGDy9tEHLs4-JN16GwGGjTVD/view?usp=sharing';
+        $new_user['url_cv']= 'https://drive.google.com/file/d/1-YRtpAjHC3LtyjKqOG-e7BlfCPSPJuEN/view?usp=sharing';
         $new_user['visit_types']='Primo soccorso, controllo di emergenza';
         $new_user->save();
     }
