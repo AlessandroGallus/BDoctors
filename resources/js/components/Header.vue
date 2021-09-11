@@ -6,7 +6,7 @@
                     <router-link :to="{ name: 'home' }"
                         ><img src="../../../public/img/logo1.png" alt="Logo"
                     /></router-link>
-                    <span>ale</span>
+                    <span>bdoctors</span>
                 </div>
 
                 <div class="right">
